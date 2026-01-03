@@ -32,15 +32,15 @@ export default function ProcessSection() {
     <section id="process" className="py-20 bg-transparent">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="animate-on-scroll text-center mb-12">
-          <h2 className="text-4xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-[#EEE9FF] to-[#B7A6FF] bg-clip-text text-transparent">
+          <h2 className="xl:text-4xl text-3xl font-medium instrument-serif-regular tracking-wide"style={{ fontWeight: 500, WebkitTextStroke: '0.2px currentColor' } as React.CSSProperties}>
+            <span className="bg-white to-gray-400 bg-clip-text text-transparent">
               Our{' '}
             </span>
-            <span className="bg-gradient-to-r from-[#8B6CFF] to-[#B7A6FF] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] bg-clip-text text-transparent">
               Process
             </span>
           </h2>
-          <p className="text-xl text-[#B7A6FF] max-w-2xl mx-auto">
+          <p className="text-xl text-white/70 max-w-2xl mx-auto">
             A proven methodology that delivers results
           </p>
         </div>

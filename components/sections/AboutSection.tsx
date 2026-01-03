@@ -1,46 +1,19 @@
 'use client';
 
-import { Users, Target, Zap, Award } from 'lucide-react';
 import { stats } from '@/data/stats';
 
 export default function AboutSection() {
-  const values = [
-    {
-      icon: Users,
-      title: 'Community First',
-      description:
-        'We believe in building strong communities around every project, fostering engagement and long-term success.',
-    },
-    {
-      icon: Target,
-      title: 'Innovation Driven',
-      description:
-        'Constantly pushing boundaries and exploring new possibilities in the Web3 space.',
-    },
-    {
-      icon: Zap,
-      title: 'Speed & Quality',
-      description:
-        'Delivering high-quality solutions quickly without compromising on security or performance.',
-    },
-    {
-      icon: Award,
-      title: 'Excellence',
-      description:
-        'Committed to maintaining the highest standards in every aspect of our work.',
-    },
-  ];
 
   return (
     <section id="about" className="py-20 bg-transparent relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="animate-on-scroll text-center mb-20">
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-[#EEE9FF] to-[#B7A6FF] bg-clip-text text-transparent">
+          <h1 className="instrument-serif-regular text-5xl font-black mb-6 tracking-wide" style={{ fontWeight: 500, WebkitTextStroke: '0.2px currentColor' } as React.CSSProperties}>
+            <span className="bg-white to-gray-400 bg-clip-text text-transparent">
               About{' '}
             </span>
-            <span className="bg-gradient-to-r from-[#8B6CFF] to-[#B7A6FF] bg-clip-text text-transparent">
-              Web3Agency
+            <span className="bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] bg-clip-text text-transparent">
+              Incurify
             </span>
           </h1>
           <p className="text-xl text-[#B7A6FF] max-w-3xl mx-auto leading-relaxed">
@@ -51,7 +24,7 @@ export default function AboutSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
           <div className="animate-on-scroll">
-            <h2 className="text-4xl sm:text-5xl font-bold mb-6">
+            <h2 className="instrument-serif-regular text-5xl font-black mb-6 tracking-wide" style={{ fontWeight: 800, WebkitTextStroke: '0.2px currentColor' } as React.CSSProperties}>
               <span className="bg-gradient-to-r from-[#EEE9FF] to-[#B7A6FF] bg-clip-text text-transparent">
                 About{' '}
               </span>
@@ -90,7 +63,7 @@ export default function AboutSection() {
         {/* Mission & Vision */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
           <div className="animate-on-scroll p-8 rounded-xl bg-gradient-to-br from-[#3B1A6E] to-[#0A0612] border border-[#8B6CFF]/20">
-            <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-[#8B6CFF] to-[#B7A6FF] bg-clip-text text-transparent">
+            <h2 className="instrument-serif-regular text-3xl font-black mb-4 tracking-wide bg-gradient-to-r from-[#8B6CFF] to-[#B7A6FF] bg-clip-text text-transparent" style={{ fontWeight: 800, WebkitTextStroke: '0.2px currentColor' } as React.CSSProperties}>
               Our Mission
             </h2>
             <p className="text-[#B7A6FF] leading-relaxed">
@@ -102,7 +75,7 @@ export default function AboutSection() {
           </div>
 
           <div className="animate-on-scroll p-8 rounded-xl bg-gradient-to-br from-[#3B1A6E] to-[#0A0612] border border-[#8B6CFF]/20">
-            <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-[#8B6CFF] to-[#B7A6FF] bg-clip-text text-transparent">
+            <h2 className="instrument-serif-regular text-3xl font-black mb-4 tracking-wide bg-gradient-to-r from-[#8B6CFF] to-[#B7A6FF] bg-clip-text text-transparent" style={{ fontWeight: 800, WebkitTextStroke: '0.2px currentColor' } as React.CSSProperties}>
               Our Vision
             </h2>
             <p className="text-[#B7A6FF] leading-relaxed">
@@ -111,66 +84,6 @@ export default function AboutSection() {
               powers transparent, efficient, and equitable systems that benefit
               humanity as a whole, and we're committed to making that vision a
               reality.
-            </p>
-          </div>
-        </div>
-
-        {/* Values Section */}
-        <div className="animate-on-scroll mb-20">
-          <h2 className="text-4xl font-bold text-center mb-4">
-            <span className="bg-gradient-to-r from-[#EEE9FF] to-[#B7A6FF] bg-clip-text text-transparent">
-              Our{' '}
-            </span>
-            <span className="bg-gradient-to-r from-[#8B6CFF] to-[#B7A6FF] bg-clip-text text-transparent">
-              Values
-            </span>
-          </h2>
-          <p className="text-xl text-[#B7A6FF] text-center mb-12 max-w-2xl mx-auto">
-            The principles that guide everything we do
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {values.map((value, index) => (
-              <div
-                key={index}
-                className="p-6 rounded-xl bg-gradient-to-br from-[#3B1A6E] to-[#0A0612] border border-[#8B6CFF]/20 hover:border-[#8B6CFF]/50 transition-all duration-300"
-              >
-                <div className="mb-4 w-12 h-12 rounded-lg bg-gradient-to-br from-[#8B6CFF]/20 to-[#B7A6FF]/20 flex items-center justify-center">
-                  <value.icon className="w-6 h-6 text-[#8B6CFF]" />
-                </div>
-                <h3 className="text-xl font-semibold text-[#EEE9FF] mb-2">
-                  {value.title}
-                </h3>
-                <p className="text-[#B7A6FF] leading-relaxed">
-                  {value.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Team Section */}
-        <div className="animate-on-scroll text-center">
-          <h2 className="text-4xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-[#EEE9FF] to-[#B7A6FF] bg-clip-text text-transparent">
-              Meet Our{' '}
-            </span>
-            <span className="bg-gradient-to-r from-[#8B6CFF] to-[#B7A6FF] bg-clip-text text-transparent">
-              Team
-            </span>
-          </h2>
-          <p className="text-xl text-[#B7A6FF] mb-12 max-w-2xl mx-auto">
-            A diverse group of blockchain experts, developers, designers, and
-            strategists united by a passion for Web3 innovation.
-          </p>
-
-          <div className="p-12 rounded-xl bg-gradient-to-br from-[#3B1A6E] to-[#0A0612] border border-[#8B6CFF]/20">
-            <p className="text-lg text-[#B7A6FF] leading-relaxed max-w-3xl mx-auto">
-              Our team consists of 50+ dedicated professionals from around the
-              world, each bringing unique expertise in blockchain development,
-              smart contracts, tokenomics, UI/UX design, and community
-              management. Together, we've delivered over 100 successful projects
-              and continue to push the boundaries of what's possible in Web3.
             </p>
           </div>
         </div>

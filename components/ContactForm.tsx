@@ -1,10 +1,16 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Send, CheckCircle } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Card } from '@/components/ui/card';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -27,6 +33,7 @@ export default function ContactForm() {
     handleSubmit,
     formState: { errors },
     reset,
+    control,
   } = useForm<ContactFormData>();
 
   useEffect(() => {
@@ -79,10 +86,8 @@ export default function ContactForm() {
   };
 
   return (
-    <div
-      ref={formRef}
-      className="relative p-8 rounded-xl bg-gradient-to-br from-[#3B1A6E] to-[#0A0612] border border-[#8B6CFF]/20"
-    >
+    <div ref={formRef}>
+      <Card className="relative mx-auto max-w-lg p-8 shadow-md sm:p-16 bg-gradient-to-br from-[#3B1A6E] to-[#0A0612] border border-[#8B6CFF]/20">
       {/* Success Message */}
       {isSubmitted && (
         <div className="mb-6 p-4 bg-green-500/10 border border-green-500/30 rounded-lg flex items-center gap-3">
@@ -93,30 +98,37 @@ export default function ContactForm() {
         </div>
       )}
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      <div className="mb-8">
+        <h2 className="text-xl font-semibold text-white">Let's get you to the right place</h2>
+        <p className="mt-4 text-sm text-white/70">
+          Reach out to our team! We're eager to learn more about how you plan to use our services.
+        </p>
+      </div>
+
+      <form onSubmit={handleSubmit(onSubmit)} className="mt-12 space-y-6">
         {/* Name Field */}
-        <div>
-          <label htmlFor="name" className="block text-[#EEE9FF] font-medium mb-2">
-            Name *
-          </label>
-          <input
+        <div className="space-y-3">
+          <Label htmlFor="name" className="text-white">
+            Full name *
+          </Label>
+          <Input
             id="name"
             type="text"
             {...register('name', { required: 'Name is required' })}
-            className="w-full px-4 py-3 bg-[#0A0612] border border-[#8B6CFF]/20 rounded-lg text-[#EEE9FF] placeholder-[#B7A6FF] focus:outline-none focus:border-[#8B6CFF] transition-colors"
             placeholder="Your name"
+            className="bg-[#0A0612] border-[#8B6CFF]/20 text-white placeholder:text-white/50 focus-visible:ring-[#8B6CFF]"
           />
           {errors.name && (
-            <p className="mt-1 text-red-400 text-sm">{errors.name.message}</p>
+            <p className="text-red-400 text-sm">{errors.name.message}</p>
           )}
         </div>
 
         {/* Email Field */}
-        <div>
-          <label htmlFor="email" className="block text-[#EEE9FF] font-medium mb-2">
-            Email *
-          </label>
-          <input
+        <div className="space-y-3">
+          <Label htmlFor="email" className="text-white">
+            Work Email *
+          </Label>
+          <Input
             id="email"
             type="email"
             {...register('email', {
@@ -126,69 +138,80 @@ export default function ContactForm() {
                 message: 'Invalid email address',
               },
             })}
-            className="w-full px-4 py-3 bg-[#0A0612] border border-[#8B6CFF]/20 rounded-lg text-[#EEE9FF] placeholder-[#B7A6FF] focus:outline-none focus:border-[#8B6CFF] transition-colors"
             placeholder="your.email@example.com"
+            className="bg-[#0A0612] border-[#8B6CFF]/20 text-white placeholder:text-white/50 focus-visible:ring-[#8B6CFF]"
           />
           {errors.email && (
-            <p className="mt-1 text-red-400 text-sm">{errors.email.message}</p>
+            <p className="text-red-400 text-sm">{errors.email.message}</p>
           )}
         </div>
 
         {/* Project Type Field */}
-        <div>
-          <label
-            htmlFor="projectType"
-            className="block text-[#EEE9FF] font-medium mb-2"
-          >
+        <div className="space-y-3">
+          <Label htmlFor="projectType" className="text-white">
             Project Type *
-          </label>
-          <select
-            id="projectType"
-            {...register('projectType', { required: 'Project type is required' })}
-            className="w-full px-4 py-3 bg-[#0A0612] border border-[#8B6CFF]/20 rounded-lg text-[#EEE9FF] focus:outline-none focus:border-[#8B6CFF] transition-colors"
-          >
-            <option value="">Select a project type</option>
-            <option value="defi">DeFi Protocol</option>
-            <option value="nft">NFT Platform</option>
-            <option value="dao">DAO Infrastructure</option>
-            <option value="dapp">dApp Development</option>
-            <option value="consulting">Web3 Consulting</option>
-            <option value="other">Other</option>
-          </select>
+          </Label>
+          <Controller
+            name="projectType"
+            control={control}
+            rules={{ required: 'Project type is required' }}
+            render={({ field }) => (
+              <Select onValueChange={field.onChange} value={field.value}>
+                <SelectTrigger className="bg-[#0A0612] border-[#8B6CFF]/20 text-white focus:ring-[#8B6CFF]">
+                  <SelectValue placeholder="Select a project type" />
+                </SelectTrigger>
+                <SelectContent className="bg-[#0A0612] border-[#8B6CFF]/20 text-white">
+                  <SelectItem value="defi" className="text-white focus:bg-[#3B1A6E]">DeFi Protocol</SelectItem>
+                  <SelectItem value="nft" className="text-white focus:bg-[#3B1A6E]">NFT Platform</SelectItem>
+                  <SelectItem value="dao" className="text-white focus:bg-[#3B1A6E]">DAO Infrastructure</SelectItem>
+                  <SelectItem value="dapp" className="text-white focus:bg-[#3B1A6E]">dApp Development</SelectItem>
+                  <SelectItem value="consulting" className="text-white focus:bg-[#3B1A6E]">Web3 Consulting</SelectItem>
+                  <SelectItem value="other" className="text-white focus:bg-[#3B1A6E]">Other</SelectItem>
+                </SelectContent>
+              </Select>
+            )}
+          />
           {errors.projectType && (
-            <p className="mt-1 text-red-400 text-sm">
+            <p className="text-red-400 text-sm">
               {errors.projectType.message}
             </p>
           )}
         </div>
 
         {/* Budget Field */}
-        <div>
-          <label htmlFor="budget" className="block text-[#EEE9FF] font-medium mb-2">
+        <div className="space-y-3">
+          <Label htmlFor="budget" className="text-white">
             Budget Range *
-          </label>
-          <select
-            id="budget"
-            {...register('budget', { required: 'Budget range is required' })}
-            className="w-full px-4 py-3 bg-[#0A0612] border border-[#8B6CFF]/20 rounded-lg text-[#EEE9FF] focus:outline-none focus:border-[#8B6CFF] transition-colors"
-          >
-            <option value="">Select a budget range</option>
-            <option value="10k-25k">$10k - $25k</option>
-            <option value="25k-50k">$25k - $50k</option>
-            <option value="50k-100k">$50k - $100k</option>
-            <option value="100k+">$100k+</option>
-          </select>
+          </Label>
+          <Controller
+            name="budget"
+            control={control}
+            rules={{ required: 'Budget range is required' }}
+            render={({ field }) => (
+              <Select onValueChange={field.onChange} value={field.value}>
+                <SelectTrigger className="bg-[#0A0612] border-[#8B6CFF]/20 text-white focus:ring-[#8B6CFF]">
+                  <SelectValue placeholder="Select a budget range" />
+                </SelectTrigger>
+                <SelectContent className="bg-[#0A0612] border-[#8B6CFF]/20 text-white">
+                  <SelectItem value="10k-25k" className="text-white focus:bg-[#3B1A6E]">$10k - $25k</SelectItem>
+                  <SelectItem value="25k-50k" className="text-white focus:bg-[#3B1A6E]">$25k - $50k</SelectItem>
+                  <SelectItem value="50k-100k" className="text-white focus:bg-[#3B1A6E]">$50k - $100k</SelectItem>
+                  <SelectItem value="100k+" className="text-white focus:bg-[#3B1A6E]">$100k+</SelectItem>
+                </SelectContent>
+              </Select>
+            )}
+          />
           {errors.budget && (
-            <p className="mt-1 text-red-400 text-sm">{errors.budget.message}</p>
+            <p className="text-red-400 text-sm">{errors.budget.message}</p>
           )}
         </div>
 
         {/* Message Field */}
-        <div>
-          <label htmlFor="message" className="block text-[#EEE9FF] font-medium mb-2">
+        <div className="space-y-3">
+          <Label htmlFor="message" className="text-white">
             Project Details *
-          </label>
-          <textarea
+          </Label>
+          <Textarea
             id="message"
             rows={5}
             {...register('message', {
@@ -198,24 +221,27 @@ export default function ContactForm() {
                 message: 'Please provide at least 20 characters',
               },
             })}
-            className="w-full px-4 py-3 bg-[#0A0612] border border-[#8B6CFF]/20 rounded-lg text-[#EEE9FF] placeholder-[#B7A6FF] focus:outline-none focus:border-[#8B6CFF] transition-colors resize-none"
             placeholder="Tell us about your project..."
+            className="bg-[#0A0612] border-[#8B6CFF]/20 text-white placeholder:text-white/50 focus-visible:ring-[#8B6CFF] resize-none"
           />
           {errors.message && (
-            <p className="mt-1 text-red-400 text-sm">{errors.message.message}</p>
+            <p className="text-red-400 text-sm">{errors.message.message}</p>
           )}
         </div>
 
         {/* Submit Button */}
-        <button
+        <Button
           type="submit"
           disabled={isSubmitting}
-          className="w-full px-6 py-3 bg-gradient-to-r from-[#8B6CFF] to-[#B7A6FF] text-[#0A0612] rounded-lg font-medium hover:shadow-lg hover:shadow-[#8B6CFF]/50 transition-all duration-300 flex items-center justify-center gap-2 group disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] text-white hover:from-[#8B6CFF]/90 hover:to-[#3B1A6E]/90 disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
-          <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-        </button>
+          <span className="flex items-center justify-center gap-2">
+            {isSubmitting ? 'Sending...' : 'Send Message'}
+            {!isSubmitting && <Send className="w-4 h-4" />}
+          </span>
+        </Button>
       </form>
+      </Card>
     </div>
   );
 }
