@@ -1,10 +1,9 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
-
-const inter = Inter({ subsets: ['latin'] });
+import SmoothScroll from '@/components/SmoothScroll';
+import FontLoader from '@/components/FontLoader';
 
 export const metadata: Metadata = {
   title: 'Web3Agency - Premium Web3 Marketing & Development',
@@ -32,6 +31,10 @@ export const metadata: Metadata = {
       },
     ],
   },
+  other: {
+    'preconnect-googleapis': 'https://fonts.googleapis.com',
+    'preconnect-gstatic': 'https://fonts.gstatic.com',
+  },
 };
 
 export default function RootLayout({
@@ -40,11 +43,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
-      <body className={`${inter.className} bg-[#0A0A0A] text-white antialiased`}>
-        <Navigation />
-        <main className="min-h-screen">{children}</main>
-        <Footer />
+    <html lang="en" className="dark" style={{ backgroundColor: '#000000' }}>
+      <body className="font-onest bg-black text-[#EEE9FF] antialiased">
+        <FontLoader />
+        <SmoothScroll>
+          <Navigation />
+          <main className="min-h-screen">{children}</main>
+          <Footer />
+        </SmoothScroll>
       </body>
     </html>
   );

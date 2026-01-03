@@ -1,9 +1,14 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
-import { motion } from 'framer-motion';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Send, CheckCircle } from 'lucide-react';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 interface ContactFormData {
   name: string;
@@ -15,6 +20,8 @@ interface ContactFormData {
 
 export default function ContactForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const formRef = useRef<HTMLDivElement>(null);
   const {
     register,
     handleSubmit,
@@ -22,49 +29,81 @@ export default function ContactForm() {
     reset,
   } = useForm<ContactFormData>();
 
-  const onSubmit = (data: ContactFormData) => {
-    console.log('Form Data:', data);
-    setIsSubmitted(true);
-    reset();
+  useEffect(() => {
+    if (!formRef.current) return;
 
-    setTimeout(() => {
-      setIsSubmitted(false);
-    }, 5000);
+    const ctx = gsap.context(() => {
+      gsap.from(formRef.current, {
+        opacity: 0,
+        y: 20,
+        duration: 0.5,
+        scrollTrigger: {
+          trigger: formRef.current,
+          start: 'top 80%',
+          toggleActions: 'play none none none',
+        },
+      });
+    });
+
+    return () => ctx.revert();
+  }, []);
+
+  const onSubmit = async (data: ContactFormData) => {
+    setIsSubmitting(true);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        reset();
+        setTimeout(() => {
+          setIsSubmitted(false);
+        }, 5000);
+      } else {
+        throw new Error(result.error || 'Failed to submit form');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert(error instanceof Error ? error.message : 'Failed to submit form. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      viewport={{ once: true }}
-      className="relative p-8 rounded-xl bg-gradient-to-br from-[#1A1A1A] to-[#0A0A0A] border border-white/10"
+    <div
+      ref={formRef}
+      className="relative p-8 rounded-xl bg-gradient-to-br from-[#3B1A6E] to-[#0A0612] border border-[#8B6CFF]/20"
     >
       {/* Success Message */}
       {isSubmitted && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-6 p-4 bg-green-500/10 border border-green-500/30 rounded-lg flex items-center gap-3"
-        >
+        <div className="mb-6 p-4 bg-green-500/10 border border-green-500/30 rounded-lg flex items-center gap-3">
           <CheckCircle className="w-5 h-5 text-green-500" />
           <p className="text-green-500 font-medium">
             Thank you! Your message has been received.
           </p>
-        </motion.div>
+        </div>
       )}
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         {/* Name Field */}
         <div>
-          <label htmlFor="name" className="block text-white font-medium mb-2">
+          <label htmlFor="name" className="block text-[#EEE9FF] font-medium mb-2">
             Name *
           </label>
           <input
             id="name"
             type="text"
             {...register('name', { required: 'Name is required' })}
-            className="w-full px-4 py-3 bg-[#0A0A0A] border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#8B5CF6] transition-colors"
+            className="w-full px-4 py-3 bg-[#0A0612] border border-[#8B6CFF]/20 rounded-lg text-[#EEE9FF] placeholder-[#B7A6FF] focus:outline-none focus:border-[#8B6CFF] transition-colors"
             placeholder="Your name"
           />
           {errors.name && (
@@ -74,7 +113,7 @@ export default function ContactForm() {
 
         {/* Email Field */}
         <div>
-          <label htmlFor="email" className="block text-white font-medium mb-2">
+          <label htmlFor="email" className="block text-[#EEE9FF] font-medium mb-2">
             Email *
           </label>
           <input
@@ -87,7 +126,7 @@ export default function ContactForm() {
                 message: 'Invalid email address',
               },
             })}
-            className="w-full px-4 py-3 bg-[#0A0A0A] border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#8B5CF6] transition-colors"
+            className="w-full px-4 py-3 bg-[#0A0612] border border-[#8B6CFF]/20 rounded-lg text-[#EEE9FF] placeholder-[#B7A6FF] focus:outline-none focus:border-[#8B6CFF] transition-colors"
             placeholder="your.email@example.com"
           />
           {errors.email && (
@@ -99,14 +138,14 @@ export default function ContactForm() {
         <div>
           <label
             htmlFor="projectType"
-            className="block text-white font-medium mb-2"
+            className="block text-[#EEE9FF] font-medium mb-2"
           >
             Project Type *
           </label>
           <select
             id="projectType"
             {...register('projectType', { required: 'Project type is required' })}
-            className="w-full px-4 py-3 bg-[#0A0A0A] border border-white/10 rounded-lg text-white focus:outline-none focus:border-[#8B5CF6] transition-colors"
+            className="w-full px-4 py-3 bg-[#0A0612] border border-[#8B6CFF]/20 rounded-lg text-[#EEE9FF] focus:outline-none focus:border-[#8B6CFF] transition-colors"
           >
             <option value="">Select a project type</option>
             <option value="defi">DeFi Protocol</option>
@@ -125,13 +164,13 @@ export default function ContactForm() {
 
         {/* Budget Field */}
         <div>
-          <label htmlFor="budget" className="block text-white font-medium mb-2">
+          <label htmlFor="budget" className="block text-[#EEE9FF] font-medium mb-2">
             Budget Range *
           </label>
           <select
             id="budget"
             {...register('budget', { required: 'Budget range is required' })}
-            className="w-full px-4 py-3 bg-[#0A0A0A] border border-white/10 rounded-lg text-white focus:outline-none focus:border-[#8B5CF6] transition-colors"
+            className="w-full px-4 py-3 bg-[#0A0612] border border-[#8B6CFF]/20 rounded-lg text-[#EEE9FF] focus:outline-none focus:border-[#8B6CFF] transition-colors"
           >
             <option value="">Select a budget range</option>
             <option value="10k-25k">$10k - $25k</option>
@@ -146,7 +185,7 @@ export default function ContactForm() {
 
         {/* Message Field */}
         <div>
-          <label htmlFor="message" className="block text-white font-medium mb-2">
+          <label htmlFor="message" className="block text-[#EEE9FF] font-medium mb-2">
             Project Details *
           </label>
           <textarea
@@ -159,7 +198,7 @@ export default function ContactForm() {
                 message: 'Please provide at least 20 characters',
               },
             })}
-            className="w-full px-4 py-3 bg-[#0A0A0A] border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#8B5CF6] transition-colors resize-none"
+            className="w-full px-4 py-3 bg-[#0A0612] border border-[#8B6CFF]/20 rounded-lg text-[#EEE9FF] placeholder-[#B7A6FF] focus:outline-none focus:border-[#8B6CFF] transition-colors resize-none"
             placeholder="Tell us about your project..."
           />
           {errors.message && (
@@ -170,12 +209,13 @@ export default function ContactForm() {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full px-6 py-3 bg-gradient-to-r from-[#8B5CF6] to-[#06B6D4] text-white rounded-lg font-medium hover:shadow-lg hover:shadow-[#8B5CF6]/50 transition-all duration-300 flex items-center justify-center gap-2 group"
+          disabled={isSubmitting}
+          className="w-full px-6 py-3 bg-gradient-to-r from-[#8B6CFF] to-[#B7A6FF] text-[#0A0612] rounded-lg font-medium hover:shadow-lg hover:shadow-[#8B6CFF]/50 transition-all duration-300 flex items-center justify-center gap-2 group disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          <span>Send Message</span>
+          <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
           <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </button>
       </form>
-    </motion.div>
+    </div>
   );
 }
