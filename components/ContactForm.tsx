@@ -42,16 +42,50 @@ export default function ContactForm() {
     if (!formRef.current) return;
 
     const ctx = gsap.context(() => {
+      // Main form container animation
       gsap.from(formRef.current, {
         opacity: 0,
-        y: 20,
-        duration: 0.5,
+        y: 30,
+        duration: 0.8,
+        ease: 'power3.out',
         scrollTrigger: {
           trigger: formRef.current,
           start: 'top 80%',
           toggleActions: 'play none none none',
         },
       });
+
+      // Animate form fields with stagger
+      const formFields = formRef.current.querySelectorAll('div[class*="space-y-3"]');
+      gsap.from(formFields, {
+        opacity: 0,
+        y: 20,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: formRef.current,
+          start: 'top 80%',
+          toggleActions: 'play none none none',
+        },
+      });
+
+      // Animate submit button
+      const submitButton = formRef.current.querySelector('button[type="submit"]');
+      if (submitButton) {
+        gsap.from(submitButton, {
+          opacity: 0,
+          y: 20,
+          duration: 0.6,
+          delay: 0.4,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: formRef.current,
+            start: 'top 80%',
+            toggleActions: 'play none none none',
+          },
+        });
+      }
     });
 
     return () => ctx.revert();
@@ -89,7 +123,7 @@ export default function ContactForm() {
 
   return (
     <div ref={formRef}>
-      <Card className="relative mx-auto max-w-lg p-8 shadow-md sm:p-16 bg-gradient-to-br from-[#3B1A6E] to-[#0A0612] border border-[#8B6CFF]/20">
+      <Card className="relative mx-auto max-w-3xl p-8 shadow-md sm:p-16 bg-gradient-to-br from-[#3B1A6E] to-[#0A0612] border border-[#8B6CFF]/20">
       {/* Success Message */}
       {isSubmitted && (
         <div className="mb-6 p-4 bg-green-500/10 border border-green-500/30 rounded-lg flex items-center gap-3">
@@ -108,113 +142,119 @@ export default function ContactForm() {
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="mt-12 space-y-6">
-        {/* Name Field */}
-        <div className="space-y-3">
-          <Label htmlFor="name" className="text-white">
-            Full name *
-          </Label>
-          <Input
-            id="name"
-            type="text"
-            {...register('name', {
-              required: 'Name is required',
-              minLength: {
-                value: 2,
-                message: 'Name must be at least 2 characters',
-              },
-            })}
-            placeholder="Your name"
-            className="bg-[#0A0612] border-[#8B6CFF]/20 text-white placeholder:text-white/50 focus-visible:ring-[#8B6CFF]"
-          />
-          {errors.name && (
-            <p className="text-red-400 text-sm">{errors.name.message}</p>
-          )}
-        </div>
-
-        {/* Email Field */}
-        <div className="space-y-3">
-          <Label htmlFor="email" className="text-white">
-            Work Email *
-          </Label>
-          <Input
-            id="email"
-            type="email"
-            {...register('email', {
-              required: 'Email is required',
-              pattern: {
-                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                message: 'Please provide a valid email address',
-              },
-            })}
-            placeholder="your.email@example.com"
-            className="bg-[#0A0612] border-[#8B6CFF]/20 text-white placeholder:text-white/50 focus-visible:ring-[#8B6CFF]"
-          />
-          {errors.email && (
-            <p className="text-red-400 text-sm">{errors.email.message}</p>
-          )}
-        </div>
-
-        {/* Project Type Field */}
-        <div className="space-y-3">
-          <Label htmlFor="projectType" className="text-white">
-            Project Type *
-          </Label>
-          <Controller
-            name="projectType"
-            control={control}
-            rules={{ required: 'Project type is required' }}
-            render={({ field }) => (
-              <Select onValueChange={field.onChange} value={field.value}>
-                <SelectTrigger className="bg-[#0A0612] border-[#8B6CFF]/20 text-white focus:ring-[#8B6CFF]">
-                  <SelectValue placeholder="Select a project type" />
-                </SelectTrigger>
-                <SelectContent className="bg-[#0A0612] border-[#8B6CFF]/20 text-white">
-                  <SelectItem value="defi" className="text-white focus:bg-[#3B1A6E]">DeFi Protocol</SelectItem>
-                  <SelectItem value="nft" className="text-white focus:bg-[#3B1A6E]">NFT Platform</SelectItem>
-                  <SelectItem value="dao" className="text-white focus:bg-[#3B1A6E]">DAO Infrastructure</SelectItem>
-                  <SelectItem value="dapp" className="text-white focus:bg-[#3B1A6E]">dApp Development</SelectItem>
-                  <SelectItem value="consulting" className="text-white focus:bg-[#3B1A6E]">Web3 Consulting</SelectItem>
-                  <SelectItem value="other" className="text-white focus:bg-[#3B1A6E]">Other</SelectItem>
-                </SelectContent>
-              </Select>
+        {/* First Row: Full name and Work Email */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Name Field */}
+          <div className="space-y-3">
+            <Label htmlFor="name" className="text-white">
+              Full name *
+            </Label>
+            <Input
+              id="name"
+              type="text"
+              {...register('name', {
+                required: 'Name is required',
+                minLength: {
+                  value: 2,
+                  message: 'Name must be at least 2 characters',
+                },
+              })}
+              placeholder="Your name"
+              className="bg-[#0A0612] border-[#8B6CFF]/20 text-white placeholder:text-white/50 focus-visible:ring-[#8B6CFF]"
+            />
+            {errors.name && (
+              <p className="text-red-400 text-sm">{errors.name.message}</p>
             )}
-          />
-          {errors.projectType && (
-            <p className="text-red-400 text-sm">
-              {errors.projectType.message}
-            </p>
-          )}
-        </div>
+          </div>
 
-        {/* Budget Field */}
-        <div className="space-y-3">
-          <Label htmlFor="budget" className="text-white">
-            Budget Range *
-          </Label>
-          <Controller
-            name="budget"
-            control={control}
-            rules={{ required: 'Budget range is required' }}
-            render={({ field }) => (
-              <Select onValueChange={field.onChange} value={field.value}>
-                <SelectTrigger className="bg-[#0A0612] border-[#8B6CFF]/20 text-white focus:ring-[#8B6CFF]">
-                  <SelectValue placeholder="Select a budget range" />
-                </SelectTrigger>
-                <SelectContent className="bg-[#0A0612] border-[#8B6CFF]/20 text-white">
-                  <SelectItem value="10k-25k" className="text-white focus:bg-[#3B1A6E]">$10k - $25k</SelectItem>
-                  <SelectItem value="25k-50k" className="text-white focus:bg-[#3B1A6E]">$25k - $50k</SelectItem>
-                  <SelectItem value="50k-100k" className="text-white focus:bg-[#3B1A6E]">$50k - $100k</SelectItem>
-                  <SelectItem value="100k+" className="text-white focus:bg-[#3B1A6E]">$100k+</SelectItem>
-                </SelectContent>
-              </Select>
+          {/* Email Field */}
+          <div className="space-y-3">
+            <Label htmlFor="email" className="text-white">
+              Work Email *
+            </Label>
+            <Input
+              id="email"
+              type="email"
+              {...register('email', {
+                required: 'Email is required',
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: 'Please provide a valid email address',
+                },
+              })}
+              placeholder="your.email@example.com"
+              className="bg-[#0A0612] border-[#8B6CFF]/20 text-white placeholder:text-white/50 focus-visible:ring-[#8B6CFF]"
+            />
+            {errors.email && (
+              <p className="text-red-400 text-sm">{errors.email.message}</p>
             )}
-          />
-          {errors.budget && (
-            <p className="text-red-400 text-sm">{errors.budget.message}</p>
-          )}
+          </div>
         </div>
 
-        {/* Message Field */}
+        {/* Second Row: Project Type and Budget Range */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Project Type Field */}
+          <div className="space-y-3">
+            <Label htmlFor="projectType" className="text-white">
+              Project Type *
+            </Label>
+            <Controller
+              name="projectType"
+              control={control}
+              rules={{ required: 'Project type is required' }}
+              render={({ field }) => (
+                <Select onValueChange={field.onChange} value={field.value}>
+                  <SelectTrigger className="bg-[#0A0612] border-[#8B6CFF]/20 text-white focus:ring-[#8B6CFF]">
+                    <SelectValue placeholder="Select a project type" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-[#0A0612] border-[#8B6CFF]/20 text-white">
+                    <SelectItem value="defi" className="text-white focus:bg-[#3B1A6E]">DeFi Protocol</SelectItem>
+                    <SelectItem value="nft" className="text-white focus:bg-[#3B1A6E]">NFT Platform</SelectItem>
+                    <SelectItem value="dao" className="text-white focus:bg-[#3B1A6E]">DAO Infrastructure</SelectItem>
+                    <SelectItem value="dapp" className="text-white focus:bg-[#3B1A6E]">dApp Development</SelectItem>
+                    <SelectItem value="consulting" className="text-white focus:bg-[#3B1A6E]">Web3 Consulting</SelectItem>
+                    <SelectItem value="other" className="text-white focus:bg-[#3B1A6E]">Other</SelectItem>
+                  </SelectContent>
+                </Select>
+              )}
+            />
+            {errors.projectType && (
+              <p className="text-red-400 text-sm">
+                {errors.projectType.message}
+              </p>
+            )}
+          </div>
+
+          {/* Budget Field */}
+          <div className="space-y-3">
+            <Label htmlFor="budget" className="text-white">
+              Budget Range *
+            </Label>
+            <Controller
+              name="budget"
+              control={control}
+              rules={{ required: 'Budget range is required' }}
+              render={({ field }) => (
+                <Select onValueChange={field.onChange} value={field.value}>
+                  <SelectTrigger className="bg-[#0A0612] border-[#8B6CFF]/20 text-white focus:ring-[#8B6CFF]">
+                    <SelectValue placeholder="Select a budget range" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-[#0A0612] border-[#8B6CFF]/20 text-white">
+                    <SelectItem value="10k-25k" className="text-white focus:bg-[#3B1A6E]">$10k - $25k</SelectItem>
+                    <SelectItem value="25k-50k" className="text-white focus:bg-[#3B1A6E]">$25k - $50k</SelectItem>
+                    <SelectItem value="50k-100k" className="text-white focus:bg-[#3B1A6E]">$50k - $100k</SelectItem>
+                    <SelectItem value="100k+" className="text-white focus:bg-[#3B1A6E]">$100k+</SelectItem>
+                  </SelectContent>
+                </Select>
+              )}
+            />
+            {errors.budget && (
+              <p className="text-red-400 text-sm">{errors.budget.message}</p>
+            )}
+          </div>
+        </div>
+
+        {/* Third Row: Project Details (Full Width) */}
         <div className="space-y-3">
           <Label htmlFor="message" className="text-white">
             Project Details *
