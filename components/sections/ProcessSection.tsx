@@ -1,30 +1,29 @@
 'use client';
 
+import Image from 'next/image';
+
 export default function ProcessSection() {
   const processSteps = [
     {
       step: '01',
-      title: 'Discovery',
+      title: 'Understanding the Project',
       description:
-        'We start by understanding your goals, challenges, and vision for the project.',
+        'We start by deeply understanding your project, your vision, goals, market, and what truly differentiates you. This foundation allows us to identify real growth opportunities and avoid generic, one-size-fits-all approaches.',
+      image: '/images/process/Understanding the project.png',
     },
     {
       step: '02',
-      title: 'Strategy',
+      title: 'Planning the Strategy',
       description:
-        'Develop a comprehensive roadmap with clear milestones and deliverables.',
+        'Once clarity is established, we design a focused, goal-driven strategy tailored to your project and the Web3 landscape. Every decision is intentional, aligned with your objectives, and built to set your project up for sustainable success.',
+      image: '/images/process/Planning the Strategy.png',
     },
     {
       step: '03',
-      title: 'Development',
+      title: 'Execution & Scaling',
       description:
-        'Build and test your solution using industry best practices and cutting-edge tools.',
-    },
-    {
-      step: '04',
-      title: 'Launch & Support',
-      description:
-        'Deploy your project and provide ongoing maintenance and optimization.',
+        'With a clear plan in place, we move into execution. Campaigns are launched, optimized, and scaled based on performance, ensuring consistent momentum and measurable growth at every stage.',
+      image: '/images/process/Execution and Scaling.png',
     },
   ];
 
@@ -45,19 +44,36 @@ export default function ProcessSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {processSteps.map((phase, index) => (
             <div
               key={index}
-              className="p-6 rounded-xl bg-gradient-to-br from-[#3B1A6E] to-[#0A0612] border border-[#8B6CFF]/20"
+              className="relative p-6 rounded-xl bg-gradient-to-br from-[#3B1A6E] to-[#0A0612] border border-[#8B6CFF]/20"
             >
-              <div className="text-5xl font-bold bg-gradient-to-r from-[#8B6CFF] to-[#B7A6FF] bg-clip-text text-transparent opacity-30 mb-4">
-                {phase.step}
+              {/* Number Badge in top right of icon area */}
+              <div className="absolute top-6 right-6 z-10">
+                <div className="w-8 h-8 flex items-center justify-center bg-white text-[#0A0612] text-sm font-bold rounded border border-[#8B6CFF]/30">
+                  {phase.step}
+                </div>
               </div>
-              <h3 className="text-xl font-semibold text-[#EEE9FF] mb-2">
+              
+              {/* Illustration/Icon Area */}
+              <div className="relative mb-6 h-48 w-full rounded-lg overflow-hidden bg-[#0A0612]">
+                <Image
+                  src={phase.image}
+                  alt={phase.title}
+                  fill
+                  className="object-contain p-4"
+                />
+              </div>
+              
+              {/* Title */}
+              <h3 className="text-xl font-semibold text-white mb-3">
                 {phase.title}
               </h3>
-              <p className="text-[#B7A6FF] leading-relaxed">
+              
+              {/* Description */}
+              <p className="text-white/70 leading-relaxed">
                 {phase.description}
               </p>
             </div>

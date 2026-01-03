@@ -1,6 +1,12 @@
 'use client';
 
 import ContactForm from '@/components/ContactForm';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 
 export default function ContactSection() {
   const faqs = [
@@ -52,32 +58,48 @@ export default function ContactSection() {
         </div>
 
         {/* FAQ Section */}
-        <div className="animate-on-scroll">
-          <h2 className="xl:text-4xl text-3xl font-medium instrument-serif-regular tracking-wide" style={{ fontWeight: 500, WebkitTextStroke: '1px currentColor' } as React.CSSProperties}>
-            <span className="bg-gradient-to-r from-gray-400 to-white bg-clip-text text-transparent">
-              Frequently Asked{' '}
-            </span>
-            <span className="bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] bg-clip-text text-transparent">
-              Questions
-            </span>
-          </h2>
-          <p className="text-xl text-[#B7A6FF] text-center mb-12 max-w-2xl mx-auto">
-            Common questions about working with us
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {faqs.map((faq, index) => (
-              <div
-                key={index}
-                className="p-6 rounded-xl bg-gradient-to-br from-[#3B1A6E] to-[#0A0612] border border-[#8B6CFF]/20"
-              >
-                <h3 className="text-lg font-semibold text-[#EEE9FF] mb-3">
-                  {faq.question}
-                </h3>
-                <p className="text-[#B7A6FF] leading-relaxed">{faq.answer}</p>
-              </div>
-            ))}
+        <div className="animate-on-scroll mx-auto w-full max-w-3xl space-y-7 pt-16">
+          <div className="space-y-2 text-center">
+            <h2 className="xl:text-4xl text-3xl font-medium instrument-serif-regular tracking-wide" style={{ fontWeight: 500, WebkitTextStroke: '1px currentColor' } as React.CSSProperties}>
+              <span className="bg-gradient-to-r from-gray-400 to-white bg-clip-text text-transparent">
+                Frequently Asked{' '}
+              </span>
+              <span className="bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] bg-clip-text text-transparent">
+                Questions
+              </span>
+            </h2>
+            <p className="text-white/70 max-w-2xl mx-auto">
+              Here are some common questions and answers that you might encounter when working with us. If
+              you don't find the answer you're looking for, feel free to reach out.
+            </p>
           </div>
+          <Accordion
+            type="single"
+            collapsible
+            className="bg-gradient-to-br from-[#3B1A6E] to-[#0A0612] dark:bg-black/40 w-full -space-y-px rounded-lg border border-[#8B6CFF]/20"
+            defaultValue="item-0"
+          >
+            {faqs.map((faq, index) => (
+              <AccordionItem
+                value={`item-${index}`}
+                key={index}
+                className="relative border-x border-[#8B6CFF]/20 first:rounded-t-lg first:border-t last:rounded-b-lg last:border-b"
+              >
+                <AccordionTrigger className="px-4 py-4 text-[15px] leading-6 hover:no-underline text-white hover:text-[#8B6CFF] transition-colors">
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionContent className="text-white/70 pb-4 px-4">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+          <p className="text-white/70 text-center">
+            Can't find what you're looking for?{' '}
+            <a href="#contact" className="text-[#8B6CFF] hover:text-[#B7A6FF] hover:underline transition-colors">
+              Contact our support team
+            </a>
+          </p>
         </div>
       </div>
     </section>

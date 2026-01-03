@@ -5,37 +5,37 @@ import Footer from '@/components/Footer';
 import SmoothScroll from '@/components/SmoothScroll';
 import FontLoader from '@/components/FontLoader';
 
-export const metadata: Metadata = {
-  title: 'Web3Agency - Premium Web3 Marketing & Development',
+export const metadata = {
+  title: 'Web3 & Blockchain Marketing Agency | Incurify',
   description:
-    'Building the future of Web3 with innovative solutions, smart contracts, and cutting-edge technology. Your trusted partner for blockchain development.',
-  keywords: ['Web3', 'Blockchain', 'Smart Contracts', 'DeFi', 'NFT', 'DAO'],
+    'Incurify is a Web3 and blockchain marketing agency offering influencer marketing, community building, PR, and data-driven growth strategies.',
+
   openGraph: {
-    title: 'Web3Agency - Premium Web3 Marketing & Development',
+    title: 'Web3 & Blockchain Marketing Agency | Incurify',
     description:
-      'Building the future of Web3 with innovative solutions and cutting-edge technology.',
+      'Incurify helps Web3 and blockchain projects scale through influencer marketing, community growth, PR, and strategic execution.',
+    url: 'https://incurify.com', // change to your domain
+    siteName: 'Incurify',
     images: [
       {
-        url: 'https://bolt.new/static/og_default.png',
+        url: '/images/l',
+        width: 1200,
+        height: 630,
+        alt: 'Incurify – Web3 & Blockchain Marketing Agency',
       },
     ],
+    type: 'website',
   },
+
   twitter: {
     card: 'summary_large_image',
-    title: 'Web3Agency - Premium Web3 Marketing & Development',
+    title: 'Web3 & Blockchain Marketing Agency | Incurify',
     description:
-      'Building the future of Web3 with innovative solutions and cutting-edge technology.',
-    images: [
-      {
-        url: 'https://bolt.new/static/og_default.png',
-      },
-    ],
-  },
-  other: {
-    'preconnect-googleapis': 'https://fonts.googleapis.com',
-    'preconnect-gstatic': 'https://fonts.gstatic.com',
+      'Scale your Web3 project with Incurify — influencer marketing, community building, PR, and blockchain growth strategy.',
+    images: ['/images/logo/incurify.png'],
   },
 };
+
 
 export default function RootLayout({
   children,

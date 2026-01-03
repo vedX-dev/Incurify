@@ -34,7 +34,9 @@ export default function ContactForm() {
     formState: { errors },
     reset,
     control,
-  } = useForm<ContactFormData>();
+  } = useForm<ContactFormData>({
+    mode: 'onBlur', // Validate on blur (when user clicks and leaves field)
+  });
 
   useEffect(() => {
     if (!formRef.current) return;
@@ -114,7 +116,13 @@ export default function ContactForm() {
           <Input
             id="name"
             type="text"
-            {...register('name', { required: 'Name is required' })}
+            {...register('name', {
+              required: 'Name is required',
+              minLength: {
+                value: 2,
+                message: 'Name must be at least 2 characters',
+              },
+            })}
             placeholder="Your name"
             className="bg-[#0A0612] border-[#8B6CFF]/20 text-white placeholder:text-white/50 focus-visible:ring-[#8B6CFF]"
           />
@@ -135,7 +143,7 @@ export default function ContactForm() {
               required: 'Email is required',
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                message: 'Invalid email address',
+                message: 'Please provide a valid email address',
               },
             })}
             placeholder="your.email@example.com"
@@ -217,8 +225,8 @@ export default function ContactForm() {
             {...register('message', {
               required: 'Project details are required',
               minLength: {
-                value: 20,
-                message: 'Please provide at least 20 characters',
+                value: 10,
+                message: 'Message must be at least 10 characters',
               },
             })}
             placeholder="Tell us about your project..."
