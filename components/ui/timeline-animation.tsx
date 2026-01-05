@@ -15,7 +15,13 @@ interface TimelineContentProps {
   style?: React.CSSProperties;
   animationNum?: number;
   customVariants?: {
-    visible: (i: number) => gsap.TweenVars;
+    visible: (i: number) => gsap.TweenVars & {
+      transition?: {
+        delay?: number;
+        duration?: number;
+        ease?: string;
+      };
+    };
     hidden: gsap.TweenVars;
   };
   timelineRef?: React.RefObject<HTMLElement>;
