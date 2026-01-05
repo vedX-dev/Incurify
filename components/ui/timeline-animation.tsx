@@ -12,6 +12,7 @@ interface TimelineContentProps {
   children: ReactNode;
   as?: keyof JSX.IntrinsicElements;
   className?: string;
+  style?: React.CSSProperties;
   animationNum?: number;
   customVariants?: {
     visible: (i: number) => gsap.TweenVars;
@@ -24,6 +25,7 @@ export function TimelineContent({
   children,
   as: Component = 'div',
   className = '',
+  style,
   animationNum = 0,
   customVariants,
   timelineRef,
@@ -78,7 +80,7 @@ export function TimelineContent({
   const ComponentType = Component as any;
 
   return (
-    <ComponentType ref={ref} className={className}>
+    <ComponentType ref={ref} className={className} style={style}>
       {children}
     </ComponentType>
   );

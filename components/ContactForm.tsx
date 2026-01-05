@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Send, CheckCircle } from 'lucide-react';
+import { ArrowRight, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -42,48 +42,86 @@ export default function ContactForm() {
     if (!formRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Main form container animation
-      gsap.from(formRef.current, {
-        opacity: 0,
-        y: 30,
-        duration: 0.8,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: formRef.current,
-          start: 'top 80%',
-          toggleActions: 'play none none none',
-        },
-      });
+      const card = formRef.current?.querySelector('.contact-card') as HTMLElement;
+      const formGroups = formRef.current?.querySelectorAll('.form-group') as NodeListOf<HTMLElement>;
+      const submitButton = formRef.current?.querySelector('button[type="submit"]') as HTMLElement;
+      const trustText = formRef.current?.querySelector('.trust-microcopy') as HTMLElement;
 
-      // Animate form fields with stagger
-      const formFields = formRef.current.querySelectorAll('div[class*="space-y-3"]');
-      gsap.from(formFields, {
-        opacity: 0,
-        y: 20,
-        duration: 0.6,
-        stagger: 0.1,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: formRef.current,
-          start: 'top 80%',
-          toggleActions: 'play none none none',
-        },
-      });
+      // Card animation: fade in + translate Y (10-15px)
+      if (card) {
+        gsap.from(card, {
+          opacity: 0,
+          y: 12,
+          duration: 1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+        });
+      }
 
-      // Animate submit button
-      const submitButton = formRef.current.querySelector('button[type="submit"]');
+      // Form groups: stagger in from bottom with subtle opacity + Y movement
+      if (formGroups.length > 0) {
+        gsap.from(formGroups, {
+          opacity: 0,
+          y: 15,
+          duration: 0.7,
+          stagger: 0.08,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+          delay: 0.2,
+        });
+      }
+
+      // Submit button: subtle entrance
       if (submitButton) {
         gsap.from(submitButton, {
           opacity: 0,
-          y: 20,
+          y: 10,
           duration: 0.6,
-          delay: 0.4,
           ease: 'power2.out',
           scrollTrigger: {
-            trigger: formRef.current,
-            start: 'top 80%',
+            trigger: card,
+            start: 'top 85%',
             toggleActions: 'play none none none',
           },
+          delay: 0.5,
+        });
+      }
+
+      // Trust microcopy: fade in
+      if (trustText) {
+        gsap.from(trustText, {
+          opacity: 0,
+          duration: 0.5,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+          delay: 0.7,
+        });
+      }
+
+      // Subtle pulse animation for button (every 6-8 seconds)
+      if (submitButton) {
+        const pulseTimeline = gsap.timeline({ repeat: -1, repeatDelay: 6 });
+        pulseTimeline.to(submitButton, {
+          scale: 1.01,
+          duration: 0.8,
+          ease: 'power1.inOut',
+        });
+        pulseTimeline.to(submitButton, {
+          scale: 1,
+          duration: 0.8,
+          ease: 'power1.inOut',
         });
       }
     });
@@ -122,30 +160,46 @@ export default function ContactForm() {
   };
 
   return (
-    <div ref={formRef}>
-      <Card className="relative mx-auto max-w-3xl p-8 shadow-md sm:p-16 bg-gradient-to-br from-[#3B1A6E] to-[#0A0612] border border-[#8B6CFF]/20">
-      {/* Success Message */}
-      {isSubmitted && (
-        <div className="mb-6 p-4 bg-green-500/10 border border-green-500/30 rounded-lg flex items-center gap-3">
-          <CheckCircle className="w-5 h-5 text-green-500" />
-          <p className="text-green-500 font-medium">
-            Thank you! Your message has been received.
+    <div ref={formRef} className="relative">
+      {/* Ambient Glow Behind Card */}
+      <div 
+        className="absolute inset-0 -z-10 blur-3xl opacity-[0.1]"
+        style={{
+          background: 'radial-gradient(circle at 50% 50%, rgba(139, 108, 255, 0.4) 0%, transparent 70%)',
+        }}
+      />
+
+      <Card className="contact-card relative mx-auto max-w-3xl p-6 sm:p-10 md:p-12 bg-gradient-to-br from-[#3B1A6E] to-[#0A0612] border border-[#8B6CFF]/20 overflow-hidden">
+        {/* Inner Vignette - Soft edges */}
+        <div 
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: 'radial-gradient(ellipse 80% 80% at 50% 50%, transparent 0%, rgba(0, 0, 0, 0.15) 100%)',
+          }}
+        />
+
+        {/* Success Message */}
+        {isSubmitted && (
+          <div className="mb-6 p-4 bg-green-500/10 border border-green-500/30 rounded-lg flex items-center gap-3">
+            <CheckCircle className="w-5 h-5 text-green-500" />
+            <p className="text-green-500 font-medium">
+              Thank you! Your message has been received.
+            </p>
+          </div>
+        )}
+
+        <div className="mb-6 sm:mb-8 relative z-10">
+          <h2 className="text-xl font-semibold text-white">Let's get you to the right place</h2>
+          <p className="mt-3 sm:mt-4 text-sm text-white/70">
+            Reach out to our team! We're eager to learn more about how you plan to use our services.
           </p>
         </div>
-      )}
 
-      <div className="mb-8">
-        <h2 className="text-xl font-semibold text-white">Let's get you to the right place</h2>
-        <p className="mt-4 text-sm text-white/70">
-          Reach out to our team! We're eager to learn more about how you plan to use our services.
-        </p>
-      </div>
-
-      <form onSubmit={handleSubmit(onSubmit)} className="mt-12 space-y-6">
+        <form onSubmit={handleSubmit(onSubmit)} className="mt-8 sm:mt-10 space-y-5 sm:space-y-6 relative z-10">
         {/* First Row: Full name and Work Email */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
           {/* Name Field */}
-          <div className="space-y-3">
+          <div className="form-group space-y-2.5">
             <Label htmlFor="name" className="text-white">
               Full name *
             </Label>
@@ -160,7 +214,7 @@ export default function ContactForm() {
                 },
               })}
               placeholder="Your name"
-              className="bg-[#0A0612] border-[#8B6CFF]/20 text-white placeholder:text-white/50 focus-visible:ring-[#8B6CFF]"
+              className="premium-input bg-[#0A0612] border-[#8B6CFF]/20 text-white placeholder:text-white/50 transition-all duration-300 focus:border-[#8B6CFF]/50 focus:bg-[#0F0718] focus:shadow-[0_0_0_3px_rgba(139,108,255,0.1)] focus-visible:ring-0"
             />
             {errors.name && (
               <p className="text-red-400 text-sm">{errors.name.message}</p>
@@ -168,7 +222,7 @@ export default function ContactForm() {
           </div>
 
           {/* Email Field */}
-          <div className="space-y-3">
+          <div className="form-group space-y-2.5">
             <Label htmlFor="email" className="text-white">
               Work Email *
             </Label>
@@ -183,7 +237,7 @@ export default function ContactForm() {
                 },
               })}
               placeholder="your.email@example.com"
-              className="bg-[#0A0612] border-[#8B6CFF]/20 text-white placeholder:text-white/50 focus-visible:ring-[#8B6CFF]"
+              className="premium-input bg-[#0A0612] border-[#8B6CFF]/20 text-white placeholder:text-white/50 transition-all duration-300 focus:border-[#8B6CFF]/50 focus:bg-[#0F0718] focus:shadow-[0_0_0_3px_rgba(139,108,255,0.1)] focus-visible:ring-0"
             />
             {errors.email && (
               <p className="text-red-400 text-sm">{errors.email.message}</p>
@@ -192,9 +246,9 @@ export default function ContactForm() {
         </div>
 
         {/* Second Row: Project Type and Budget Range */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
           {/* Project Type Field */}
-          <div className="space-y-3">
+          <div className="form-group space-y-2.5">
             <Label htmlFor="projectType" className="text-white">
               Project Type *
             </Label>
@@ -204,7 +258,7 @@ export default function ContactForm() {
               rules={{ required: 'Project type is required' }}
               render={({ field }) => (
                 <Select onValueChange={field.onChange} value={field.value}>
-                  <SelectTrigger className="bg-[#0A0612] border-[#8B6CFF]/20 text-white focus:ring-[#8B6CFF]">
+                  <SelectTrigger className="premium-input bg-[#0A0612] border-[#8B6CFF]/20 text-white transition-all duration-300 focus:border-[#8B6CFF]/50 focus:bg-[#0F0718] focus:shadow-[0_0_0_3px_rgba(139,108,255,0.1)] focus:ring-0">
                     <SelectValue placeholder="Select a project type" />
                   </SelectTrigger>
                   <SelectContent className="bg-[#0A0612] border-[#8B6CFF]/20 text-white">
@@ -226,7 +280,7 @@ export default function ContactForm() {
           </div>
 
           {/* Budget Field */}
-          <div className="space-y-3">
+          <div className="form-group space-y-2.5">
             <Label htmlFor="budget" className="text-white">
               Budget Range *
             </Label>
@@ -236,7 +290,7 @@ export default function ContactForm() {
               rules={{ required: 'Budget range is required' }}
               render={({ field }) => (
                 <Select onValueChange={field.onChange} value={field.value}>
-                  <SelectTrigger className="bg-[#0A0612] border-[#8B6CFF]/20 text-white focus:ring-[#8B6CFF]">
+                  <SelectTrigger className="premium-input bg-[#0A0612] border-[#8B6CFF]/20 text-white transition-all duration-300 focus:border-[#8B6CFF]/50 focus:bg-[#0F0718] focus:shadow-[0_0_0_3px_rgba(139,108,255,0.1)] focus:ring-0">
                     <SelectValue placeholder="Select a budget range" />
                   </SelectTrigger>
                   <SelectContent className="bg-[#0A0612] border-[#8B6CFF]/20 text-white">
@@ -255,7 +309,7 @@ export default function ContactForm() {
         </div>
 
         {/* Third Row: Project Details (Full Width) */}
-        <div className="space-y-3">
+        <div className="form-group space-y-2.5">
           <Label htmlFor="message" className="text-white">
             Project Details *
           </Label>
@@ -270,7 +324,7 @@ export default function ContactForm() {
               },
             })}
             placeholder="Tell us about your project..."
-            className="bg-[#0A0612] border-[#8B6CFF]/20 text-white placeholder:text-white/50 focus-visible:ring-[#8B6CFF] resize-none"
+            className="premium-input bg-[#0A0612] border-[#8B6CFF]/20 text-white placeholder:text-white/50 transition-all duration-300 focus:border-[#8B6CFF]/50 focus:bg-[#0F0718] focus:shadow-[0_0_0_3px_rgba(139,108,255,0.1)] focus-visible:ring-0 resize-none"
           />
           {errors.message && (
             <p className="text-red-400 text-sm">{errors.message.message}</p>
@@ -278,16 +332,27 @@ export default function ContactForm() {
         </div>
 
         {/* Submit Button */}
-        <Button
-          type="submit"
-          disabled={isSubmitting}
-          className="w-full bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] text-white hover:from-[#8B6CFF]/90 hover:to-[#3B1A6E]/90 disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          <span className="flex items-center justify-center gap-2">
-            {isSubmitting ? 'Sending...' : 'Send Message'}
-            {!isSubmitting && <Send className="w-4 h-4" />}
-          </span>
-        </Button>
+        <div className="space-y-3">
+          <Button
+            type="submit"
+            disabled={isSubmitting}
+            className="group w-full bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] text-white hover:from-[#9B7CFF] hover:to-[#4B2A7E] hover:shadow-lg hover:shadow-[#8B6CFF]/30 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none relative overflow-hidden"
+          >
+            <span className="flex items-center justify-center gap-2 relative z-10">
+              {isSubmitting ? 'Sending...' : 'Start the Conversation'}
+              {!isSubmitting && (
+                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+              )}
+            </span>
+            {/* Subtle glow on hover */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#8B6CFF]/20 via-[#3B1A6E]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl" />
+          </Button>
+
+          {/* Trust Microcopy */}
+          <p className="trust-microcopy text-xs text-white/40 text-center">
+            We usually respond within 24 hours.
+          </p>
+        </div>
       </form>
       </Card>
     </div>

@@ -6,6 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import HeroSection from '@/components/sections/HeroSection';
 import WhyChooseUsSection from '@/components/sections/WhyChooseUsSection';
 import ServicesSection from '@/components/sections/ServicesSection';
+import GrowthEngineSection from '@/components/sections/GrowthEngineSection';
 import ProcessSection from '@/components/sections/ProcessSection';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
 import AboutSection from '@/components/sections/AboutSection';
@@ -38,21 +39,6 @@ export default function Home() {
 
   return (
     <div className="pt-24">
-      {/* Blue Spotlight Background - Fixed at Center */}
-      <div
-        className="fixed inset-0 z-[2] pointer-events-none"
-        style={{
-          background: `
-            radial-gradient(
-              circle at 50% 50%,
-              rgba(59, 130, 246, 0.12) 0%,
-              rgba(59, 130, 246, 0.06) 20%,
-              rgba(0, 0, 0, 0.0) 60%
-            )
-          `,
-        }}
-      />
-      
       <HeroSection />
       <WhyChooseUsSection />
       <ServicesSection />

@@ -3,6 +3,7 @@
 import { TimelineContent } from '@/components/ui/timeline-animation';
 import Image from 'next/image';
 import { useRef } from 'react';
+import { testimonials } from '@/data/testimonials';
 
 function ClientFeedback() {
   const testimonialRef = useRef<HTMLDivElement>(null);
@@ -25,104 +26,31 @@ function ClientFeedback() {
     },
   };
 
-  const testimonials = [
-    {
-      id: 1,
-      quote: 'Incurify has been a game-changer for us. Their service is top-notch and their team is incredibly responsive.',
-      name: 'Guillermo Rauch',
-      role: 'CEO of Enigma',
-      image: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=687&auto=format&fit=crop',
-      bgColor: 'bg-[#3B1A6E]',
-      textColor: 'text-white',
-      hasGrid: true,
-    },
-    {
-      id: 2,
-      quote: "We've seen incredible results with Incurify. Their expertise, dedication.",
-      name: 'Rika Shinoda',
-      role: 'CEO of Kintsugi',
-      image: 'https://images.unsplash.com/photo-1512485694743-9c9538b4e6e0?q=80&w=687&auto=format&fit=crop',
-      bgColor: 'bg-gradient-to-br from-[#8B6CFF] to-[#3B1A6E]',
-      textColor: 'text-white',
-      hasGrid: false,
-    },
-    {
-      id: 3,
-      quote: 'Their team is highly professional, and their innovative solutions have truly transformed the way we operate.',
-      name: 'Reacher',
-      role: 'CEO of OdeaoLabs',
-      image: 'https://images.unsplash.com/photo-1566753323558-f4e0952af115?q=80&w=1021&auto=format&fit=crop',
-      bgColor: 'bg-black/60',
-      textColor: 'text-white',
-      hasGrid: false,
-    },
-    {
-      id: 4,
-      quote: "We're extremely satisfied with Incurify. Their expertise and dedication have exceeded our expectations.",
-      name: 'John',
-      role: 'CEO of Labsbo',
-      image: 'https://images.unsplash.com/photo-1615109398623-88346a601842?q=80&w=687&auto=format&fit=crop',
-      bgColor: 'bg-black/60',
-      textColor: 'text-white',
-      hasGrid: false,
-    },
-    {
-      id: 5,
-      quote: 'Their customer support is absolutely exceptional. They are always available, incredibly helpful.',
-      name: 'Steven Sunny',
-      role: 'CEO of boxefi',
-      image: 'https://images.unsplash.com/photo-1740102074295-c13fae3e4f8a?q=80&w=687&auto=format&fit=crop',
-      bgColor: 'bg-black/60',
-      textColor: 'text-white',
-      hasGrid: false,
-    },
-    {
-      id: 6,
-      quote: 'Incurify has been a key partner in our growth journey.',
-      name: 'Guillermo Rauch',
-      role: 'CEO of OdeaoLabs',
-      image: 'https://images.unsplash.com/photo-1563237023-b1e970526dcb?q=80&w=765&auto=format&fit=crop',
-      bgColor: 'bg-gradient-to-br from-[#8B6CFF] to-[#3B1A6E]',
-      textColor: 'text-white',
-      hasGrid: false,
-    },
-    {
-      id: 7,
-      quote: 'Incurify has been a true game-changer for us. Their exceptional service, combined with their deep expertise and commitment to excellence, has made a significant impact on our business.',
-      name: 'Paul Brauch',
-      role: 'CTO of Spectrum',
-      image: 'https://images.unsplash.com/photo-1590086782957-93c06ef21604?q=80&w=687&auto=format&fit=crop',
-      bgColor: 'bg-[#3B1A6E]',
-      textColor: 'text-white',
-      hasGrid: true,
-    },
-  ];
-
   return (
-    <section className="relative h-full container text-white mx-auto rounded-lg py-14 bg-transparent" ref={testimonialRef}>
-      <article className="max-w-screen-md mx-auto text-center space-y-2">
+    <div className="relative h-full text-white mx-auto rounded-lg py-8 sm:py-12 md:py-14 bg-transparent" ref={testimonialRef}>
+      <article className="max-w-screen-md mx-auto text-center space-y-2 mb-6 sm:mb-8 px-4">
         <TimelineContent
           as="h1"
-          className="xl:text-4xl text-3xl font-medium instrument-serif-regular tracking-wide"
+          className="text-2xl sm:text-3xl md:text-4xl xl:text-4xl instrument-serif-regular tracking-wide"
           animationNum={0}
           customVariants={revealVariants}
           timelineRef={testimonialRef}
-          style={{ fontWeight: 800, WebkitTextStroke: '0.2px currentColor' } as React.CSSProperties}
+          style={{ fontWeight: 500, WebkitTextStroke: '1px currentColor' } as React.CSSProperties}
         >
-          <span className="bg-white to-gray-400 bg-clip-text text-transparent">
-            Trusted by {' '}
+          <span className="text-white bg-clip-text text-transparent">
+            What {' '}
           </span>
           <span className="bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] bg-clip-text text-transparent ">
-            Startups {' '}
+           teams  {' '}
           </span>
-          <span className="bg-white to-gray-400 bg-clip-text text-transparent ">
-            and the world's largest companies
+          <span className="text-white bg-clip-text text-transparent ">
+          say after working with us.
           </span>
 
         </TimelineContent>
         <TimelineContent
           as="p"
-          className="mx-auto text-white/70"
+          className="text-sm sm:text-base text-white/70 max-w-2xl mx-auto mt-3 sm:mt-4"
           animationNum={1}
           customVariants={revealVariants}
           timelineRef={testimonialRef}
@@ -130,7 +58,7 @@ function ClientFeedback() {
           Let's hear how Incurify client's feels about our service
         </TimelineContent>
       </article>
-      <div className="lg:grid lg:grid-cols-3 gap-2 flex flex-col w-full lg:py-10 pt-10 pb-4 lg:px-10 px-4">
+      <div className="lg:grid lg:grid-cols-3 gap-2 sm:gap-3 flex flex-col w-full lg:py-10 pt-6 sm:pt-8 md:pt-10 pb-4 lg:px-10 px-3 sm:px-4 md:px-6">
         {/* Column 1 */}
         <div className="md:flex lg:flex-col lg:space-y-2 h-full lg:gap-0 gap-2">
           <TimelineContent
@@ -312,7 +240,7 @@ function ClientFeedback() {
       <div className="absolute border-b-2 border-[#8B6CFF]/20 bottom-4 h-16 z-[2] md:w-full w-[90%] md:left-0 left-[5%]">
         <div className="container mx-auto w-full h-full relative before:absolute before:-left-2 before:-bottom-2 before:w-4 before:h-4 before:bg-black/40 before:shadow-sm before:border before:border-[#8B6CFF]/20 after:absolute after:-right-2 after:-bottom-2 after:w-4 after:h-4 after:bg-black/40 after:shadow-sm after:border after:border-[#8B6CFF]/20"></div>
       </div>
-    </section>
+    </div>
   );
 }
 

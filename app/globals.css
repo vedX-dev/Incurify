@@ -115,7 +115,7 @@ html {
 html.lenis,
 html.lenis body {
   height: auto;
-}
+  }
 
 .lenis.lenis-smooth {
   scroll-behavior: auto !important;
@@ -174,4 +174,27 @@ section[id] {
 
 .animate-accordion-up {
   animation: accordion-up 0.2s ease-out;
+}
+
+@keyframes noiseMove {
+  0% { background-position: 0 0; }
+  25% { background-position: 250px 0; }
+  50% { background-position: 0 250px; }
+  75% { background-position: 250px 250px; }
+  100% { background-position: 0 0; }
+}
+
+/* Plus/Minus Icon Animation for Accordion */
+button[data-state="open"] .plus-minus-icon {
+  color: #8B6CFF;
+}
+
+button[data-state="open"] .plus-minus-vertical {
+  transform: translateX(-50%) rotate(90deg);
+  opacity: 0;
+}
+
+button[data-state="open"] .plus-minus-horizontal {
+  transform: translateY(-50%) rotate(180deg);
+  background-color: #8B6CFF !important;
 }

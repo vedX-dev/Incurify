@@ -12,7 +12,7 @@ export const stats: Stat[] = [
   },
   {
     id: '2',
-    value: '$500M+',
+    value: '$10000+',
     label: 'Total Value Locked',
   },
   {
@@ -22,8 +22,8 @@ export const stats: Stat[] = [
   },
   {
     id: '4',
-    value: '25',
-    label: 'Countries Served',
+    value: '25+',
+    label: 'Client Served',
   },
 ];
 

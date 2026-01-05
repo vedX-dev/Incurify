@@ -49,39 +49,39 @@ export default function ServiceCard({
   return (
     <div
       ref={cardRef}
-      className="group relative p-6 rounded-xl bg-black/40 backdrop-blur-sm border border-white/5 hover:border-[#8B6CFF]/30 transition-all duration-300 shadow-lg shadow-black/50 hover:shadow-[#8B6CFF]/10"
+      className="group relative p-4 sm:p-5 md:p-6 rounded-lg sm:rounded-xl bg-black/40 backdrop-blur-sm border border-white/5 hover:border-[#8B6CFF]/30 transition-all duration-300 shadow-lg shadow-black/50 hover:shadow-[#8B6CFF]/10 h-full flex flex-col"
     >
       {/* Number in top right corner */}
       {number && (
-        <div className="absolute top-4 right-4 text-2xl font-bold text-white/10 group-hover:text-[#8B6CFF]/30 transition-colors duration-300">
+        <div className="absolute top-2 right-2 sm:top-3 sm:right-3 md:top-4 md:right-4 text-lg sm:text-xl md:text-2xl font-bold text-white/10 group-hover:text-[#8B6CFF]/30 transition-colors duration-300">
           {number}
         </div>
       )}
 
       {/* Premium gradient overlay on hover */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#8B6CFF]/0 via-[#8B6CFF]/0 to-[#8B6CFF]/0 group-hover:from-[#8B6CFF]/5 group-hover:via-[#8B6CFF]/3 group-hover:to-[#8B6CFF]/5 transition-all duration-300 rounded-xl" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#8B6CFF]/0 via-[#8B6CFF]/0 to-[#8B6CFF]/0 group-hover:from-[#8B6CFF]/5 group-hover:via-[#8B6CFF]/3 group-hover:to-[#8B6CFF]/5 transition-all duration-300 rounded-lg sm:rounded-xl" />
 
       {/* Subtle inner glow */}
-      <div className="absolute inset-[1px] bg-gradient-to-br from-black/60 to-black/80 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      <div className="absolute inset-[1px] bg-gradient-to-br from-black/60 to-black/80 rounded-lg sm:rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-      <div className="relative z-10">
+      <div className="relative z-10 flex-1 flex flex-col">
         {/* Service Icon Image */}
-        <div className="mb-4 w-12 h-12 relative group-hover:scale-110 transition-transform duration-300">
+        <div className="mb-3 sm:mb-4 w-10 h-10 sm:w-12 sm:h-12 relative group-hover:scale-110 transition-transform duration-300">
           <Image
             src={image}
             alt={title}
             width={48}
             height={48}
-            className="object-contain"
+            className="object-contain w-full h-full"
           />
         </div>
 
         {/* Content */}
-        <h3 className="text-xl font-semibold text-white mb-2 transition-all duration-300">
+        <h3 className="text-base sm:text-lg md:text-xl font-semibold text-white mb-2 transition-all duration-300 leading-tight">
           {title}
         </h3>
-        <p className="text-white/60 leading-relaxed group-hover:text-white/80 transition-colors duration-300">{description}</p>
+        <p className="text-xs sm:text-sm md:text-base text-white/60 leading-relaxed group-hover:text-white/80 transition-colors duration-300 flex-1">{description}</p>
       </div>
-    </div>
+      </div>
   );
 }

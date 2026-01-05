@@ -62,7 +62,7 @@ export default function Navigation() {
 
       // Animate navbar width with GSAP
       if (navRef.current) {
-        const targetWidth = 700 + (1000 - 700) * (1 - progress);
+        const targetWidth = 800 + (1000 - 800) * (1 - progress);
         gsap.to(navRef.current, {
           maxWidth: `${targetWidth}px`,
           duration: 0.3,
@@ -82,7 +82,7 @@ export default function Navigation() {
     <nav ref={navRef} className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[98%] max-w-[1000px]">
       {/* Floating Glass Container */}
       <div
-        className="bg-black/10 backdrop-blur-lg shadow-xl shadow-black/40 border border-white/20 transition-all duration-700 ease-out"
+        className="bg-black/10 backdrop-blur-md shadow-xl shadow-black/40 border border-white/20 transition-all duration-800 ease-out"
         style={{
           borderColor: `rgba(255, 255, 255, ${scrollProgress * 0.1})`,
           borderRadius: `${16 + (24 - 16) * (1 - scrollProgress)}px`,
@@ -103,9 +103,9 @@ export default function Navigation() {
                 />
                 
               </div>
-               <span className="text-xl font-bold bg-white bg-clip-text text-transparent">
+               {/* <span className="text-xl font-bold bg-white bg-clip-text text-transparent">
                 INCURIFY
-              </span> 
+              </span>  */}
             </Link>
 
             {/* Desktop Nav */}
@@ -130,7 +130,7 @@ export default function Navigation() {
                 onClick={(e) => handleHashLink(e, '/#contact')}
                 className="px-6 py-2.5 bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] text-white rounded-xl font-medium hover:shadow-lg hover:shadow-[#8B6CFF]/40 transition-all duration-300 hover:scale-105"
               >
-                Get Started
+                Chat with us
               </a>
             </div>
 

@@ -33,10 +33,10 @@ export default function ContactSection() {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-transparent">
+    <section id="contact" className="py-12 sm:py-16 md:py-20 lg:py-24 bg-transparent">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="animate-on-scroll text-center mb-20">
-          <h1 className="xl:text-4xl text-3xl font-medium instrument-serif-regular tracking-wide" style={{ fontWeight: 500, WebkitTextStroke: '1px currentColor' } as React.CSSProperties}>
+        <div className="animate-on-scroll text-center mb-12 sm:mb-16 md:mb-20 relative">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl xl:text-4xl font-medium instrument-serif-regular tracking-wide px-4" style={{ fontWeight: 500, WebkitTextStroke: '1px currentColor' } as React.CSSProperties}>
             <span className="bg-gradient-to-r from-gray-400 to-white bg-clip-text text-transparent">
               Get in{' '}
             </span>
@@ -44,13 +44,26 @@ export default function ContactSection() {
               Touch
             </span>
           </h1>
-          <p className="text-xl text-white/70 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-base text-white/70 max-w-2xl mx-auto mt-3 sm:mt-4 px-4">
             Ready to bring your Web3 vision to life? Contact us today and let's
             start building the future together.
           </p>
+          
+          {/* Visual Connection: Subtle gradient line connecting heading to form */}
+          <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-px h-16 sm:h-20 md:h-24 bg-gradient-to-b from-transparent via-[#8B6CFF]/20 to-transparent" />
+          
+          {/* Subtle animated noise layer for cohesion */}
+          <div 
+            className="absolute left-1/2 -translate-x-1/2 bottom-0 w-full max-w-2xl h-24 sm:h-28 md:h-32 pointer-events-none opacity-[0.03]"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+              backgroundSize: '200px 200px',
+              mixBlendMode: 'overlay',
+            }}
+          />
         </div>
 
-        <div className="mb-20">
+        <div className="mb-12 sm:mb-16 md:mb-20">
           {/* Contact Form */}
           <div className="animate-on-scroll max-w-2xl mx-auto">
             <ContactForm />
@@ -58,9 +71,9 @@ export default function ContactSection() {
         </div>
 
         {/* FAQ Section */}
-        <div className="animate-on-scroll mx-auto w-full max-w-3xl space-y-7 pt-16">
+        <div className="animate-on-scroll mx-auto w-full max-w-3xl space-y-6 sm:space-y-7 pt-12 sm:pt-16 px-4">
           <div className="space-y-2 text-center">
-            <h2 className="xl:text-4xl text-3xl font-medium instrument-serif-regular tracking-wide" style={{ fontWeight: 500, WebkitTextStroke: '1px currentColor' } as React.CSSProperties}>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl xl:text-4xl font-medium instrument-serif-regular tracking-wide" style={{ fontWeight: 500, WebkitTextStroke: '1px currentColor' } as React.CSSProperties}>
               <span className="bg-gradient-to-r from-gray-400 to-white bg-clip-text text-transparent">
                 Frequently Asked{' '}
               </span>
@@ -68,7 +81,7 @@ export default function ContactSection() {
                 Questions
               </span>
             </h2>
-            <p className="text-white/70 max-w-2xl mx-auto">
+            <p className="text-sm sm:text-base text-white/70 max-w-2xl mx-auto mt-3 sm:mt-4">
               Here are some common questions and answers that you might encounter when working with us. If
               you don't find the answer you're looking for, feel free to reach out.
             </p>
@@ -85,16 +98,16 @@ export default function ContactSection() {
                 key={index}
                 className="relative border-x border-[#8B6CFF]/20 first:rounded-t-lg first:border-t last:rounded-b-lg last:border-b"
               >
-                <AccordionTrigger className="px-4 py-4 text-[15px] leading-6 hover:no-underline text-white hover:text-[#8B6CFF] transition-colors">
+                <AccordionTrigger className="px-3 sm:px-4 py-3 sm:py-4 text-sm sm:text-[15px] leading-6 hover:no-underline text-white hover:text-[#8B6CFF] transition-colors text-left">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-white/70 pb-4 px-4">
+                <AccordionContent className="text-sm sm:text-base text-white/70 pb-3 sm:pb-4 px-3 sm:px-4">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
-          <p className="text-white/70 text-center">
+          <p className="text-sm sm:text-base text-white/70 text-center">
             Can't find what you're looking for?{' '}
             <a href="#contact" className="text-[#8B6CFF] hover:text-[#B7A6FF] hover:underline transition-colors">
               Contact our support team

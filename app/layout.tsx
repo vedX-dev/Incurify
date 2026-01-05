@@ -4,6 +4,7 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import SmoothScroll from '@/components/SmoothScroll';
 import FontLoader from '@/components/FontLoader';
+import PageTransition from '@/components/PageTransition';
 
 export const metadata = {
   title: 'Web3 & Blockchain Marketing Agency | Incurify',
@@ -45,10 +46,26 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" style={{ backgroundColor: '#000000' }}>
       <body className="font-onest bg-black text-[#EEE9FF] antialiased">
+        {/* Blue Spotlight Background - Fixed at Center for entire website */}
+        <div
+          className="fixed inset-0 z-[2] pointer-events-none"
+          style={{
+            background: `
+              radial-gradient(
+                circle at 50% 50%,
+                rgba(59, 130, 246, 0.12) 0%,
+                rgba(59, 130, 246, 0.06) 20%,
+                rgba(0, 0, 0, 0.0) 60%
+              )
+            `,
+          }}
+        />
         <FontLoader />
         <SmoothScroll>
           <Navigation />
-          <main className="min-h-screen">{children}</main>
+          <PageTransition>
+            <main className="min-h-screen">{children}</main>
+          </PageTransition>
           <Footer />
         </SmoothScroll>
       </body>
