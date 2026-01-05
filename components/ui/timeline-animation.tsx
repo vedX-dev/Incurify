@@ -8,6 +8,14 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+interface CustomTweenVars extends Omit<gsap.TweenVars, 'transition'> {
+  transition?: {
+    delay?: number;
+    duration?: number;
+    ease?: string;
+  };
+}
+
 interface TimelineContentProps {
   children: ReactNode;
   as?: keyof JSX.IntrinsicElements;
@@ -15,13 +23,7 @@ interface TimelineContentProps {
   style?: React.CSSProperties;
   animationNum?: number;
   customVariants?: {
-    visible: (i: number) => gsap.TweenVars & {
-      transition?: {
-        delay?: number;
-        duration?: number;
-        ease?: string;
-      };
-    };
+    visible: (i: number) => CustomTweenVars;
     hidden: gsap.TweenVars;
   };
   timelineRef?: React.RefObject<HTMLElement>;
