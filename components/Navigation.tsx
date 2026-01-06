@@ -5,12 +5,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
 import { gsap } from 'gsap';
+import { TextVerticalSwap } from '@/components/ui/text-vertical-swap';
 
 const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/#about', label: 'About' },
-  { href: '/#services', label: 'Services' },
-  { href: '/#contact', label: 'Contact' },
+  { href: '/', label: 'HOME' },
+  { href: '/#about', label: 'ABOUT' },
+  { href: '/#services', label: 'SERVICES' },
+  { href: '/#contact', label: 'CONTACT' },
 ];
 
 export default function Navigation() {
@@ -34,20 +35,53 @@ export default function Navigation() {
     }
   };
 
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        navRef.current &&
+        !navRef.current.contains(event.target as Node) &&
+        isOpen
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      // Prevent body scroll when menu is open
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
   useEffect(() => {
     if (mobileMenuRef.current) {
       if (isOpen) {
         gsap.fromTo(
           mobileMenuRef.current,
-          { opacity: 0, y: -10, height: 0 },
-          { opacity: 1, y: 0, height: 'auto', duration: 0.25 }
+          { opacity: 0, y: -20, height: 0 },
+          { 
+            opacity: 1, 
+            y: 0, 
+            height: 'auto', 
+            duration: 0.3,
+            ease: 'power2.out'
+          }
         );
       } else {
         gsap.to(mobileMenuRef.current, {
           opacity: 0,
-          y: -10,
+          y: -20,
           height: 0,
           duration: 0.25,
+          ease: 'power2.in',
         });
       }
     }
@@ -60,13 +94,18 @@ export default function Navigation() {
       const progress = Math.min(scrollPosition / 100, 1);
       setScrollProgress(progress);
 
-      // Animate navbar width with GSAP
-      if (navRef.current) {
+      // Animate navbar width with GSAP (only on desktop)
+      if (navRef.current && window.innerWidth >= 768) {
         const targetWidth = 800 + (1000 - 800) * (1 - progress);
         gsap.to(navRef.current, {
           maxWidth: `${targetWidth}px`,
           duration: 0.3,
           ease: 'power2.out',
+        });
+      } else if (navRef.current && window.innerWidth < 768) {
+        // Ensure full width on mobile
+        gsap.set(navRef.current, {
+          maxWidth: '100%',
         });
       }
     };
@@ -75,24 +114,28 @@ export default function Navigation() {
     handleScroll();
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
   }, []);
 
   return (
-    <nav ref={navRef} className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[98%] max-w-[1000px]">
+    <nav ref={navRef} className="fixed top-2 sm:top-4 left-0 right-0 z-50 w-full max-w-[1000px] mx-auto px-2 sm:px-4">
       {/* Floating Glass Container */}
       <div
-        className="bg-black/10 backdrop-blur-md shadow-xl shadow-black/40 border border-white/20 transition-all duration-800 ease-out"
+        className="bg-black/10 backdrop-blur-md shadow-xl shadow-black/40 border border-white/20 transition-all duration-800 ease-out w-full"
         style={{
           borderColor: `rgba(255, 255, 255, ${scrollProgress * 0.1})`,
-          borderRadius: `${16 + (24 - 16) * (1 - scrollProgress)}px`,
+          borderRadius: `${12 + (24 - 12) * (1 - scrollProgress)}px`,
         }}
       >
-        <div className="px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
-            {/* Logo */}
-            <Link href="/" className="flex items-center space-x-2 group">
-              <div className="relative w-[50px] h-[50px] flex-shrink-0">
+        <div className="px-3 sm:px-4 md:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16 sm:h-20 min-w-0">
+          {/* Logo */}
+            <Link href="/" className="flex items-center space-x-2 group" onClick={() => setIsOpen(false)}>
+              <div className="relative w-[40px] h-[40px] sm:w-[50px] sm:h-[50px] flex-shrink-0">
                 <Image
                   src="/images/logo/incurify.png"
                   alt="INCURIFY Logo"
@@ -101,76 +144,76 @@ export default function Navigation() {
                   className="object-contain w-full h-full"
                   priority
                 />
-                
-              </div>
-               {/* <span className="text-xl font-bold bg-white bg-clip-text text-transparent">
-                INCURIFY
-              </span>  */}
-            </Link>
+            </div>
+          </Link>
 
             {/* Desktop Nav */}
-            <div className="hidden md:flex items-center space-x-8">
-              {navLinks.map((link) => (
+            <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
+            {navLinks.map((link) => (
+                <a
+                key={link.href}
+                href={link.href}
+                  onClick={(e) => handleHashLink(e, link.href)}
+                  className="flex items-center text-white transition-all text-sm lg:text-base"
+              >
+                  <TextVerticalSwap as="span" duration={0.2}>
+                {link.label}
+                  </TextVerticalSwap>
+                </a>
+            ))}
+          </div>
+
+            {/* Desktop CTA */}
+          <div className="hidden md:block">
+              <a
+                href="#contact"
+                onClick={(e) => handleHashLink(e, '/#contact')}
+                className="px-5 lg:px-6 py-2 lg:py-2.5 bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] text-white rounded-xl font-medium hover:shadow-lg hover:shadow-[#8B6CFF]/40 transition-all duration-300 hover:scale-105 text-sm lg:text-base"
+            >
+                Chat with us
+              </a>
+          </div>
+
+            {/* Mobile Toggle */}
+          <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="md:hidden text-gray-300 hover:text-white p-2 -mr-1 touch-manipulation flex-shrink-0"
+            aria-label="Toggle menu"
+              aria-expanded={isOpen}
+          >
+            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+        {isOpen && (
+          <div
+            ref={mobileMenuRef}
+            className="md:hidden border-t border-white/10 bg-black/80 backdrop-blur-xl overflow-hidden"
+            style={{ borderRadius: '0 0 12px 12px' }}
+          >
+            <div className="px-4 py-5 space-y-1">
+              {navLinks.map((link, index) => (
                 <a
                   key={link.href}
                   href={link.href}
                   onClick={(e) => handleHashLink(e, link.href)}
-                  className="text-gray-300 hover:text-white transition-colors relative group"
+                  className="block py-3 px-4 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200 text-base font-medium touch-manipulation"
+                  style={{ animationDelay: `${index * 0.05}s` }}
                 >
                   {link.label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#8B6CFF] to-[#B7A6FF] group-hover:w-full transition-all duration-300" />
                 </a>
               ))}
-            </div>
-
-            {/* CTA */}
-            <div className="hidden md:block">
               <a
                 href="#contact"
                 onClick={(e) => handleHashLink(e, '/#contact')}
-                className="px-6 py-2.5 bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] text-white rounded-xl font-medium hover:shadow-lg hover:shadow-[#8B6CFF]/40 transition-all duration-300 hover:scale-105"
+                className="block mt-4 text-center px-6 py-3.5 bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] text-white rounded-xl font-medium hover:shadow-lg hover:shadow-[#8B6CFF]/40 transition-all duration-300 active:scale-95 touch-manipulation"
               >
                 Chat with us
               </a>
             </div>
-
-            {/* Mobile Toggle */}
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden text-gray-300 hover:text-white"
-              aria-label="Toggle menu"
-            >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
-        {isOpen && (
-          <div
-            ref={mobileMenuRef}
-            className="md:hidden border-t border-white/10 bg-black/70 backdrop-blur-xl rounded-b-2xl overflow-hidden"
-          >
-            <div className="px-6 py-6 space-y-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={(e) => handleHashLink(e, link.href)}
-                  className="block text-gray-300 hover:text-white transition"
-                >
-                  {link.label}
-                </a>
-              ))}
-              <a
-                href="#contact"
-                onClick={(e) => handleHashLink(e, '/#contact')}
-                className="block text-center px-6 py-3 bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] text-white rounded-xl font-medium"
-              >
-                Get Started
-              </a>
             </div>
-          </div>
         )}
       </div>
     </nav>

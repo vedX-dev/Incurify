@@ -244,9 +244,9 @@ export default function GrowthEngineSection() {
 
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Center Content */}
-        <div className="text-center mb-24 md:mb-32">
+        <div className="text-center mb-12 sm:mb-16 md:mb-24 lg:mb-32">
           <h2
-            className="text-5xl sm:text-6xl lg:text-7xl font-black instrument-serif-regular tracking-tight mb-6"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black instrument-serif-regular tracking-tight mb-4 sm:mb-6"
             style={{ fontWeight: 500, WebkitTextStroke: '0.5px currentColor' } as React.CSSProperties}
           >
             <span className="text-white">Growth</span>{' '}
@@ -254,18 +254,18 @@ export default function GrowthEngineSection() {
               Engine
             </span>
           </h2>
-          <p className="text-xl sm:text-2xl text-white/90 mb-4">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 mb-2 sm:mb-4">
             Strategy • Exposure • Revenue
           </p>
-          <p className="text-sm text-white/50 max-w-md mx-auto">
+          <p className="text-xs sm:text-sm text-white/50 max-w-md mx-auto px-4">
             A connected system built for scalable Web3 adoption.
           </p>
         </div>
 
         {/* Node Container */}
-        <div className="relative min-h-[600px] md:min-h-[700px] flex flex-col justify-center">
+        <div className="relative min-h-[400px] sm:min-h-[500px] md:min-h-[600px] lg:min-h-[700px] flex flex-col justify-center">
           {/* Top Row: Nodes 01, 02, 03 */}
-          <div className="flex flex-wrap justify-center items-center gap-6 md:gap-12 lg:gap-16 mb-12 md:mb-20">
+          <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 md:gap-8 lg:gap-12 xl:gap-16 mb-8 sm:mb-12 md:mb-16 lg:mb-20">
             {growthNodes.slice(0, 3).map((node, index) => (
               <div
                 key={node.id}
@@ -276,17 +276,17 @@ export default function GrowthEngineSection() {
                 onClick={() => handleNodeTap(index)}
               >
                 {/* Node */}
-                <div className="relative w-28 h-28 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full bg-black/40 backdrop-blur-xl border border-white/10 flex flex-col items-center justify-center cursor-pointer transition-all duration-300">
+                <div className="relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-40 lg:h-40 rounded-full bg-black/40 backdrop-blur-xl border border-white/10 flex flex-col items-center justify-center cursor-pointer transition-all duration-300">
                   {/* Glow effect */}
                   <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#8B6CFF]/30 via-[#3B1A6E]/15 to-transparent opacity-0 blur-xl" />
 
                   {/* Number Badge */}
-                  <div className="absolute -top-2 -right-2 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gradient-to-br from-[#8B6CFF] to-[#3B1A6E] flex items-center justify-center text-xs font-bold text-white z-10 shadow-lg shadow-[#8B6CFF]/20">
+                  <div className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full bg-gradient-to-br from-[#8B6CFF] to-[#3B1A6E] flex items-center justify-center text-[10px] sm:text-xs font-bold text-white z-10 shadow-lg shadow-[#8B6CFF]/20">
                     {node.id}
                   </div>
 
                   {/* Title */}
-                  <p className="text-xs sm:text-sm md:text-base font-medium text-white/90 text-center px-3 sm:px-4 relative z-10 leading-tight">
+                  <p className="text-[10px] sm:text-xs md:text-sm lg:text-base font-medium text-white/90 text-center px-2 sm:px-3 md:px-4 relative z-10 leading-tight">
                     {node.title}
                   </p>
                 </div>
@@ -306,7 +306,7 @@ export default function GrowthEngineSection() {
           </div>
 
           {/* Bottom Row: Nodes 04, 05, 06 */}
-          <div className="flex flex-wrap justify-center items-center gap-6 md:gap-12 lg:gap-16">
+          <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 md:gap-8 lg:gap-12 xl:gap-16">
             {growthNodes.slice(3, 6).map((node, index) => {
               const actualIndex = index + 3;
               return (
@@ -319,17 +319,17 @@ export default function GrowthEngineSection() {
                   onClick={() => handleNodeTap(actualIndex)}
                 >
                   {/* Node */}
-                  <div className="relative w-28 h-28 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full bg-black/40 backdrop-blur-xl border border-white/10 flex flex-col items-center justify-center cursor-pointer transition-all duration-300">
+                  <div className="relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-40 lg:h-40 rounded-full bg-black/40 backdrop-blur-xl border border-white/10 flex flex-col items-center justify-center cursor-pointer transition-all duration-300">
                     {/* Glow effect */}
                     <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#8B6CFF]/20 via-[#3B1A6E]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl" />
 
                     {/* Number Badge */}
-                    <div className="absolute -top-2 -right-2 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gradient-to-br from-[#8B6CFF] to-[#3B1A6E] flex items-center justify-center text-xs font-bold text-white z-10 shadow-lg shadow-[#8B6CFF]/20">
+                    <div className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full bg-gradient-to-br from-[#8B6CFF] to-[#3B1A6E] flex items-center justify-center text-[10px] sm:text-xs font-bold text-white z-10 shadow-lg shadow-[#8B6CFF]/20">
                       {node.id}
                     </div>
 
                     {/* Title */}
-                    <p className="text-xs sm:text-sm md:text-base font-medium text-white/90 text-center px-3 sm:px-4 relative z-10 leading-tight">
+                    <p className="text-[10px] sm:text-xs md:text-sm lg:text-base font-medium text-white/90 text-center px-2 sm:px-3 md:px-4 relative z-10 leading-tight">
                       {node.title}
                     </p>
                   </div>

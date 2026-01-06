@@ -64,9 +64,9 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="min-h-screen w-full bg-transparent relative overflow-visible flex items-center justify-center -mt-24">
+    <section className="min-h-screen w-full bg-transparent relative overflow-hidden flex items-center justify-center pt-16 sm:pt-20 md:pt-0 md:-mt-24">
       <div
-  className="absolute top-0 left-[-100px] w-[900px] h-[900px] pointer-events-none z-0"
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] sm:w-[800px] sm:h-[800px] md:w-[900px] md:h-[900px] pointer-events-none z-0"
   style={{
     background: `
       radial-gradient(
@@ -78,7 +78,7 @@ export default function HeroSection() {
         transparent 50%
       )
     `,
-    filter: 'blur(200px)',
+          filter: 'blur(150px)',
     mixBlendMode: 'screen',
   }}
 />
@@ -91,24 +91,24 @@ export default function HeroSection() {
 
 
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20 lg:py-24 relative z-10 w-full">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-10 sm:py-12 md:py-16 lg:py-20 xl:py-24 relative z-10 w-full">
         <div ref={heroRef} className="flex flex-col items-center justify-center text-center w-full">
           {/* Badge */}
           <div
             ref={badgeRef}
-            className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-[#8B6CFF]/10 border border-[#8B6CFF]/30 rounded-full mb-6 sm:mb-8"
+            className="inline-flex items-center gap-2 px-4 py-2 sm:px-4 sm:py-2 bg-[#8B6CFF]/10 border border-[#8B6CFF]/30 rounded-full mb-6 sm:mb-6 md:mb-8"
           >
-            <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 text-[#8B6CFF]" />
-            <span className="text-xs sm:text-sm font-medium text-[#8B6CFF]">
-            Growth for Web3 Brands
+            <Sparkles className="w-4 h-4 sm:w-4 sm:h-4 text-[#8B6CFF]" />
+            <span className="text-sm sm:text-sm font-medium text-[#8B6CFF]">
+              Growth for Web3 Brands
             </span>
           </div>
 
           {/* Headline */}
           <h1
             ref={headlineRef}
-            className="instrument-serif-regular text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black mb-4 sm:mb-6 tracking-wide text-center w-full px-4"
-            style={{ fontWeight: 600, WebkitTextStroke: '0.px currentColor' } as React.CSSProperties}
+            className="instrument-serif-regular text-5xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black mb-6 sm:mb-6 md:mb-6 tracking-tight sm:tracking-wide text-center w-full px-2 sm:px-4 leading-[1.1] sm:leading-[1.1]"
+            style={{ fontWeight: 600, WebkitTextStroke: '0px currentColor' } as React.CSSProperties}
           >
             <span className="bg-gradient-to-r from-gray-400 to-white bg-clip-text text-transparent">
               Fueling{' '}
@@ -125,7 +125,7 @@ export default function HeroSection() {
           {/* Subheadline */}
           <p
             ref={subheadlineRef}
-            className="text-base sm:text-lg md:text-xl text-white/70 mb-8 sm:mb-10 md:mb-12 max-w-4xl mx-auto leading-relaxed text-center px-4"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/70 mb-10 sm:mb-10 md:mb-12 max-w-4xl mx-auto leading-relaxed sm:leading-relaxed text-center px-2 sm:px-4"
           >
             Welcome to Incurify. we specialize in blockchain marketing, influencer partnerships, and strategic community growth desgined to solve visibility, adoption, and trust problems.
           </p>
@@ -133,28 +133,28 @@ export default function HeroSection() {
           {/* CTA Buttons */}
           <div
             ref={ctaRef}
-            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center w-full px-4"
+            className="flex flex-col sm:flex-row gap-4 sm:gap-4 justify-center items-center w-full px-2 sm:px-4"
           >
             <a
               href="#contact"
-              className="group w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#8B6CFF] to-[#B7A6FF] text-[#0A0612] rounded-lg font-medium hover:shadow-lg hover:shadow-[#8B6CFF]/50 transition-all duration-300 flex items-center justify-center gap-2 text-sm sm:text-base"
+              className="group w-full sm:w-auto px-8 py-4 sm:px-8 sm:py-3 md:px-8 md:py-4 bg-gradient-to-r from-[#8B6CFF] to-[#B7A6FF] text-[#0A0612] rounded-lg font-semibold hover:shadow-lg hover:shadow-[#8B6CFF]/50 transition-all duration-300 flex items-center justify-center gap-2.5 text-base sm:text-base touch-manipulation"
             >
               <span>Start Your Project</span>
-              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-5 h-5 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform flex-shrink-0" />
             </a>
           </div>
         </div>
       </div>
 
       {/* Social Media Button - X (Twitter) - Bottom Right */}
-      <div className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-50">
+      <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 md:bottom-8 md:right-8 z-50">
         <a
           href="#"
-          className="group relative w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-black/40 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:border-[#8B6CFF]/30 transition-all duration-300"
+          className="group relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-black/40 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:border-[#8B6CFF]/30 transition-all duration-300"
           aria-label="Follow us on X (Twitter)"
         >
           <svg
-            className="w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-300 group-hover:scale-110"
+            className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 transition-transform duration-300 group-hover:scale-110"
             viewBox="0 0 24 24"
             fill="currentColor"
             xmlns="http://www.w3.org/2000/svg"

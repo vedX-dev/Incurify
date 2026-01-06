@@ -255,7 +255,7 @@ export default function ProcessSection() {
                 }`}
               >
                 {/* Glassmorphism Card - Smaller Rectangle */}
-                <div className="relative ml-8 sm:ml-12 md:ml-0 max-w-3xl mx-auto p-4 sm:p-5 md:p-6 bg-black/30 backdrop-blur-2xl border border-white/10 hover:border-white/20 transition-all duration-500 shadow-[0_8px_32px_0_rgba(0,0,0,0.5),0_0_0_1px_rgba(139,108,255,0.1)] hover:shadow-[0_12px_48px_0_rgba(139,108,255,0.2),0_0_0_1px_rgba(139,108,255,0.2)]">
+                <div className="relative ml-6 sm:ml-8 md:ml-0 max-w-3xl mx-auto p-3 sm:p-4 md:p-5 lg:p-6 bg-black/30 backdrop-blur-2xl border border-white/10 hover:border-white/20 transition-all duration-500 shadow-[0_8px_32px_0_rgba(0,0,0,0.5),0_0_0_1px_rgba(139,108,255,0.1)] hover:shadow-[0_12px_48px_0_rgba(139,108,255,0.2),0_0_0_1px_rgba(139,108,255,0.2)]">
                   {/* Enhanced Glassmorphism Layers */}
                   <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] via-transparent to-[#8B6CFF]/[0.03] pointer-events-none" />
                   <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(139,108,255,0.05)_0%,transparent_50%,rgba(59,26,110,0.05)_100%)] pointer-events-none" />
@@ -263,9 +263,9 @@ export default function ProcessSection() {
                   {/* Gradient Glow Effect on Hover */}
                   <div className="absolute inset-0 bg-gradient-to-br from-[#8B6CFF]/10 via-[#3B1A6E]/5 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500 -z-10 blur-2xl" />
 
-                  <div className="flex flex-col gap-3 sm:gap-4 lg:gap-5">
+                  <div className="flex flex-col gap-2 sm:gap-3 md:gap-4 lg:gap-5">
                     {/* Illustration - Smaller, On Top */}
-                    <div className="relative h-32 sm:h-36 md:h-40 lg:h-44 w-full overflow-hidden bg-black/20 backdrop-blur-sm border border-white/5">
+                    <div className="relative h-24 sm:h-28 md:h-32 lg:h-36 xl:h-40 w-full overflow-hidden bg-black/20 backdrop-blur-sm border border-white/5">
                       {/* Illustration */}
                       <div className="process-image relative h-full w-full p-2 sm:p-3 lg:p-4">
                         <Image
@@ -279,8 +279,8 @@ export default function ProcessSection() {
                     </div>
 
                     {/* Text Content - Below */}
-                    <div className="space-y-2 sm:space-y-3 md:space-y-4">
-                      <h3 className="process-title text-base sm:text-lg md:text-xl font-semibold font-bold text-white leading-tight">
+                    <div className="space-y-1.5 sm:space-y-2 md:space-y-3 lg:space-y-4">
+                      <h3 className="process-title text-sm sm:text-base md:text-lg lg:text-xl font-semibold font-bold text-white leading-tight">
                         {phase.title}
                       </h3>
                       <p className="process-description text-xs sm:text-sm md:text-base text-white/70 sm:text-white/80 leading-relaxed">

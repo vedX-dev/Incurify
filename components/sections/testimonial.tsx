@@ -236,10 +236,6 @@ function ClientFeedback() {
           </TimelineContent>
         </div>
       </div>
-
-      <div className="absolute border-b-2 border-[#8B6CFF]/20 bottom-4 h-16 z-[2] md:w-full w-[90%] md:left-0 left-[5%]">
-        <div className="container mx-auto w-full h-full relative before:absolute before:-left-2 before:-bottom-2 before:w-4 before:h-4 before:bg-black/40 before:shadow-sm before:border before:border-[#8B6CFF]/20 after:absolute after:-right-2 after:-bottom-2 after:w-4 after:h-4 after:bg-black/40 after:shadow-sm after:border after:border-[#8B6CFF]/20"></div>
-      </div>
     </div>
   );
 }

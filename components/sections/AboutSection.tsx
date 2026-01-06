@@ -310,25 +310,6 @@ export default function AboutSection() {
 
   return (
     <>
-      {/* Section Title and Description - Outside purple contrast section, on black background */}
-      <section className="relative w-full bg-black py-12 sm:py-16 md:py-20 lg:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-          <div className="text-center animate-on-scroll">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl xl:text-4xl font-medium instrument-serif-regular tracking-wide px-4" style={{ fontWeight: 500, WebkitTextStroke: '1px currentColor' } as React.CSSProperties}>
-              <span className="bg-gradient-to-r from-gray-400 to-white bg-clip-text text-transparent">
-                About{' '}
-              </span>
-              <span className="bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] bg-clip-text text-transparent">
-                Incurify
-              </span>
-            </h1>
-            <p className="text-sm sm:text-base text-white/70 max-w-2xl mx-auto mt-3 sm:mt-4 px-4">
-              Learn more about our mission, vision, and the team behind Incurify
-            </p>
-          </div>
-        </div>
-      </section>
-
       {/* Purple Contrast Section */}
       <section ref={sectionRef} id="about" className="relative overflow-hidden w-full">
         {/* Full-width gradient background with parallax */}
@@ -407,27 +388,27 @@ export default function AboutSection() {
         />
 
         {/* Content container with improved spacing */}
-        <div className="relative z-10 py-16 sm:py-24 md:py-32 lg:py-40 px-4 sm:px-6 lg:px-8 xl:px-12">
+        <div className="relative z-10 py-12 sm:py-16 md:py-24 lg:py-32 xl:py-40 px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="max-w-5xl mx-auto">
             <div className="relative">
               {/* Background glow - animated */}
               <div 
                 ref={glowRef}
-                className="absolute -inset-8 sm:-inset-12 bg-gradient-to-r from-[#8B6CFF]/15 via-[#3B1A6E]/8 to-transparent blur-3xl rounded-3xl -z-10"
+                className="absolute -inset-4 sm:-inset-8 md:-inset-12 bg-gradient-to-r from-[#8B6CFF]/15 via-[#3B1A6E]/8 to-transparent blur-3xl rounded-3xl -z-10"
               />
               
-              <div className="space-y-12 sm:space-y-16 md:space-y-20 lg:space-y-24">
+              <div className="space-y-8 sm:space-y-12 md:space-y-16 lg:space-y-20 xl:space-y-24">
                 {/* Text Zone - subtle background variation */}
                 <div className="zone-text relative">
                   {/* Subtle zone background */}
-                  <div className="zone-bg absolute -inset-4 sm:-inset-8 bg-gradient-to-b from-[#8B6CFF]/5 via-transparent to-transparent rounded-2xl opacity-0" />
+                  <div className="zone-bg absolute -inset-2 sm:-inset-4 md:-inset-8 bg-gradient-to-b from-[#8B6CFF]/5 via-transparent to-transparent rounded-2xl opacity-0" />
                   
                   <div className="relative">
                     {/* Headline - enhanced typography */}
                     <div>
                       <h1 
                         ref={headingRef}
-                        className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black instrument-serif-regular tracking-tight leading-[0.9] mb-6 sm:mb-8 md:mb-10"
+                        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black instrument-serif-regular tracking-tight leading-[0.9] mb-4 sm:mb-6 md:mb-8 lg:mb-10"
                         style={{ fontWeight: 500, WebkitTextStroke: '0.5px currentColor' } as React.CSSProperties}
                       >
                         <span className="text-white">About </span>
@@ -438,8 +419,8 @@ export default function AboutSection() {
                     </div>
 
                     {/* Body text - narrower width (~60ch) */}
-                    <div ref={bodyRef} className="space-y-4 sm:space-y-6 max-w-full sm:max-w-[60ch]">
-                      <p className="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed" style={{ color: 'rgba(255,255,255,0.9)' }}>
+                    <div ref={bodyRef} className="space-y-3 sm:space-y-4 md:space-y-6 max-w-full sm:max-w-[60ch]">
+                      <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl leading-relaxed" style={{ color: 'rgba(255,255,255,0.9)' }}>
                         We are a{' '}
                         <span className="text-[#B7A6FF] font-medium">marketing agency</span> built to solve the real growth
                         challenges in Web3.{' '}
@@ -458,9 +439,9 @@ export default function AboutSection() {
               </div>
 
               {/* Stats Zone - reduced visual separation */}
-              <div ref={statsRef} className="zone-stats grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 relative">
+              <div ref={statsRef} className="zone-stats grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 relative">
                 {/* Subtle zone background */}
-                <div className="zone-bg absolute -inset-4 sm:-inset-6 bg-gradient-to-b from-transparent via-[#3B1A6E]/5 to-transparent rounded-2xl opacity-0" />
+                <div className="zone-bg absolute -inset-2 sm:-inset-4 md:-inset-6 bg-gradient-to-b from-transparent via-[#3B1A6E]/5 to-transparent rounded-2xl opacity-0" />
                 {stats.map((stat) => {
                   // Extract numeric value, prefix, and suffix
                   const match = stat.value.match(/(\$?)(\d+)(\+?)/);
@@ -473,47 +454,47 @@ export default function AboutSection() {
                   return (
                     <div
                       key={stat.id}
-                      className="stat-card relative p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl bg-black/30 backdrop-blur-xl border border-white/10 overflow-hidden group"
+                      className="stat-card relative p-3 sm:p-4 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl bg-black/30 backdrop-blur-xl border border-white/10 overflow-hidden group"
                       data-value={numericValue}
                       data-prefix={prefix}
                       data-suffix={suffix}
                       data-use-k-format={useKFormat.toString()}
                     >
                       {/* Animated border glow - soft emphasis */}
-                      <div className="stat-border absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#8B6CFF]/15 via-[#3B1A6E]/8 to-transparent opacity-0 pointer-events-none" />
+                      <div className="stat-border absolute inset-0 rounded-lg sm:rounded-xl md:rounded-2xl bg-gradient-to-br from-[#8B6CFF]/15 via-[#3B1A6E]/8 to-transparent opacity-0 pointer-events-none" />
                       
                       {/* Inner glow */}
                       <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent pointer-events-none" />
                       
                       {/* Stat value - will be animated */}
-                      <p className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2 sm:mb-3 stat-value tabular-nums relative z-10 min-h-[2.5rem] sm:min-h-[3rem] md:min-h-[3.5rem] flex items-center">
+                      <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-1 sm:mb-2 md:mb-3 stat-value tabular-nums relative z-10 min-h-[2rem] sm:min-h-[2.5rem] md:min-h-[3rem] lg:min-h-[3.5rem] flex items-center">
                         {stat.value}
                       </p>
-                      <p className="text-xs sm:text-sm text-[#B7A6FF] font-medium relative z-10">{stat.label}</p>
+                      <p className="text-[10px] sm:text-xs md:text-sm text-[#B7A6FF] font-medium relative z-10">{stat.label}</p>
                     </div>
                   );
                 })}
               </div>
 
               {/* Mission & Vision Zone - simplified, declarative */}
-              <div ref={missionVisionRef} className="zone-mission grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 relative">
+              <div ref={missionVisionRef} className="zone-mission grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8 relative">
                 {/* Subtle zone background */}
-                <div className="zone-bg absolute -inset-4 sm:-inset-8 bg-gradient-to-b from-transparent via-[#3B1A6E]/5 to-transparent rounded-2xl opacity-0" />
+                <div className="zone-bg absolute -inset-2 sm:-inset-4 md:-inset-8 bg-gradient-to-b from-transparent via-[#3B1A6E]/5 to-transparent rounded-2xl opacity-0" />
                 
                 {/* Animated gradient divider */}
                 <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#8B6CFF]/20 to-transparent -translate-x-1/2" />
                 
-                <div className="mission-vision-card relative p-6 sm:p-8 md:p-10 rounded-xl sm:rounded-2xl bg-black/30 backdrop-blur-xl border border-white/10 overflow-hidden group">
+                <div className="mission-vision-card relative p-4 sm:p-6 md:p-8 lg:p-10 rounded-lg sm:rounded-xl md:rounded-2xl bg-black/30 backdrop-blur-xl border border-white/10 overflow-hidden group">
                   {/* Gradient accent on hover */}
                   <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#8B6CFF]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   
                   <h2 
-                    className="instrument-serif-regular text-2xl sm:text-3xl md:text-4xl font-black mb-4 sm:mb-5 md:mb-6 tracking-tight text-white"
+                    className="instrument-serif-regular text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black mb-3 sm:mb-4 md:mb-5 lg:mb-6 tracking-tight text-white"
                     style={{ fontWeight: 500, WebkitTextStroke: '0.2px currentColor' } as React.CSSProperties}
                   >
                     Our Mission
                   </h2>
-                  <p className="leading-relaxed text-sm sm:text-base md:text-lg space-y-3 sm:space-y-4" style={{ color: 'rgba(255,255,255,0.9)' }}>
+                  <p className="leading-relaxed text-xs sm:text-sm md:text-base lg:text-lg space-y-2 sm:space-y-3 md:space-y-4" style={{ color: 'rgba(255,255,255,0.9)' }}>
                     <span className="block">
                       To empower businesses and individuals to embrace the{' '}
                       <span className="text-[#B7A6FF]">decentralized future</span>.
@@ -524,17 +505,17 @@ export default function AboutSection() {
                   </p>
                 </div>
 
-                <div className="mission-vision-card relative p-6 sm:p-8 md:p-10 rounded-xl sm:rounded-2xl bg-black/30 backdrop-blur-xl border border-white/10 overflow-hidden group">
+                <div className="mission-vision-card relative p-4 sm:p-6 md:p-8 lg:p-10 rounded-lg sm:rounded-xl md:rounded-2xl bg-black/30 backdrop-blur-xl border border-white/10 overflow-hidden group">
                   {/* Gradient accent on hover */}
                   <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#8B6CFF]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   
                   <h2 
-                    className="instrument-serif-regular text-2xl sm:text-3xl md:text-4xl font-black mb-4 sm:mb-5 md:mb-6 tracking-tight text-white"
+                    className="instrument-serif-regular text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black mb-3 sm:mb-4 md:mb-5 lg:mb-6 tracking-tight text-white"
                     style={{ fontWeight: 500, WebkitTextStroke: '0.2px currentColor' } as React.CSSProperties}
                   >
                     Our Vision
                   </h2>
-                  <p className="leading-relaxed text-sm sm:text-base md:text-lg space-y-3 sm:space-y-4" style={{ color: 'rgba(255,255,255,0.9)' }}>
+                  <p className="leading-relaxed text-xs sm:text-sm md:text-base lg:text-lg space-y-2 sm:space-y-3 md:space-y-4" style={{ color: 'rgba(255,255,255,0.9)' }}>
                     <span className="block">
                       To become the leading <span className="text-[#B7A6FF]">Web3 agency</span> that shapes the future of decentralized technology.
                     </span>
