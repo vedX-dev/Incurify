@@ -417,7 +417,7 @@ export default function AboutSection() {
                         >
                           <span className="text-white">About </span>
                           <span className="bg-gradient-to-r from-white via-[#B7A6FF] to-[#8B6CFF] bg-clip-text text-transparent">
-                            Incurify.
+                            Incurify
                           </span>
                         </h1>
                       </div>

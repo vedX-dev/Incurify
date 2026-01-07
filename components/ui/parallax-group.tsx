@@ -109,21 +109,15 @@ export function ParallaxGroup({ children, className = '' }: ParallaxGroupProps) 
         // Animate purple background overlay
         // The overlay should start appearing and sliding up as testimonial is ending
         // This creates the smooth purple background transition over the Testimonial section
+        // Calculate opacity and position progress (used by both overlays)
+        const opacityProgress = Math.max(0, Math.min(1, (progress - 0.1) / 0.4));
+        const positionProgress = Math.max(0, Math.min(1, progress / 0.4));
+        const overlayTranslateY = (1 - positionProgress) * 100;
+        
         if (overlay) {
-          // Opacity: starts fading in early (at 10% progress), fully visible at 50%
-          // This ensures the purple background appears before About section is fully visible
-          const opacityProgress = Math.max(0, Math.min(1, (progress - 0.1) / 0.4));
-          // Position: slides up from below viewport (y: 100%) to covering viewport (y: 0%)
-          // Fully in place at 40% progress
-          const positionProgress = Math.max(0, Math.min(1, progress / 0.4));
-          
-          // Calculate Y transform: starts at 100% (below viewport), ends at 0% (covering viewport)
-          // Negative Y values move up, so we go from 100% to 0%
-          const translateY = (1 - positionProgress) * 100;
-          
           gsap.set(overlay, {
             opacity: opacityProgress,
-            y: `${translateY}%`, // Slides up from 100% (below) to 0% (covering)
+            y: `${overlayTranslateY}%`, // Slides up from 100% (below) to 0% (covering)
             force3D: true,
           });
         }
@@ -133,7 +127,7 @@ export function ParallaxGroup({ children, className = '' }: ParallaxGroupProps) 
           const secondaryOpacity = opacityProgress * 0.6; // 60% of main overlay opacity
           gsap.set(secondaryOverlay, {
             opacity: secondaryOpacity,
-            y: `${translateY}%`, // Same position as main overlay
+            y: `${overlayTranslateY}%`, // Same position as main overlay
             force3D: true,
           });
         }
