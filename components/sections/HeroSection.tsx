@@ -82,13 +82,13 @@ export default function HeroSection() {
 
 
 
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-10 sm:py-12 md:py-16 lg:py-20 xl:py-24 relative z-10 w-full">
-        <div ref={heroRef} className="flex flex-col items-center justify-center text-center w-full">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 relative z-10 w-full flex items-center justify-center min-h-[calc(100vh-3.5rem)] sm:min-h-[calc(100vh-4rem)] md:min-h-screen">
+        <div ref={heroRef} className="flex flex-col items-center justify-center text-center w-full space-y-4 sm:space-y-6 md:space-y-8">
           {/* Badge */}
           <ParallaxElement speed={0.2} direction="down">
             <div
               ref={badgeRef}
-              className="inline-flex items-center gap-2 px-4 py-2 sm:px-4 sm:py-2 bg-[#8B6CFF]/10 border border-[#8B6CFF]/30 rounded-full mb-6 sm:mb-6 md:mb-8"
+              className="inline-flex items-center gap-2 px-4 py-2 sm:px-4 sm:py-2 bg-[#8B6CFF]/10 border border-[#8B6CFF]/30 rounded-full mb-2 sm:mb-4 md:mb-8 -mt-8 sm:-mt-0"
             >
               <Sparkles className="w-4 h-4 sm:w-4 sm:h-4 text-[#8B6CFF]" />
               <span className="text-sm sm:text-sm font-medium text-[#8B6CFF]">
@@ -101,7 +101,7 @@ export default function HeroSection() {
           <ParallaxElement speed={0.3} direction="up">
             <h1
               ref={headlineRef}
-              className="instrument-serif-regular text-5xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black mb-6 sm:mb-6 md:mb-6 tracking-tight sm:tracking-wide text-center w-full px-2 sm:px-4 leading-[1.1] sm:leading-[1.1]"
+              className="instrument-serif-regular text-6xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black mb-4 sm:mb-6 md:mb-6 tracking-tight sm:tracking-wide text-center w-full px-3 sm:px-4 leading-[1.05] sm:leading-[1.1]"
               style={{ fontWeight: 600, WebkitTextStroke: '0px currentColor' } as React.CSSProperties}
             >
               <span className="bg-gradient-to-r from-gray-400 to-white bg-clip-text text-transparent">
@@ -121,7 +121,7 @@ export default function HeroSection() {
           <ParallaxElement speed={0.25} direction="up">
             <p
               ref={subheadlineRef}
-              className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/70 mb-10 sm:mb-10 md:mb-12 max-w-4xl mx-auto leading-relaxed sm:leading-relaxed text-center px-2 sm:px-4"
+              className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/70 mb-6 sm:mb-8 md:mb-12 max-w-4xl mx-auto leading-relaxed sm:leading-relaxed text-center px-3 sm:px-4"
             >
               Welcome to Incurify, We specialize in blockchain marketing, influencer partnerships, and strategic community growth desgined to solve visibility, adoption, and trust problems.
             </p>
@@ -131,7 +131,7 @@ export default function HeroSection() {
           <ParallaxElement speed={0.2} direction="down">
             <div
               ref={ctaRef}
-              className="flex flex-col sm:flex-row gap-4 sm:gap-4 justify-center items-center w-full px-2 sm:px-4"
+              className="flex flex-col sm:flex-row gap-4 sm:gap-4 justify-center items-center w-full px-3 sm:px-4"
             >
               <a
                 href="#contact"

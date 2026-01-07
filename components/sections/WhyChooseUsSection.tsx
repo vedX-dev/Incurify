@@ -105,8 +105,9 @@ export default function WhyChooseUsSection() {
                   Why Choose{' '}
                 </span>
                 <span className="bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] bg-clip-text text-transparent">
-                  Us
+                  Us?
                 </span>
+                
               </TextVerticalSwap>
             </h1>
             <p className="text-sm sm:text-base text-white/70 max-w-2xl mx-auto mt-3 sm:mt-4 px-4">

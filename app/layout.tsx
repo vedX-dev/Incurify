@@ -6,22 +6,24 @@ import FontLoader from '@/components/FontLoader';
 import PageTransition from '@/components/PageTransition';
 
 export const metadata = {
-  title: 'Web3 & Blockchain Marketing Agency | Incurify',
+  title: 'Incurify - Web3 Growth Partner',
   description:
-    'Incurify is a Web3 and blockchain marketing agency offering influencer marketing, community building, PR, and data-driven growth strategies.',
-
+    'Incurify is a Web3 growth partner helping projects build and sustain traction from launch to scale.',
+  icons:{
+    icon:'/icons/icon.png',
+  },
   openGraph: {
-    title: 'Web3 & Blockchain Marketing Agency | Incurify',
+    title: 'Web3 Marketing Agency | Incurify',
     description:
-      'Incurify helps Web3 and blockchain projects scale through influencer marketing, community growth, PR, and strategic execution.',
-    url: 'https://incurify.com', // change to your domain
+      'Incurify is a Web3 growth partner helping projects build and sustain traction from launch to scale.',
+    url: '', // change to your domain
     siteName: 'Incurify',
     images: [
       {
         url: '/images/l',
         width: 1200,
         height: 630,
-        alt: 'Incurify – Web3 & Blockchain Marketing Agency',
+        alt: 'Incurify – Web3 Marketing Agency',
       },
     ],
     type: 'website',

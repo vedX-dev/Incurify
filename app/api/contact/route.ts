@@ -6,7 +6,7 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
 const resendApiKey = process.env.RESEND_API_KEY || '';
 const resendFromEmail = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
-const clientEmail = process.env.CLIENT_EMAIL || 'hello@web3agency.com';
+const clientEmail = process.env.CLIENT_EMAIL || '';
 
 const supabase = supabaseUrl && supabaseKey ? createClient(supabaseUrl, supabaseKey) : null;
 const resend = resendApiKey ? new Resend(resendApiKey) : null;
@@ -62,10 +62,10 @@ export async function POST(request: NextRequest) {
         await resend.emails.send({
           from: resendFromEmail,
           to: clientEmail,
-          subject: `New Contact Form Submission from ${name}`,
+          subject: `New Form Submission: from ${name}`,
           html: `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-              <h2 style="color: #8B5CF6; border-bottom: 2px solid #06B6D4; padding-bottom: 10px;">
+              <h2 style="color:rgb(105, 63, 204); border-bottom: 2px solid #06B6D4; padding-bottom: 10px;">
                 New Contact Form Submission
               </h2>
               <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
@@ -79,7 +79,7 @@ export async function POST(request: NextRequest) {
                 <p style="color: #666; line-height: 1.6; white-space: pre-wrap;">${message}</p>
               </div>
               <p style="color: #999; font-size: 12px; margin-top: 20px;">
-                This email was sent from the Web3Agency contact form.
+                This email was sent from Incurify.
               </p>
             </div>
           `,
