@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { CheckCircle } from 'lucide-react';
+import { TextVerticalSwap } from '@/components/ui/text-vertical-swap';
 
 const footerLinks = {
   navigation: [
@@ -76,7 +77,7 @@ export default function Footer() {
 
   const handleHashLink = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (href.startsWith('/#')) {
-      e.preventDefault();
+    e.preventDefault();
       const hash = href.replace('/', '');
       // Lenis will handle the smooth scroll automatically via the SmoothScroll component
       window.location.hash = hash;
@@ -85,20 +86,14 @@ export default function Footer() {
 
   return (
     <footer className="bg-black border-t border-[#8B6CFF]/20 relative overflow-hidden">
-      {/* Subtle gradient background */}
+      {/* Azure Depths */}
       <div
-        className="absolute inset-0 opacity-20"
+        className="absolute inset-0 z-0"
         style={{
-          background: `
-            radial-gradient(
-              ellipse 120% 100% at 50% 100%,
-              rgba(59, 26, 110, 0.3) 0%,
-              transparent 70%
-            )
-          `,
+          background: "radial-gradient(125% 125% at 50% 10%, #000000 40%, #2A0A4E 100%)",
         }}
       />
-
+      
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 xl:gap-16 mb-10 sm:mb-12">
           {/* Logo Section - Large and Prominent */}
@@ -139,7 +134,7 @@ export default function Footer() {
                   </a>
                 );
               })}
-            </div>
+              </div>
           </div>
 
           {/* Navigation Links */}
@@ -151,10 +146,11 @@ export default function Footer() {
                   <a
                     href={link.href}
                     onClick={(e) => handleHashLink(e, link.href)}
-                    className="text-sm sm:text-base text-white/70 hover:text-white transition-colors duration-200 inline-block relative group"
+                    className="text-sm sm:text-base text-white/70 hover:text-white transition-colors duration-200 inline-block"
                   >
+                    <TextVerticalSwap as="span" duration={0.3}>
                     {link.label}
-                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] group-hover:w-full transition-all duration-300" />
+                    </TextVerticalSwap>
                   </a>
                 </li>
               ))}
@@ -191,7 +187,7 @@ export default function Footer() {
                 />
                 {/* Input glow effect */}
                 <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#8B6CFF]/0 via-[#3B1A6E]/0 to-transparent opacity-0 focus-within:opacity-10 transition-opacity duration-300 pointer-events-none" />
-              </div>
+          </div>
 
               <button
                 type="submit"

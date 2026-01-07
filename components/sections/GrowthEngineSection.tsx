@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
+import { TextVerticalSwap } from '@/components/ui/text-vertical-swap';
 
 const growthNodes = [
   {
@@ -249,10 +250,12 @@ export default function GrowthEngineSection() {
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black instrument-serif-regular tracking-tight mb-4 sm:mb-6"
             style={{ fontWeight: 500, WebkitTextStroke: '0.5px currentColor' } as React.CSSProperties}
           >
-            <span className="text-white">Growth</span>{' '}
-            <span className="bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] bg-clip-text text-transparent">
-              Engine
-            </span>
+            <TextVerticalSwap as="span" duration={0.3}>
+              <span className="text-white">Growth</span>{' '}
+              <span className="bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] bg-clip-text text-transparent">
+                Engine
+              </span>
+            </TextVerticalSwap>
           </h2>
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 mb-2 sm:mb-4">
             Strategy • Exposure • Revenue

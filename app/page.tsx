@@ -11,6 +11,8 @@ import ProcessSection from '@/components/sections/ProcessSection';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
 import AboutSection from '@/components/sections/AboutSection';
 import ContactSection from '@/components/sections/ContactSection';
+import Footer from '@/components/Footer';
+import { ParallaxGroup } from '@/components/ui/parallax-group';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -44,8 +46,12 @@ export default function Home() {
       <ServicesSection />
       <ProcessSection />
       <TestimonialsSection />
-      <AboutSection />
-      <ContactSection />
+      {/* Parallax Group: About, Contact (includes FAQ), and Footer */}
+      <ParallaxGroup>
+        <AboutSection />
+        <ContactSection />
+        <Footer />
+      </ParallaxGroup>
     </div>
   );
 }

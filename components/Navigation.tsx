@@ -166,11 +166,13 @@ export default function Navigation() {
             {/* Desktop CTA */}
           <div className="hidden md:block">
               <a
-                href="#contact"
-                onClick={(e) => handleHashLink(e, '/#contact')}
-                className="px-5 lg:px-6 py-2 lg:py-2.5 bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] text-white rounded-xl font-medium hover:shadow-lg hover:shadow-[#8B6CFF]/40 transition-all duration-300 hover:scale-105 text-sm lg:text-base"
+                href="https://calendly.com/incurify/introductory-call"
+                onClick={(e) => handleHashLink(e, 'https://calendly.com/incurify/introductory-call')}
+                className="px-5 lg:px-6 py-2 lg:py-2.5 bg-[#3B1A6E] text-white rounded-xl font-medium transition-all duration-300 text-sm lg:text-base flex items-center"
             >
-                Chat with us
+                <TextVerticalSwap as="span" duration={0.2}>
+                  Chat with us
+                </TextVerticalSwap>
               </a>
           </div>
 
@@ -206,11 +208,13 @@ export default function Navigation() {
                 </a>
               ))}
               <a
-                href="#contact"
-                onClick={(e) => handleHashLink(e, '/#contact')}
-                className="block mt-4 text-center px-6 py-3.5 bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] text-white rounded-xl font-medium hover:shadow-lg hover:shadow-[#8B6CFF]/40 transition-all duration-300 active:scale-95 touch-manipulation"
+                href="https://calendly.com/incurify/introductory-call"
+                onClick={(e) => handleHashLink(e, 'https://calendly.com/incurify/introductory-call')}
+                className="block mt-4 text-center px-6 py-3.5 bg-[#3B1A6E] text-white rounded-xl font-medium transition-all duration-300 active:scale-95 touch-manipulation flex items-center justify-center"
               >
-                Chat with us
+                <TextVerticalSwap as="span" duration={0.2}>
+                  Chat with us
+                </TextVerticalSwap>
               </a>
             </div>
             </div>

@@ -1,7 +1,6 @@
-import './globals.css';
 import type { Metadata } from 'next';
+import './globals.css';
 import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
 import SmoothScroll from '@/components/SmoothScroll';
 import FontLoader from '@/components/FontLoader';
 import PageTransition from '@/components/PageTransition';
@@ -34,6 +33,9 @@ export const metadata = {
     description:
       'Scale your Web3 project with Incurify — influencer marketing, community building, PR, and blockchain growth strategy.',
     images: ['/images/logo/incurify.png'],
+      },
+  other: {
+    'font-display': 'swap',
   },
 };
 
@@ -44,8 +46,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark" style={{ backgroundColor: '#000000' }}>
-      <body className="font-onest bg-black text-[#EEE9FF] antialiased">
+    <html lang="en" className="dark" style={{ backgroundColor: '#000000' }} suppressHydrationWarning>
+      <head>
+        {/* Preconnect to Google Fonts for faster loading - Critical for preventing FOUC */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Load fonts with font-display: swap to prevent FOUC */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Instrument+Serif:ital@0;1&family=Onest:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="font-onest bg-black text-[#EEE9FF] antialiased" suppressHydrationWarning>
         {/* Blue Spotlight Background - Fixed at Center for entire website */}
         <div
           className="fixed inset-0 z-[2] pointer-events-none"
@@ -62,11 +74,10 @@ export default function RootLayout({
         />
         <FontLoader />
         <SmoothScroll>
-          <Navigation />
+        <Navigation />
           <PageTransition>
-            <main className="min-h-screen">{children}</main>
+        <main className="min-h-screen">{children}</main>
           </PageTransition>
-          <Footer />
         </SmoothScroll>
       </body>
     </html>

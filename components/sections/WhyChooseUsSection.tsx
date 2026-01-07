@@ -3,6 +3,8 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { TextVerticalSwap } from '@/components/ui/text-vertical-swap';
+import { ParallaxElement } from '@/components/ui/parallax-section';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -95,28 +97,32 @@ export default function WhyChooseUsSection() {
     >
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-12 sm:mb-16 md:mb-20">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl xl:text-4xl font-medium instrument-serif-regular tracking-wide px-4" style={{ fontWeight: 500, WebkitTextStroke: '1px currentColor' } as React.CSSProperties}>
-            <span className="bg-white bg-clip-text text-transparent">
-              Why Choose{' '}
-            </span>
-            <span className="bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] bg-clip-text text-transparent">
-              Us
-            </span>
-          </h1>
-          <p className="text-sm sm:text-base text-white/70 max-w-2xl mx-auto mt-3 sm:mt-4 px-4">
-            Experience excellence in every project we deliver
-          </p>
-        </div>
+        <ParallaxElement speed={0.2} direction="up">
+          <div className="text-center mb-12 sm:mb-16 md:mb-20">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl xl:text-4xl font-medium instrument-serif-regular tracking-wide px-4" style={{ fontWeight: 500, WebkitTextStroke: '1px currentColor' } as React.CSSProperties}>
+              <TextVerticalSwap as="span" duration={0.3}>
+                <span className="bg-white bg-clip-text text-transparent">
+                  Why Choose{' '}
+                </span>
+                <span className="bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] bg-clip-text text-transparent">
+                  Us
+                </span>
+              </TextVerticalSwap>
+            </h1>
+            <p className="text-sm sm:text-base text-white/70 max-w-2xl mx-auto mt-3 sm:mt-4 px-4">
+              Experience excellence in every project we deliver
+            </p>
+          </div>
+        </ParallaxElement>
 
         {/* Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
           {whyChooseUsPoints.map((point, index) => (
-            <div
-              key={point.id}
-              ref={(el) => (cardRefs.current[index] = el)}
-              className="group relative p-6 sm:p-7 md:p-8 rounded-xl sm:rounded-2xl bg-black/30 backdrop-blur-xl border border-white/10 hover:border-[#8B6CFF]/30 transition-all duration-300 hover:scale-[1.02]"
-            >
+            <ParallaxElement key={point.id} speed={0.15 + (index % 3) * 0.05} direction={index % 2 === 0 ? 'up' : 'down'}>
+              <div
+                ref={(el) => (cardRefs.current[index] = el)}
+                className="group relative p-6 sm:p-7 md:p-8 rounded-xl sm:rounded-2xl bg-black/30 backdrop-blur-xl border border-white/10 hover:border-[#8B6CFF]/30 transition-all duration-300 hover:scale-[1.02]"
+              >
               {/* Gradient glow on hover */}
               <div className="absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#8B6CFF]/0 via-[#3B1A6E]/0 to-transparent group-hover:from-[#8B6CFF]/10 group-hover:via-[#3B1A6E]/5 group-hover:to-transparent transition-all duration-300 -z-10" />
 
@@ -135,6 +141,7 @@ export default function WhyChooseUsSection() {
                 {point.description}
               </p>
             </div>
+            </ParallaxElement>
           ))}
         </div>
       </div>

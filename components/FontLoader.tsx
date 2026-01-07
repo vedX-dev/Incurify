@@ -8,28 +8,57 @@ export default function FontLoader() {
     if (typeof window === 'undefined') return;
 
     // Check if fonts are already loaded
-    if (document.querySelector('link[href*="fonts.googleapis.com"]')) {
+    if (document.documentElement.classList.contains('fonts-loaded')) {
       return;
     }
 
-    // Create preconnect links
-    const preconnect1 = document.createElement('link');
-    preconnect1.rel = 'preconnect';
-    preconnect1.href = 'https://fonts.googleapis.com';
-    document.head.appendChild(preconnect1);
+    // Function to check if fonts are loaded
+    const checkFontsLoaded = () => {
+      if (document.fonts && document.fonts.check) {
+        // Check if all required fonts are loaded
+        const fontsToCheck = [
+          '1em "Onest"',
+          '400 1em "Instrument Serif"',
+        ];
+        
+        const allLoaded = fontsToCheck.every(font => {
+          try {
+            return document.fonts.check(font);
+          } catch {
+            return false;
+          }
+        });
 
-    const preconnect2 = document.createElement('link');
-    preconnect2.rel = 'preconnect';
-    preconnect2.href = 'https://fonts.gstatic.com';
-    preconnect2.setAttribute('crossorigin', 'anonymous');
-    document.head.appendChild(preconnect2);
+        if (allLoaded || document.fonts.status === 'loaded') {
+          document.documentElement.classList.add('fonts-loaded');
+          return true;
+        }
+      } else {
+        // Fallback: wait a bit and assume fonts are loaded
+        setTimeout(() => {
+          document.documentElement.classList.add('fonts-loaded');
+        }, 100);
+        return true;
+      }
+      return false;
+    };
 
-    // Create font stylesheet link
-    const fontLink = document.createElement('link');
-    fontLink.href =
-      'https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Instrument+Serif:ital@0;1&family=Onest:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap';
-    fontLink.rel = 'stylesheet';
-    document.head.appendChild(fontLink);
+    // Check immediately in case fonts are already loaded
+    if (checkFontsLoaded()) {
+      return;
+    }
+
+    // Wait for fonts to load
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(() => {
+        document.documentElement.classList.add('fonts-loaded');
+      });
+    } else {
+      // Fallback: add class after a short delay
+      setTimeout(() => {
+        document.documentElement.classList.add('fonts-loaded');
+      }, 300);
+    }
   }, []);
 
   return null;

@@ -41,7 +41,7 @@ export function TimelineContent({
   const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    if (!ref.current || !customVariants) return;
+    if (!ref.current || !customVariants || typeof window === 'undefined') return;
 
     const element = ref.current;
     const { hidden, visible } = customVariants;
@@ -57,17 +57,20 @@ export function TimelineContent({
     });
 
     // Create scroll trigger animation with smooth blur effect
+    const triggerElement = timelineRef?.current || element;
     const scrollTrigger = {
-      trigger: timelineRef?.current || element,
+      trigger: triggerElement,
       start: 'top 80%',
       toggleActions: 'play none none none',
+      once: true, // Only animate once to prevent flickering
     };
 
     const delay = transition?.delay || animationNum * 0.2;
     const duration = transition?.duration || 0.8;
     const ease = transition?.ease || 'power2.out';
 
-    gsap.to(element, {
+    // Create the animation
+    const animation = gsap.to(element, {
       ...gsapProps,
       filter: 'blur(0px)',
       duration,
@@ -76,9 +79,14 @@ export function TimelineContent({
       scrollTrigger,
     });
 
+    // Cleanup function
     return () => {
+      if (animation && animation.scrollTrigger) {
+        animation.scrollTrigger.kill();
+      }
+      // Also clean up any orphaned triggers
       ScrollTrigger.getAll().forEach((trigger) => {
-        if (trigger.vars && trigger.vars.trigger === scrollTrigger.trigger) {
+        if (trigger.vars && trigger.vars.trigger === triggerElement) {
           trigger.kill();
         }
       });

@@ -4,6 +4,9 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { stats } from '@/data/stats';
+import { ParallaxElement } from '@/components/ui/parallax-section';
+import { TextVerticalSwap } from '@/components/ui/text-vertical-swap';
+import Noise from '@/components/Noise';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -158,8 +161,11 @@ export default function AboutSection() {
         const suffix = cardElement.dataset.suffix || '';
         const useKFormat = cardElement.dataset.useKFormat === 'true';
 
-        // Set initial value to 0 with proper formatting
-        valueElement.textContent = formatStatValue(0, prefix, suffix, useKFormat);
+        // Set initial value to 0 with proper formatting immediately
+        // This ensures the counter starts from 0 before animation
+        gsap.set(valueElement, {
+          textContent: formatStatValue(0, prefix, suffix, useKFormat),
+        });
 
         // Border/glow highlight setup
         if (borderElement) {
@@ -311,7 +317,7 @@ export default function AboutSection() {
   return (
     <>
       {/* Purple Contrast Section */}
-      <section ref={sectionRef} id="about" className="relative overflow-hidden w-full">
+      <section ref={sectionRef} id="about" className="relative overflow-hidden w-full" style={{ zIndex: 10 }}>
         {/* Full-width gradient background with parallax */}
         <div 
           ref={backgroundRef}
@@ -344,20 +350,17 @@ export default function AboutSection() {
           }}
         />
         
-        {/* Subtle Noise Texture - Natural Background Texture */}
-        <div className="absolute inset-0 w-full pointer-events-none overflow-hidden z-[1]">
-          {/* Primary Noise Layer - Grayscale texture that blends naturally */}
-          <div 
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='naturalNoise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch' result='noise'/%3E%3CfeColorMatrix in='noise' type='saturate' values='0'/%3E%3CfeComponentTransfer in='noise' result='contrast'%3E%3CfeFuncA type='discrete' tableValues='0 0.2 0.4 0.6 0.8 1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23naturalNoise)'/%3E%3C/svg%3E")`,
-              backgroundSize: '200px 200px',
-              imageRendering: 'pixelated',
-              opacity: 0.2,
-              mixBlendMode: 'overlay',
-            } as React.CSSProperties}
+        {/* Noise texture overlay */}
+        <div className="absolute inset-0 w-full h-full z-[1]">
+          <Noise
+            patternSize={250}
+            patternScaleX={1}
+            patternScaleY={1}
+            patternRefreshInterval={2}
+            patternAlpha={15}
           />
         </div>
+        
         {/* Subtle vignette for focus */}
         <div
           className="absolute inset-0 pointer-events-none z-[0]"
@@ -405,18 +408,20 @@ export default function AboutSection() {
                   
                   <div className="relative">
                     {/* Headline - enhanced typography */}
-                    <div>
-                      <h1 
-                        ref={headingRef}
-                        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black instrument-serif-regular tracking-tight leading-[0.9] mb-4 sm:mb-6 md:mb-8 lg:mb-10"
-                        style={{ fontWeight: 500, WebkitTextStroke: '0.5px currentColor' } as React.CSSProperties}
-                      >
-                        <span className="text-white">About </span>
-                        <span className="bg-gradient-to-r from-white via-[#B7A6FF] to-[#8B6CFF] bg-clip-text text-transparent">
-                          Incurify.
-                        </span>
-                      </h1>
-                    </div>
+                    <ParallaxElement speed={0.2} direction="up">
+                      <div>
+                        <h1 
+                          ref={headingRef}
+                          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black instrument-serif-regular tracking-tight leading-[0.9] mb-4 sm:mb-6 md:mb-8 lg:mb-10"
+                          style={{ fontWeight: 500, WebkitTextStroke: '0.5px currentColor' } as React.CSSProperties}
+                        >
+                          <span className="text-white">About </span>
+                          <span className="bg-gradient-to-r from-white via-[#B7A6FF] to-[#8B6CFF] bg-clip-text text-transparent">
+                            Incurify.
+                          </span>
+                        </h1>
+                      </div>
+                    </ParallaxElement>
 
                     {/* Body text - narrower width (~60ch) */}
                     <div ref={bodyRef} className="space-y-3 sm:space-y-4 md:space-y-6 max-w-full sm:max-w-[60ch]">
@@ -468,7 +473,7 @@ export default function AboutSection() {
                       
                       {/* Stat value - will be animated */}
                       <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-1 sm:mb-2 md:mb-3 stat-value tabular-nums relative z-10 min-h-[2rem] sm:min-h-[2.5rem] md:min-h-[3rem] lg:min-h-[3.5rem] flex items-center">
-                        {stat.value}
+                        {/* Value will be set by GSAP animation */}
                       </p>
                       <p className="text-[10px] sm:text-xs md:text-sm text-[#B7A6FF] font-medium relative z-10">{stat.label}</p>
                     </div>
@@ -492,7 +497,9 @@ export default function AboutSection() {
                     className="instrument-serif-regular text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black mb-3 sm:mb-4 md:mb-5 lg:mb-6 tracking-tight text-white"
                     style={{ fontWeight: 500, WebkitTextStroke: '0.2px currentColor' } as React.CSSProperties}
                   >
-                    Our Mission
+                    <TextVerticalSwap as="span" duration={0.3}>
+                      Our Mission
+                    </TextVerticalSwap>
                   </h2>
                   <p className="leading-relaxed text-xs sm:text-sm md:text-base lg:text-lg space-y-2 sm:space-y-3 md:space-y-4" style={{ color: 'rgba(255,255,255,0.9)' }}>
                     <span className="block">
@@ -513,7 +520,9 @@ export default function AboutSection() {
                     className="instrument-serif-regular text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black mb-3 sm:mb-4 md:mb-5 lg:mb-6 tracking-tight text-white"
                     style={{ fontWeight: 500, WebkitTextStroke: '0.2px currentColor' } as React.CSSProperties}
                   >
-                    Our Vision
+                    <TextVerticalSwap as="span" duration={0.3}>
+                      Our Vision
+                    </TextVerticalSwap>
                   </h2>
                   <p className="leading-relaxed text-xs sm:text-sm md:text-base lg:text-lg space-y-2 sm:space-y-3 md:space-y-4" style={{ color: 'rgba(255,255,255,0.9)' }}>
                     <span className="block">

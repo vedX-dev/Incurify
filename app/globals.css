@@ -88,23 +88,66 @@
   }
 }
 
-/* Font Classes */
-.font-onest {
-  font-family: "Onest", sans-serif;
-  font-optical-sizing: auto;
-  font-style: normal;
-}
-
-.instrument-serif-regular {
-  font-family: "Instrument Serif", serif;
+/* Local Font Setup - Add your @font-face declarations here */
+/* 
+Example:
+@font-face {
+  font-family: 'YourFontName';
+  src: url('/fonts/YourFont-Regular.woff2') format('woff2'),
+       url('/fonts/YourFont-Regular.woff') format('woff');
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
+  }
+
+@font-face {
+  font-family: 'YourFontName';
+  src: url('/fonts/YourFont-Bold.woff2') format('woff2'),
+       url('/fonts/YourFont-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+*/
+
+/* Font Classes with fallbacks to prevent FOUC */
+.font-onest {
+  font-family: "Onest", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Template for your custom font class - uncomment and customize */
+/*
+.font-yourfont {
+  font-family: 'YourFontName', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-display: swap;
+}
+*/
+
+.instrument-serif-regular {
+  font-family: "Instrument Serif", Georgia, "Times New Roman", Times, serif;
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
 .instrument-serif-regular-italic {
-  font-family: "Instrument Serif", serif;
+  font-family: "Instrument Serif", Georgia, "Times New Roman", Times, serif;
   font-weight: 400;
   font-style: italic;
+  font-display: swap;
+}
+
+/* Prevent FOUC by hiding content until fonts are loaded */
+html:not(.fonts-loaded) body {
+  visibility: hidden;
+}
+
+html.fonts-loaded body {
+  visibility: visible;
+  transition: visibility 0s;
 }
 
 /* Smooth scroll optimizations */
@@ -197,4 +240,69 @@ button[data-state="open"] .plus-minus-vertical {
 button[data-state="open"] .plus-minus-horizontal {
   transform: translateY(-50%) rotate(180deg);
   background-color: #8B6CFF !important;
+}
+
+/* Timeline Glowing and Flowing Animation */
+.timeline-line {
+  filter: drop-shadow(0 0 4px rgba(139, 108, 255, 0.8)) 
+          drop-shadow(0 0 8px rgba(139, 108, 255, 0.6))
+          drop-shadow(0 0 12px rgba(139, 108, 255, 0.4));
+  animation: timelinePulse 2s ease-in-out infinite;
+}
+
+@keyframes timelinePulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 4px rgba(139, 108, 255, 0.8)) 
+            drop-shadow(0 0 8px rgba(139, 108, 255, 0.6))
+            drop-shadow(0 0 12px rgba(139, 108, 255, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 6px rgba(139, 108, 255, 1)) 
+            drop-shadow(0 0 12px rgba(139, 108, 255, 0.8))
+            drop-shadow(0 0 18px rgba(139, 108, 255, 0.6));
+  }
+}
+
+.flowing-glow {
+  animation: flowingGlowMove 2s linear infinite;
+}
+
+@keyframes flowingGlowMove {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -200;
+  }
+}
+
+.blinking-circle {
+  filter: drop-shadow(0 0 8px rgba(139, 108, 255, 1)) 
+          drop-shadow(0 0 16px rgba(139, 108, 255, 0.8))
+          drop-shadow(0 0 24px rgba(139, 108, 255, 0.6));
+}
+
+/* Top starting circle animation - Fixed circle at the top */
+.top-start-circle {
+  filter: drop-shadow(0 0 15px rgba(139, 108, 255, 1)) 
+          drop-shadow(0 0 30px rgba(139, 108, 255, 0.9))
+          drop-shadow(0 0 45px rgba(139, 108, 255, 0.7));
+  animation: topCirclePulse 2s ease-in-out infinite;
+}
+
+@keyframes topCirclePulse {
+  0%, 100% {
+    r: 18;
+    opacity: 1;
+    filter: drop-shadow(0 0 15px rgba(139, 108, 255, 1)) 
+            drop-shadow(0 0 30px rgba(139, 108, 255, 0.9))
+            drop-shadow(0 0 45px rgba(139, 108, 255, 0.7));
+  }
+  50% {
+    r: 20;
+    opacity: 1;
+    filter: drop-shadow(0 0 20px rgba(139, 108, 255, 1)) 
+            drop-shadow(0 0 35px rgba(139, 108, 255, 1))
+            drop-shadow(0 0 50px rgba(139, 108, 255, 0.9));
+  }
 }

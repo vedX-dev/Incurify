@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import { BGPattern } from '@/components/ui/bg-pattern';
+import { ParallaxElement } from '@/components/ui/parallax-section';
 
 export default function HeroSection() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -64,26 +65,16 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="min-h-screen w-full bg-transparent relative overflow-hidden flex items-center justify-center pt-16 sm:pt-20 md:pt-0 md:-mt-24">
+    <section className="min-h-screen w-full bg-transparent relative overflow-visible flex items-center justify-center pt-16 sm:pt-20 md:pt-0 md:-mt-24">
+      {/* Azure Depths - Only at Hero Top - Extends upward to cover page padding */}
       <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] sm:w-[800px] sm:h-[800px] md:w-[900px] md:h-[900px] pointer-events-none z-0"
-  style={{
-    background: `
-      radial-gradient(
-        circle at 5% 0%,
-        rgba(139,108,255,0.85) 0%,
-        rgba(139,108,255,0.55) 18%,
-        rgba(59,26,110,0.35) 35%,
-        rgba(20,8,31,0.20) 50%,
-        transparent 50%
-      )
-    `,
-          filter: 'blur(150px)',
-    mixBlendMode: 'screen',
-  }}
-/>
-      {/* Grid Pattern Background - Starts from top of viewport */}
-      <div className="absolute top-0 left-0 w-full h-screen pointer-events-none z-[1]">
+        className="absolute -top-14 sm:-top-16 md:-top-20 lg:-top-24 left-0 right-0 h-[calc(100vh+3.5rem)] sm:h-[calc(100vh+4rem)] md:h-screen z-0 pointer-events-none"
+        style={{
+          background: "radial-gradient(125% 125% at 50% 100%, #000000 40%, #2A0A4E 100%)",
+        }}
+      />
+      {/* Grid Pattern Background - Extends upward to cover page padding */}
+      <div className="absolute -top-14 sm:-top-16 md:-top-20 lg:-top-24 left-0 w-full h-[calc(100vh+3.5rem)] sm:h-[calc(100vh+4rem)] md:h-screen pointer-events-none z-[1]">
         <BGPattern variant="grid" mask="fade-edges" fill="rgba(139, 108, 255, 0.4)" size={49} opacity={0.6} />
       </div>
 
@@ -94,55 +85,63 @@ export default function HeroSection() {
       <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-10 sm:py-12 md:py-16 lg:py-20 xl:py-24 relative z-10 w-full">
         <div ref={heroRef} className="flex flex-col items-center justify-center text-center w-full">
           {/* Badge */}
-          <div
-            ref={badgeRef}
-            className="inline-flex items-center gap-2 px-4 py-2 sm:px-4 sm:py-2 bg-[#8B6CFF]/10 border border-[#8B6CFF]/30 rounded-full mb-6 sm:mb-6 md:mb-8"
-          >
-            <Sparkles className="w-4 h-4 sm:w-4 sm:h-4 text-[#8B6CFF]" />
-            <span className="text-sm sm:text-sm font-medium text-[#8B6CFF]">
-              Growth for Web3 Brands
-            </span>
-          </div>
+          <ParallaxElement speed={0.2} direction="down">
+            <div
+              ref={badgeRef}
+              className="inline-flex items-center gap-2 px-4 py-2 sm:px-4 sm:py-2 bg-[#8B6CFF]/10 border border-[#8B6CFF]/30 rounded-full mb-6 sm:mb-6 md:mb-8"
+            >
+              <Sparkles className="w-4 h-4 sm:w-4 sm:h-4 text-[#8B6CFF]" />
+              <span className="text-sm sm:text-sm font-medium text-[#8B6CFF]">
+                Growth for Web3 Brands
+              </span>
+            </div>
+          </ParallaxElement>
 
           {/* Headline */}
-          <h1
-            ref={headlineRef}
-            className="instrument-serif-regular text-5xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black mb-6 sm:mb-6 md:mb-6 tracking-tight sm:tracking-wide text-center w-full px-2 sm:px-4 leading-[1.1] sm:leading-[1.1]"
-            style={{ fontWeight: 600, WebkitTextStroke: '0px currentColor' } as React.CSSProperties}
-          >
-            <span className="bg-gradient-to-r from-gray-400 to-white bg-clip-text text-transparent">
-              Fueling{' '}
-            </span>
-            <span className="bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] bg-clip-text text-transparent">
-              Ideas
-            </span>
-            <br />
-            <span className="bg-gradient-to-r from-gray-400 via-white to-gray-400 bg-clip-text text-transparent">
-              Into Adoption.
-            </span>
-          </h1>
+          <ParallaxElement speed={0.3} direction="up">
+            <h1
+              ref={headlineRef}
+              className="instrument-serif-regular text-5xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black mb-6 sm:mb-6 md:mb-6 tracking-tight sm:tracking-wide text-center w-full px-2 sm:px-4 leading-[1.1] sm:leading-[1.1]"
+              style={{ fontWeight: 600, WebkitTextStroke: '0px currentColor' } as React.CSSProperties}
+            >
+              <span className="bg-gradient-to-r from-gray-400 to-white bg-clip-text text-transparent">
+                Fueling{' '}
+              </span>
+              <span className="bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] bg-clip-text text-transparent">
+                Ideas
+              </span>
+              <br />
+              <span className="bg-gradient-to-r from-gray-400 via-white to-gray-400 bg-clip-text text-transparent">
+                Into Adoption.
+              </span>
+            </h1>
+          </ParallaxElement>
 
           {/* Subheadline */}
-          <p
-            ref={subheadlineRef}
-            className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/70 mb-10 sm:mb-10 md:mb-12 max-w-4xl mx-auto leading-relaxed sm:leading-relaxed text-center px-2 sm:px-4"
-          >
-            Welcome to Incurify. we specialize in blockchain marketing, influencer partnerships, and strategic community growth desgined to solve visibility, adoption, and trust problems.
-          </p>
+          <ParallaxElement speed={0.25} direction="up">
+            <p
+              ref={subheadlineRef}
+              className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/70 mb-10 sm:mb-10 md:mb-12 max-w-4xl mx-auto leading-relaxed sm:leading-relaxed text-center px-2 sm:px-4"
+            >
+              Welcome to Incurify, We specialize in blockchain marketing, influencer partnerships, and strategic community growth desgined to solve visibility, adoption, and trust problems.
+            </p>
+          </ParallaxElement>
 
           {/* CTA Buttons */}
-          <div
-            ref={ctaRef}
-            className="flex flex-col sm:flex-row gap-4 sm:gap-4 justify-center items-center w-full px-2 sm:px-4"
-          >
-            <a
-              href="#contact"
-              className="group w-full sm:w-auto px-8 py-4 sm:px-8 sm:py-3 md:px-8 md:py-4 bg-gradient-to-r from-[#8B6CFF] to-[#B7A6FF] text-[#0A0612] rounded-lg font-semibold hover:shadow-lg hover:shadow-[#8B6CFF]/50 transition-all duration-300 flex items-center justify-center gap-2.5 text-base sm:text-base touch-manipulation"
+          <ParallaxElement speed={0.2} direction="down">
+            <div
+              ref={ctaRef}
+              className="flex flex-col sm:flex-row gap-4 sm:gap-4 justify-center items-center w-full px-2 sm:px-4"
             >
-              <span>Start Your Project</span>
-              <ArrowRight className="w-5 h-5 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform flex-shrink-0" />
-            </a>
-          </div>
+              <a
+                href="#contact"
+                className="group w-full sm:w-auto px-8 py-4 sm:px-8 sm:py-3 md:px-8 md:py-4 bg-gradient-to-r from-[#8B6CFF] to-[#B7A6FF] text-[#0A0612] rounded-lg font-semibold hover:shadow-lg hover:shadow-[#8B6CFF]/50 transition-all duration-300 flex items-center justify-center gap-2.5 text-base sm:text-base touch-manipulation"
+              >
+                <span>Start Your Project</span>
+                <ArrowRight className="w-5 h-5 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform flex-shrink-0" />
+              </a>
+            </div>
+          </ParallaxElement>
         </div>
       </div>
 

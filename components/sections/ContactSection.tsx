@@ -7,6 +7,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
+import { TextVerticalSwap } from '@/components/ui/text-vertical-swap';
+import { ParallaxElement } from '@/components/ui/parallax-section';
 
 export default function ContactSection() {
   const faqs = [
@@ -35,52 +37,48 @@ export default function ContactSection() {
   return (
     <section id="contact" className="py-12 sm:py-16 md:py-20 lg:py-24 bg-transparent">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="animate-on-scroll text-center mb-12 sm:mb-16 md:mb-20 relative">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl xl:text-4xl font-medium instrument-serif-regular tracking-wide px-4" style={{ fontWeight: 500, WebkitTextStroke: '1px currentColor' } as React.CSSProperties}>
-            <span className="bg-gradient-to-r from-gray-400 to-white bg-clip-text text-transparent">
-              Get in{' '}
-            </span>
-            <span className="bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] bg-clip-text text-transparent">
-              Touch
-            </span>
-          </h1>
-          <p className="text-sm sm:text-base text-white/70 max-w-2xl mx-auto mt-3 sm:mt-4 px-4">
-            Ready to bring your Web3 vision to life? Contact us today and let's
-            start building the future together.
-          </p>
-          
-          {/* Visual Connection: Subtle gradient line connecting heading to form */}
-          <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-px h-16 sm:h-20 md:h-24 bg-gradient-to-b from-transparent via-[#8B6CFF]/20 to-transparent" />
-          
-          {/* Subtle animated noise layer for cohesion */}
-          <div 
-            className="absolute left-1/2 -translate-x-1/2 bottom-0 w-full max-w-2xl h-24 sm:h-28 md:h-32 pointer-events-none opacity-[0.03]"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
-              backgroundSize: '200px 200px',
-              mixBlendMode: 'overlay',
-            }}
-          />
-        </div>
-
-        <div className="mb-12 sm:mb-16 md:mb-20">
-          {/* Contact Form */}
-          <div className="animate-on-scroll max-w-2xl mx-auto">
-            <ContactForm />
+        <ParallaxElement speed={0.2} direction="up">
+          <div className="animate-on-scroll text-center mb-12 sm:mb-16 md:mb-20 relative">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl xl:text-4xl font-medium instrument-serif-regular tracking-wide px-4" style={{ fontWeight: 500, WebkitTextStroke: '1px currentColor' } as React.CSSProperties}>
+              <TextVerticalSwap as="span" duration={0.3}>
+                <span className="text-white bg-clip-text text-transparent">
+                  Get in{' '}
+                </span>
+                <span className="bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] bg-clip-text text-transparent ">
+                  Touch
+                </span>
+              </TextVerticalSwap>
+            </h1>
+            <p className="text-sm sm:text-base text-white/70 max-w-2xl mx-auto mt-3 sm:mt-4 px-4">
+              Ready to bring your Web3 vision to life? Contact us today and let's
+              start building the future together.
+            </p>
           </div>
-        </div>
+        </ParallaxElement>
+
+        <ParallaxElement speed={0.15} direction="down">
+          <div className="mb-12 sm:mb-16 md:mb-20">
+            {/* Contact Form */}
+            <div className="animate-on-scroll max-w-2xl mx-auto">
+              <ContactForm />
+            </div>
+          </div>
+        </ParallaxElement>
 
         {/* FAQ Section */}
-        <div className="animate-on-scroll mx-auto w-full max-w-3xl space-y-6 sm:space-y-7 pt-12 sm:pt-16 px-4">
-          <div className="space-y-2 text-center">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl xl:text-4xl font-medium instrument-serif-regular tracking-wide" style={{ fontWeight: 500, WebkitTextStroke: '1px currentColor' } as React.CSSProperties}>
-              <span className="bg-gradient-to-r from-gray-400 to-white bg-clip-text text-transparent">
-                Frequently Asked{' '}
-              </span>
-              <span className="bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] bg-clip-text text-transparent">
-                Questions
-              </span>
-            </h2>
+        <ParallaxElement speed={0.2} direction="up">
+          <div className="animate-on-scroll mx-auto w-full max-w-3xl space-y-6 sm:space-y-7 pt-12 sm:pt-16 px-4">
+            <div className="space-y-2 text-center">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl xl:text-4xl font-medium instrument-serif-regular tracking-wide" style={{ fontWeight: 500, WebkitTextStroke: '1px currentColor' } as React.CSSProperties}>
+                <TextVerticalSwap as="span" duration={0.3}>
+                  <span className="text-white bg-clip-text text-transparent">
+                    Frequently Asked{' '}
+                  </span>
+                  <span className="bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] bg-clip-text text-transparent">
+                    Questions
+                  </span>
+                </TextVerticalSwap>
+              </h2>
             <p className="text-sm sm:text-base text-white/70 max-w-2xl mx-auto mt-3 sm:mt-4">
               Here are some common questions and answers that you might encounter when working with us. If
               you don't find the answer you're looking for, feel free to reach out.
@@ -113,7 +111,8 @@ export default function ContactSection() {
               Contact our support team
             </a>
           </p>
-        </div>
+          </div>
+        </ParallaxElement>
       </div>
     </section>
   );

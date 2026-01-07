@@ -4,6 +4,7 @@ import { TimelineContent } from '@/components/ui/timeline-animation';
 import Image from 'next/image';
 import { useRef } from 'react';
 import { testimonials } from '@/data/testimonials';
+import { TextVerticalSwap } from '@/components/ui/text-vertical-swap';
 
 function ClientFeedback() {
   const testimonialRef = useRef<HTMLDivElement>(null);
@@ -37,16 +38,17 @@ function ClientFeedback() {
           timelineRef={testimonialRef}
           style={{ fontWeight: 500, WebkitTextStroke: '1px currentColor' } as React.CSSProperties}
         >
-          <span className="text-white bg-clip-text text-transparent">
-            What {' '}
+          <TextVerticalSwap as="span" duration={0.3}>
+            <span className="text-white bg-clip-text text-transparent">
+              What {' '}
           </span>
           <span className="bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] bg-clip-text text-transparent ">
-           teams  {' '}
+             teams  {' '}
           </span>
-          <span className="text-white bg-clip-text text-transparent ">
-          say after working with us.
+            <span className="text-white bg-clip-text text-transparent ">
+            say after working with us.
           </span>
-
+          </TextVerticalSwap>
         </TimelineContent>
         <TimelineContent
           as="p"
@@ -236,7 +238,7 @@ function ClientFeedback() {
           </TimelineContent>
         </div>
       </div>
-    </div>
+      </div>
   );
 }
 

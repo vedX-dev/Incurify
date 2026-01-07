@@ -49,11 +49,14 @@ export default function ServiceCard({
   return (
     <div
       ref={cardRef}
-      className="group relative p-4 sm:p-5 md:p-6 rounded-lg sm:rounded-xl bg-black/40 backdrop-blur-sm border border-white/5 hover:border-[#8B6CFF]/30 transition-all duration-300 shadow-lg shadow-black/50 hover:shadow-[#8B6CFF]/10 h-full flex flex-col"
+      className="group relative p-4 sm:p-5 md:p-6 rounded-lg sm:rounded-xl bg-black/40 backdrop-blur-sm border border-white/5 hover:border-[#8B6CFF]/50 transition-all duration-300 shadow-lg shadow-black/50 hover:shadow-[#8B6CFF]/30 hover:shadow-[0_0_20px_rgba(139,108,255,0.3)] h-full flex flex-col"
     >
+      {/* Purple glow effect on hover */}
+      <div className="absolute -inset-[1px] rounded-lg sm:rounded-xl bg-gradient-to-r from-[#8B6CFF]/0 via-[#8B6CFF]/0 to-[#8B6CFF]/0 group-hover:from-[#8B6CFF]/20 group-hover:via-[#8B6CFF]/30 group-hover:to-[#8B6CFF]/20 opacity-0 group-hover:opacity-100 blur-sm transition-all duration-300 -z-10" />
+      
       {/* Number in top right corner */}
       {number && (
-        <div className="absolute top-2 right-2 sm:top-3 sm:right-3 md:top-4 md:right-4 text-lg sm:text-xl md:text-2xl font-bold text-white/10 group-hover:text-[#8B6CFF]/30 transition-colors duration-300">
+        <div className="absolute top-2 right-2 sm:top-3 sm:right-3 md:top-4 md:right-4 text-lg sm:text-xl md:text-2xl font-mono font-semibold tracking-tight text-white/10 group-hover:text-[#8B6CFF] transition-colors duration-300">
           {number}
         </div>
       )}
