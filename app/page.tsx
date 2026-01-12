@@ -46,7 +46,7 @@ export default function Home() {
       <ServicesSection />
       <ProcessSection />
       <TestimonialsSection />
-      {/* Parallax Group: About, Contact (includes FAQ), and Footer */}
+      {/* Parallax Group: About (includes Team), Contact (includes FAQ), and Footer */}
       <ParallaxGroup>
         <AboutSection />
         <ContactSection />

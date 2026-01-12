@@ -6,7 +6,7 @@ import FontLoader from '@/components/FontLoader';
 import PageTransition from '@/components/PageTransition';
 
 export const metadata = {
-  title: 'Incurify - Web3 Growth Partner',
+  title: 'Incurify - Web3 Marketing Agency',
   description:
     'Incurify is a Web3 growth partner helping projects build and sustain traction from launch to scale.',
   icons:{
@@ -38,6 +38,22 @@ export const metadata = {
       },
   other: {
     'font-display': 'swap',
+  },
+
+  whatsapp: {
+    card: 'summary_large_image',
+    title: 'Web3 Marketing Agency | Incurify',
+    description:
+      'Incurify is a Web3 growth partner helping projects build and sustain traction from launch to scale.',
+    images: ['/images/logo/incurify.png'],
+  },
+  facebook: {
+    card: 'summary_large_image',
+    title: 'Web3 Marketing Agency | Incurify',
+  },
+  instagram: {
+    card: 'summary_large_image',
+    title: 'Web3 Marketing Agency | Incurify',
   },
 };
 

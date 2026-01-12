@@ -112,7 +112,7 @@ export default function Footer() {
               </div>
             </Link>
             <p className="text-sm sm:text-base text-white/70 leading-relaxed max-w-sm mb-6 sm:mb-8">
-              Building the future of Web3 with innovative solutions and cutting-edge technology.
+             Incurify - 
             </p>
 
             {/* Social Links */}

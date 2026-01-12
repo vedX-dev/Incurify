@@ -270,9 +270,18 @@ export default function ProcessSection() {
           <div className="absolute left-4 sm:left-8 md:left-1/2 md:-translate-x-1/2 -top-8 bottom-0 w-1 hidden md:block overflow-visible z-10" style={{ overflow: 'visible' }}>
             <svg className="absolute inset-0 w-full h-full" viewBox="0 0 200 1000" preserveAspectRatio="none" style={{ overflow: 'visible' }}>
               <defs>
-                {/* Glow filter for the timeline */}
+                {/* Clean Glow filter for the timeline */}
                 <filter id="timelineGlow" x="-50%" y="-50%" width="200%" height="200%">
-                  <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                  <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+                  <feMerge>
+                    <feMergeNode in="coloredBlur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+
+                {/* Flowing glow filter - For the animated glow effect */}
+                <filter id="flowingGlow" x="-100%" y="-100%" width="300%" height="300%">
+                  <feGaussianBlur stdDeviation="10" result="coloredBlur"/>
                   <feMerge>
                     <feMergeNode in="coloredBlur"/>
                     <feMergeNode in="SourceGraphic"/>
@@ -289,33 +298,37 @@ export default function ProcessSection() {
                 </filter>
 
                 <linearGradient id="timelineGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#8B6CFF" stopOpacity="0.9" />
-                  <stop offset="50%" stopColor="#8B6CFF" stopOpacity="0.7" />
-                  <stop offset="100%" stopColor="#3B1A6E" stopOpacity="0.5" />
+                  <stop offset="0%" stopColor="#B7A6FF" stopOpacity="1" />
+                  <stop offset="50%" stopColor="#8B6CFF" stopOpacity="0.9" />
+                  <stop offset="100%" stopColor="#3B1A6E" stopOpacity="0.7" />
                 </linearGradient>
 
-                {/* Flowing glow gradient */}
+                {/* Flowing glow gradient - Bright filament */}
                 <linearGradient id="flowingGradient" x1="0%" y1="0%" x2="0%" y2="100%">
                   <stop offset="0%" stopColor="#8B6CFF" stopOpacity="0" />
-                  <stop offset="15%" stopColor="#8B6CFF" stopOpacity="0.6" />
-                  <stop offset="50%" stopColor="#B7A6FF" stopOpacity="1" />
-                  <stop offset="85%" stopColor="#8B6CFF" stopOpacity="0.6" />
+                  <stop offset="10%" stopColor="#B7A6FF" stopOpacity="0.8" />
+                  <stop offset="20%" stopColor="#FFFFFF" stopOpacity="1" />
+                  <stop offset="30%" stopColor="#B7A6FF" stopOpacity="1" />
+                  <stop offset="50%" stopColor="#FFFFFF" stopOpacity="1" />
+                  <stop offset="70%" stopColor="#B7A6FF" stopOpacity="1" />
+                  <stop offset="80%" stopColor="#FFFFFF" stopOpacity="1" />
+                  <stop offset="90%" stopColor="#B7A6FF" stopOpacity="0.8" />
                   <stop offset="100%" stopColor="#8B6CFF" stopOpacity="0" />
                 </linearGradient>
               </defs>
 
-              {/* Main Vertical Line - Starts from the circle */}
+              {/* Default Base Line - Subtle background */}
               <line
                 x1="100"
                 y1="40"
                 x2="100"
                 y2="1000"
-                stroke="rgba(139, 108, 255, 0.3)"
+                stroke="rgba(139, 108, 255, 0.25)"
                 strokeWidth="4"
                 vectorEffect="non-scaling-stroke"
               />
               
-              {/* Animated Vertical Line with glow - Starts from the circle */}
+              {/* Animated Bright Line - Glowing animated line */}
               <line
                 className="timeline-line"
                 x1="100"
@@ -403,7 +416,7 @@ export default function ProcessSection() {
                 filter="url(#timelineGlow)"
               />
 
-              {/* Flowing glow effect on vertical line - Starts from the circle */}
+              {/* Flowing glow effect on vertical line - Bright filament */}
               <line
                 className="flowing-glow"
                 x1="100"
@@ -411,19 +424,21 @@ export default function ProcessSection() {
                 x2="100"
                 y2="1000"
                 stroke="url(#flowingGradient)"
-                strokeWidth="6"
+                strokeWidth="8"
                 vectorEffect="non-scaling-stroke"
                 filter="url(#flowingGlow)"
                 style={{
-                  strokeDasharray: '150 50',
+                  strokeDasharray: '120 30',
                   strokeDashoffset: '0',
                 }}
               />
             </svg>
+            
           </div>
 
           {/* Process Cards */}
           <div className="space-y-12 sm:space-y-16 md:space-y-20 lg:space-y-24 xl:space-y-32">
+            
             {processSteps.map((phase, index) => (
               <div
                 key={index}
@@ -433,6 +448,8 @@ export default function ProcessSection() {
                     : 'md:pl-[50%] md:ml-auto'
                 }`}
               >
+                
+                
                 {/* Glassmorphism Card - Smaller Rectangle */}
                 <div className="relative ml-6 sm:ml-8 md:ml-0 max-w-3xl mx-auto p-3 sm:p-4 md:p-5 lg:p-6 bg-black/30 backdrop-blur-2xl border border-white/10 hover:border-white/20 transition-all duration-500 shadow-[0_8px_32px_0_rgba(0,0,0,0.5),0_0_0_1px_rgba(139,108,255,0.1)] hover:shadow-[0_12px_48px_0_rgba(139,108,255,0.2),0_0_0_1px_rgba(139,108,255,0.2)]">
                   {/* Enhanced Glassmorphism Layers */}
@@ -468,8 +485,20 @@ export default function ProcessSection() {
                     </div>
                   </div>
                 </div>
+                {/* Step Number in empty space - Opposite side of card */}
+                <div className={`absolute top-1/2 -translate-y-1/2 z-0 hidden md:flex items-center ${
+                  index % 2 === 0 
+                    ? 'right-80 md:right-[calc(50%+10%rem)] justify-start' 
+                    : 'left-80 md:left-[calc(50%+1/2rem)] justify-end'
+                }`}>
+                  <div className="text-[80px] lg:text-[100px] xl:text-[120px] font-black text-white/12 leading-none select-none tracking-tight instrument-serif-regular" style={{ fontFamily: 'system-ui, sans-serif' }}>
+                    {phase.step}
+                  </div>
+                </div>
               </div>
+              
             ))}
+            
           </div>
         </div>
       </div>

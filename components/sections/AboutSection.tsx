@@ -3,14 +3,41 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Linkedin } from 'lucide-react';
 import { stats } from '@/data/stats';
+import { teamMembers } from '@/data/team';
 import { ParallaxElement } from '@/components/ui/parallax-section';
 import { TextVerticalSwap } from '@/components/ui/text-vertical-swap';
 import Noise from '@/components/Noise';
+import Image from 'next/image';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
+
+// X (Twitter) icon SVG component
+const XIcon = ({ className }: { className?: string }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+  </svg>
+);
+
+// Telegram icon SVG component
+const TelegramIcon = ({ className }: { className?: string }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.193l-1.87 8.81c-.14.625-.52.78-1.05.485l-2.9-2.14-1.4 1.345c-.155.155-.285.285-.585.285l.21-2.98 5.375-4.855c.235-.21-.05-.325-.365-.12l-6.645 4.19-2.87-.895c-.625-.195-.64-.625.135-.95l11.25-4.33c.52-.195.975.12.81.69z" />
+  </svg>
+);
 
 // Premium number formatter: converts large numbers to K/M format
 function formatStatValue(value: number, prefix: string, suffix: string, useKFormat: boolean = false): string {
@@ -36,8 +63,11 @@ export default function AboutSection() {
   const glowRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
+  const socialLinksRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
   const missionVisionRef = useRef<HTMLDivElement>(null);
+  const teamRef = useRef<HTMLDivElement>(null);
+  const teamCardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const backgroundRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -47,6 +77,7 @@ export default function AboutSection() {
     const glow = glowRef.current;
     const heading = headingRef.current;
     const body = bodyRef.current;
+    const socialLinks = socialLinksRef.current;
     const statsContainer = statsRef.current;
     const dividerRef = document.querySelector('.narrative-divider') as HTMLElement;
     const missionVision = missionVisionRef.current;
@@ -102,6 +133,21 @@ export default function AboutSection() {
           ease: 'power2.out',
         },
         '-=0.4'
+      );
+    }
+
+    // 3.5. Social links: fade-in after paragraph
+    if (socialLinks) {
+      gsap.set(socialLinks, { opacity: 0, y: 10 });
+      masterTimeline.to(
+        socialLinks,
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power2.out',
+        },
+        '-=0.3'
       );
     }
 
@@ -299,6 +345,28 @@ export default function AboutSection() {
       }
     });
 
+    // 9. Team section: fade-in animation
+    if (teamRef.current) {
+      const teamCards = teamCardRefs.current.filter(Boolean) as HTMLDivElement[];
+      
+      if (teamCards.length > 0) {
+        gsap.set(teamCards, { opacity: 0, y: 30 });
+        
+        ScrollTrigger.create({
+          trigger: teamRef.current,
+          start: 'top 85%',
+          toggleActions: 'play none none none',
+          animation: gsap.to(teamCards, {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'power3.out',
+            stagger: 0.1,
+          }),
+        });
+      }
+    }
+
     // Cleanup
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => {
@@ -325,7 +393,7 @@ export default function AboutSection() {
           style={{
             background: `
    radial-gradient(
-     120% 100% at 50% 0%,
+    100% at 50% 0%,
      #4B2A8E 0%,
      #2A0A4E 45%,
      #14081F 75%,
@@ -426,14 +494,41 @@ export default function AboutSection() {
                     {/* Body text - narrower width (~60ch) */}
                     <div ref={bodyRef} className="space-y-3 sm:space-y-4 md:space-y-6 max-w-full sm:max-w-[60ch]">
                       <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl leading-relaxed" style={{ color: 'rgba(255,255,255,0.9)' }}>
-                        We are a{' '}
-                        <span className="text-[#B7A6FF] font-medium">marketing agency</span> built to solve the real growth
-                        challenges in Web3.{' '}
-                        We help Web3 projects turn strong{' '}
-                        products into recognized brands through strategic marketing, influencer partnerships, and high-quality community growth.
-                        We prioritize clarity over noise, strategy over hype, and long-term impact over short-term metrics.
+                      Incurify is a {' '}
+                         <span className="text-[#B7A6FF] font-medium">Web3 growth partner </span>working with teams that are building real products.{' '}
+                        We help projects ship with clarity, grow through adoption, and sustain long-term momentum by aligning execution, creators, and community.{' '}
+                        <br /> Our focus is simple: do the work that helps projects <br /> last, not just launch.
                       </p>
                     </div>
+                  </div>
+                </div>
+
+                {/* Social Media Links - Follow our journey */}
+                <div ref={socialLinksRef} className="flex flex-col items-start gap-2 sm:gap-3 -mt-2 sm:-mt-3">
+                  <p className="text-xs sm:text-sm text-white/50 font-medium">Stay connected</p>
+                  <div className="flex items-center gap-3 sm:gap-4">
+                    <a
+                      href="https://www.linkedin.com/company/incurify/?viewAsMember=true"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group relative flex items-center justify-center transition-all duration-300 hover:opacity-100"
+                      aria-label="Follow us on LinkedIn"
+                    >
+                      <Linkedin 
+                        className="w-5 h-5 sm:w-6 sm:h-6 text-[#B7A6FF]/40 group-hover:text-[#B7A6FF]/70 transition-colors duration-300" 
+                      />
+                    </a>
+                    <a
+                      href="https://t.me/rouge_eth"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group relative flex items-center justify-center transition-all duration-300 hover:opacity-100"
+                      aria-label="Follow us on Telegram"
+                    >
+                      <TelegramIcon 
+                        className="w-5 h-5 sm:w-6 sm:h-6 text-[#B7A6FF]/40 group-hover:text-[#B7A6FF]/70 transition-colors duration-300" 
+                      />
+                    </a>
                   </div>
                 </div>
 
@@ -532,6 +627,89 @@ export default function AboutSection() {
                       We envision a world where <span className="text-[#B7A6FF]">blockchain</span> powers transparent, efficient, and equitable systems that benefit humanity.
                     </span>
                   </p>
+                </div>
+              </div>
+
+              {/* Team Section */}
+              <div ref={teamRef} className="mt-16 sm:mt-20 md:mt-24 lg:mt-32">
+                {/* Header */}
+                <ParallaxElement speed={0.2} direction="up">
+                  <div className="text-center mb-12 sm:mb-16 md:mb-20">
+                    <h1 className="text-2xl sm:text-3xl md:text-4xl xl:text-4xl font-medium instrument-serif-regular tracking-wide px-4" style={{ fontWeight: 500, WebkitTextStroke: '1px currentColor' } as React.CSSProperties}>
+                      <TextVerticalSwap as="span" duration={0.3}>
+                        <span className="text-white">Meet the{' '}</span>
+                        <span className="bg-gradient-to-r from-white via-[#B7A6FF] to-[#8B6CFF] bg-clip-text text-transparent">
+                          Team
+                        </span>
+                      </TextVerticalSwap>
+                    </h1>
+                    <p className="text-sm sm:text-base text-white/70 max-w-2xl mx-auto mt-3 sm:mt-4 px-4">
+                      The people behind Incurify
+                    </p>
+                  </div>
+                </ParallaxElement>
+
+                {/* Team Cards Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8 justify-items-center max-w-2xl mx-auto">
+                  {teamMembers.map((member, index) => (
+                    <ParallaxElement
+                      key={member.id}
+                      speed={0.15 + (index % 4) * 0.05}
+                      direction="up"
+                    >
+                      <div
+                        ref={(el) => (teamCardRefs.current[index] = el)}
+                        className="relative flex items-center gap-4 sm:gap-5 rounded-2xl border border-white/10 bg-black/100 backdrop-blur-xl px-4 sm:px-5 py-4 sm:py-5 hover:border-[#8B6CFF]/30 transition-all duration-300"
+                        style={{ width: '323px', height: '134px', minWidth: '323px', minHeight: '134px' }}
+                      >
+                        {/* Left: Profile Picture */}
+                        <div className="relative h-24 w-24 overflow-hidden rounded-2xl border border-black/10">
+                          {member.image ? (
+                            <Image
+                              src={member.image}
+                              alt={member.name}
+                              fill
+                              className="object-cover"
+                              sizes="64px"
+                            />
+                          ) : (
+                            <div className="flex h-full w-full items-center justify-center text-sm font-medium text-white/40 bg-gradient-to-br from-[#8B6CFF]/10 to-[#3B1A6E]/10">
+                              {member.name
+                                .split(' ')
+                                .map((n) => n[0])
+                                .join('')}
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Right: Text Content */}
+                        <div className="flex flex-1 flex-col justify-start min-w-0 h-full">
+                          <h3 className="text-base font-semibold text-white mb-1.5 break-words">
+                            {member.name}
+                          </h3>
+
+                          <p className="text-sm text-white/60 mb-3 break-words flex-1">
+                            {member.role}
+                          </p>
+
+                          {/* Social Icons */}
+                          {member.twitterUrl && (
+                            <div className="flex items-center mt-auto">
+                              <a
+                                href={member.twitterUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label={`${member.name} on X`}
+                                className="text-white/50 hover:text-[#B7A6FF] transition-colors duration-300"
+                              >
+                                <XIcon className="h-4 w-4" />
+                              </a>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </ParallaxElement>
+                  ))}
                 </div>
               </div>
             </div>

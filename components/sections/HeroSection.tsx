@@ -108,7 +108,7 @@ export default function HeroSection() {
                 Fueling{' '}
               </span>
               <span className="bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] bg-clip-text text-transparent">
-                Ideas
+              Ideas
               </span>
               <br />
               <span className="bg-gradient-to-r from-gray-400 via-white to-gray-400 bg-clip-text text-transparent">
@@ -123,7 +123,7 @@ export default function HeroSection() {
               ref={subheadlineRef}
               className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/70 mb-6 sm:mb-8 md:mb-12 max-w-4xl mx-auto leading-relaxed sm:leading-relaxed text-center px-3 sm:px-4"
             >
-              Welcome to Incurify, We specialize in blockchain marketing, influencer partnerships, and strategic community growth desgined to solve visibility, adoption, and trust problems.
+              We work with Web3 teams that are building real products and want them to last. From early execution to ongoing growth, we help projects move forward with structure, clarity, and consistency.
             </p>
           </ParallaxElement>
 

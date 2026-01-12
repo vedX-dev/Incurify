@@ -13,39 +13,39 @@ if (typeof window !== 'undefined') {
 const whyChooseUsPoints = [
   {
     id: '01',
-    title: 'User Acquisition',
+    title: 'Ship with Clarity',
     description:
-      'We attract the right users through targeted strategies that turn attention into real adoption.',
+      'We help teams launch with clear positioning, aligned creators, and ready communities.',
   },
   {
     id: '02',
-    title: 'Audience Retention',
+    title: 'Grow Through Adoption',
     description:
-      'We help you build communities that stay, engage, and grow — not just show up once.',
+      'Growth focused on real users, repeat engagement, and steady momentum.',
   },
   {
     id: '03',
-    title: 'Maximized Exposure',
+    title: 'Sustain What Works',
     description:
-      'We position your project in front of the right audiences using creators, partnerships, and strategic distribution.',
+      'Systems designed to keep communities active and relevant over time.',
   },
   {
     id: '04',
-    title: 'Revenue Growth',
+    title: 'Long-Term Thinking',
     description:
-      'We align marketing with business goals to drive conversions, monetization, and long-term value.',
+      'Decisions made for durability, not short-term spikes.',
   },
   {
     id: '05',
-    title: 'Proven Results',
+    title: 'Practical Execution',
     description:
-      'We operate with data, benchmarks, and experience backed by measurable outcomes and real case studies.',
+      'Less theory, more shipping and iteration.',
   },
   {
     id: '06',
-    title: 'Web3-Native Strategies',
+    title: 'Native to Web3',
     description:
-      'We build custom strategies rooted in Web3 culture, behavior, and market dynamics — never generic playbooks.',
+      'Built around Web3 culture, behavior, and live market conditions.',
   },
 ];
 
@@ -102,16 +102,16 @@ export default function WhyChooseUsSection() {
             <h1 className="text-2xl sm:text-3xl md:text-4xl xl:text-4xl font-medium instrument-serif-regular tracking-wide px-4" style={{ fontWeight: 500, WebkitTextStroke: '1px currentColor' } as React.CSSProperties}>
               <TextVerticalSwap as="span" duration={0.3}>
                 <span className="bg-white bg-clip-text text-transparent">
-                  Why Choose{' '}
+                  Why {' '}
                 </span>
                 <span className="bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] bg-clip-text text-transparent">
-                  Us?
+                 Incurify?
                 </span>
                 
               </TextVerticalSwap>
             </h1>
             <p className="text-sm sm:text-base text-white/70 max-w-2xl mx-auto mt-3 sm:mt-4 px-4">
-              Experience excellence in every project we deliver
+            Because growth only matters if it holds up over time.
             </p>
           </div>
         </ParallaxElement>

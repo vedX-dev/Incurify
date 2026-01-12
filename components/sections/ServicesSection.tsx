@@ -14,15 +14,15 @@ export default function ServicesSection() {
             <h1 className="text-2xl sm:text-3xl md:text-4xl xl:text-4xl font-medium instrument-serif-regular tracking-wide px-4" style={{ fontWeight: 500, WebkitTextStroke: '1px currentColor' } as React.CSSProperties}>
               <TextVerticalSwap as="span" duration={0.3}>
                 <span className="bg-white bg-clip-text text-transparent">
-                  Our{' '}
+                  How we{' '}
                 </span>
                 <span className="bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] bg-clip-text text-transparent">
-                  Services
+                  Help
                 </span>
               </TextVerticalSwap>
             </h1>
             <p className="text-sm sm:text-base text-white/70 max-w-2xl mx-auto px-4 mt-3 sm:mt-4">
-              Comprehensive Web3 solutions designed to bring your blockchain vision to life. From strategy to deployment, we've got you covered.
+            Every service supports one of three stages: shipping, growing, or sustaining.
             </p>
           </div>
         </ParallaxElement>
