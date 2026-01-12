@@ -292,7 +292,7 @@ export default function AboutSection() {
       });
     }
 
-    // 7. Subtle background parallax
+    // 7. Subtle background parallax  
     if (background) {
       ScrollTrigger.create({
         trigger: section,
@@ -385,23 +385,27 @@ export default function AboutSection() {
   return (
     <>
       {/* Purple Contrast Section */}
-      <section ref={sectionRef} id="about" className="relative overflow-hidden w-full" style={{ zIndex: 10 }}>
+      <section ref={sectionRef} id="about" className="relative overflow-hidden w-full" style={{ zIndex: 10, isolation: 'isolate' }}>
         {/* Full-width gradient background with parallax */}
-        <div 
-          ref={backgroundRef}
-          className="absolute inset-0 w-full"
-          style={{
-            background: `
-   radial-gradient(
-    100% at 50% 0%,
-     #4B2A8E 0%,
-     #2A0A4E 45%,
-     #14081F 75%,
-     #000000 100%
-   )
- `,
-          }}
-        />
+        {/* Full-width gradient background with parallax */}
+<div
+  ref={backgroundRef}
+  className="absolute inset-0 w-full h-full"
+  style={{
+    background: `
+      radial-gradient(
+        ellipse 120% 80% at 50% 0%,
+        #4B2A8E 0%,
+        #2A0A4E 40%,
+        #14081F 70%,
+        #000000 100%
+      )
+    `,
+    zIndex: 0,
+    pointerEvents: 'none',
+  }}
+/>
+
         
         {/* Additional curved gradient overlay for depth */}
         <div 
@@ -429,7 +433,7 @@ export default function AboutSection() {
           />
         </div>
         
-        {/* Subtle vignette for focus */}
+        {/* Subtle vignette for focus - reduced opacity to keep gradient vibrant */}
         <div
           className="absolute inset-0 pointer-events-none z-[0]"
           style={{
@@ -437,12 +441,12 @@ export default function AboutSection() {
               radial-gradient(
                 140% 120% at 50% 40%,
                 transparent 55%,
-                rgba(0,0,0,0.35) 100%
+                rgba(0,0,0,0.15) 100%
               )
             `,
           }}
         />
-        {/* Bottom vignette for smooth section transition */}
+        {/* Bottom vignette for smooth section transition - reduced opacity */}
         <div
           className="absolute inset-x-0 bottom-0 h-[45%] pointer-events-none z-[0]"
           style={{
@@ -450,9 +454,9 @@ export default function AboutSection() {
               linear-gradient(
                 to bottom,
                 transparent 0%,
-                rgba(0,0,0,0.25) 45%,
-                rgba(0,0,0,0.55) 75%,
-                rgba(0,0,0,0.85) 100%
+                rgba(0,0,0,0.15) 45%,
+                rgba(0,0,0,0.35) 75%,
+                rgba(0,0,0,0.65) 100%
               )
             `,
           }}

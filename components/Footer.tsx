@@ -85,12 +85,14 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-black border-t border-[#8B6CFF]/20 relative overflow-hidden">
+    <footer className="bg-black border-t border-[#8B6CFF]/20 relative overflow-hidden" style={{ zIndex: 20, isolation: 'isolate', position: 'relative', backgroundColor: '#000000' }}>
       {/* Azure Depths */}
       <div
         className="absolute inset-0 z-0"
         style={{
           background: "radial-gradient(125% 125% at 50% 10%, #000000 40%, #2A0A4E 100%)",
+          zIndex: 0,
+          backgroundColor: '#000000',
         }}
       />
       

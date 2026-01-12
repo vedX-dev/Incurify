@@ -41,14 +41,15 @@ export function ParallaxGroup({ children, className = '' }: ParallaxGroupProps) 
     const secondaryOverlay = secondaryOverlayRef.current;
     const testimonialSection = document.querySelector('#testimonials')?.closest('section') as HTMLElement;
     const aboutSection = document.querySelector('#about')?.closest('section') as HTMLElement;
+    const footerSection = document.querySelector('footer') as HTMLElement;
     
     if (!testimonialSection || !aboutSection) {
       console.warn('Testimonial or About section not found, parallax effect will not work');
       return;
     }
 
-    // Get the purple background from About section (first absolute div with gradient)
-    const aboutBackground = aboutSection.querySelector('.absolute.inset-0') as HTMLElement;
+    // Get the purple background from About section using data attribute
+    const aboutBackground = aboutSection.querySelector('[data-about-background="true"]') as HTMLElement;
 
     // Set initial states
     gsap.set(group, {
@@ -74,6 +75,14 @@ export function ParallaxGroup({ children, className = '' }: ParallaxGroupProps) 
         willChange: 'transform, opacity',
         force3D: true,
         zIndex: 5,
+      });
+    }
+    
+    // Ensure About section background is visible by default
+    if (aboutBackground) {
+      gsap.set(aboutBackground, {
+        opacity: 1,
+        force3D: true,
       });
     }
 
@@ -135,10 +144,9 @@ export function ParallaxGroup({ children, className = '' }: ParallaxGroupProps) 
         // Also animate the About section's background opacity to coordinate with overlay
         // This ensures seamless transition between overlay and actual About background
         if (aboutBackground) {
-          // Background opacity starts later and reaches full opacity as overlay fades in
-          const bgOpacity = Math.max(0, Math.min(1, (progress - 0.2) / 0.5));
+          // Keep background fully visible at all times - don't reduce opacity
           gsap.set(aboutBackground, {
-            opacity: bgOpacity,
+            opacity: 1,
             force3D: true,
           });
         }
@@ -153,22 +161,25 @@ export function ParallaxGroup({ children, className = '' }: ParallaxGroupProps) 
           force3D: true,
         });
 
-        // Ensure overlays are fully visible and in place
+        // Fade out fixed overlays since About section's own background should be visible now
         if (overlay) {
-          gsap.set(overlay, {
-            opacity: 1,
-            y: '0%',
+          gsap.to(overlay, {
+            opacity: 0,
+            duration: 0.5,
+            ease: 'power2.out',
             force3D: true,
           });
         }
         if (secondaryOverlay) {
-          gsap.set(secondaryOverlay, {
-            opacity: 0.6,
-            y: '0%',
+          gsap.to(secondaryOverlay, {
+            opacity: 0,
+            duration: 0.5,
+            ease: 'power2.out',
             force3D: true,
           });
         }
 
+        // Ensure About section's own background is fully visible
         if (aboutBackground) {
           gsap.set(aboutBackground, {
             opacity: 1,
@@ -199,13 +210,53 @@ export function ParallaxGroup({ children, className = '' }: ParallaxGroupProps) 
         }
 
         if (aboutBackground) {
+          // Don't hide background completely when scrolling back - keep it visible
           gsap.set(aboutBackground, {
-            opacity: 0,
+            opacity: 1,
             force3D: true,
           });
         }
       },
     });
+
+    // Create ScrollTrigger to hide overlays when Footer is in view
+    // This prevents the purple gradient from appearing in the Footer
+    let footerTrigger: ScrollTrigger | null = null;
+    if (footerSection && overlay && secondaryOverlay) {
+      footerTrigger = ScrollTrigger.create({
+        trigger: footerSection,
+        start: 'top bottom',
+        end: 'top 80%',
+        onEnter: () => {
+          // Hide overlays when Footer enters viewport
+          gsap.to([overlay, secondaryOverlay], {
+            opacity: 0,
+            duration: 0.3,
+            ease: 'power2.out',
+            force3D: true,
+          });
+        },
+        onLeaveBack: () => {
+          // Show overlays again when scrolling back up (only if About section is visible)
+          const aboutRect = aboutSection.getBoundingClientRect();
+          const isAboutVisible = aboutRect.bottom > 0 && aboutRect.top < window.innerHeight;
+          if (isAboutVisible && overlay && secondaryOverlay) {
+            gsap.to(overlay, {
+              opacity: 1,
+              duration: 0.3,
+              ease: 'power2.out',
+              force3D: true,
+            });
+            gsap.to(secondaryOverlay, {
+              opacity: 0.6,
+              duration: 0.3,
+              ease: 'power2.out',
+              force3D: true,
+            });
+          }
+        },
+      });
+    }
 
     isInitialized.current = true;
 
@@ -217,6 +268,7 @@ export function ParallaxGroup({ children, className = '' }: ParallaxGroupProps) 
 
       return () => {
       scrollTrigger?.kill();
+      footerTrigger?.kill();
       window.removeEventListener('resize', handleResize);
       gsap.set(group, { clearProps: 'all' });
       if (overlay) gsap.set(overlay, { clearProps: 'all' });
@@ -243,6 +295,7 @@ export function ParallaxGroup({ children, className = '' }: ParallaxGroupProps) 
         className="fixed inset-x-0 bottom-0 pointer-events-none"
         style={{
           height: '100vh', // Full viewport height
+          maxHeight: '100vh', // Prevent overflow
           background: `
             radial-gradient(
               120% 100% at 50% 0%,
@@ -263,6 +316,7 @@ export function ParallaxGroup({ children, className = '' }: ParallaxGroupProps) 
         className="fixed inset-x-0 bottom-0 pointer-events-none opacity-60"
         style={{
           height: '100vh',
+          maxHeight: '100vh', // Prevent overflow
           background: `
             radial-gradient(
               ellipse 150% 120% at 20% 40%,
