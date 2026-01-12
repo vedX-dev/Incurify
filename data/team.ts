@@ -9,7 +9,7 @@ export interface TeamMember {
 export const teamMembers: TeamMember[] = [
   {
     id: '1',
-    name: 'Akshay',
+    name: 'RouGe',
     role: 'CEO & Founder',
     image: 'images/team/rouge.png', // Update with actual image paths
     twitterUrl: 'https://x.com/degen_rouge',

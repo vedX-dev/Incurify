@@ -501,7 +501,7 @@ export default function AboutSection() {
                       Incurify is a {' '}
                          <span className="text-[#B7A6FF] font-medium">Web3 growth partner </span>working with teams that are building real products.{' '}
                         We help projects ship with clarity, grow through adoption, and sustain long-term momentum by aligning execution, creators, and community.{' '}
-                        <br /> Our focus is simple: do the work that helps projects <br /> last, not just launch.
+                        <br /> Our focus is simple: do the work that helps projects last, not just launch.
                       </p>
                     </div>
                   </div>

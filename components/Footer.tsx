@@ -213,7 +213,7 @@ export default function Footer() {
           </p>
           <p className="text-xs sm:text-sm text-white/50 text-center sm:text-right">
             <span>site by</span>{' '}
-            <span className="underline">VedXdev</span>
+            <a className="underline" href="https://vedxdev-portfolio.vercel.app/">vedXdev</a>
           </p>
         </div>
       </div>
