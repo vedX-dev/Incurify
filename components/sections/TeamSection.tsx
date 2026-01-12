@@ -80,7 +80,7 @@ export default function TeamSection() {
                 <span className="bg-white bg-clip-text text-transparent">
                   Meet the{' '}
                 </span>
-                <span className="bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from- bg-clip-text text-transparent">
                   Team
                 </span>
               </TextVerticalSwap>

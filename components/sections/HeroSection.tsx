@@ -104,14 +104,14 @@ export default function HeroSection() {
               className="instrument-serif-regular text-6xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black mb-4 sm:mb-6 md:mb-6 tracking-tight sm:tracking-wide text-center w-full px-3 sm:px-4 leading-[1.05] sm:leading-[1.1]"
               style={{ fontWeight: 600, WebkitTextStroke: '0px currentColor' } as React.CSSProperties}
             >
-              <span className="bg-gradient-to-r from-gray-400 to-white bg-clip-text text-transparent">
+              <span className="bg-white bg-clip-text text-transparent">
                 Fueling{' '}
               </span>
               <span className="bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] bg-clip-text text-transparent">
               Ideas
               </span>
               <br />
-              <span className="bg-gradient-to-r from-gray-400 via-white to-gray-400 bg-clip-text text-transparent">
+              <span className="bg-white bg-clip-text text-transparent">
                 Into Adoption.
               </span>
             </h1>
