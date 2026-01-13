@@ -40,12 +40,4 @@ export const faqs: FAQ[] = [
     question:'What kind of guarantees can you make?',
     answer:'We don’t make promises we can’t control. What we can promise is that we will move through a clear process, give you honest feedback, and methodically work towards progress.',
   },
-  {
-    question:'Is Incurify suitable for all projects?',
-    answer:'No—and that’s by design. We thrive when partnering with teams who are building actual products and care about lasting, not short, term.',
-  },
-  {
-    question:'How may I begin using Incurify?',
-    answer:'You can contact us through our contact form or book a call with us. We will check your eligibility before proceeding further.',
-  },
 ];
