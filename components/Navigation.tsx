@@ -166,8 +166,8 @@ export default function Navigation() {
             {/* Desktop CTA */}
           <div className="hidden md:block">
               <a
-                href="https://calendly.com/incurify/introductory-call"
-                onClick={(e) => handleHashLink(e, 'https://calendly.com/incurify/introductory-call')}
+                href="https://calendly.com/rougeincurify/consultation"
+                onClick={(e) => handleHashLink(e, 'https://calendly.com/rougeincurify/consultation')}
                 className="px-5 lg:px-6 py-2 lg:py-2.5 bg-[#3B1A6E] text-white rounded-xl font-medium transition-all duration-300 text-sm lg:text-base flex items-center"
             >
                 <TextVerticalSwap as="span" duration={0.2}>
@@ -208,8 +208,8 @@ export default function Navigation() {
                 </a>
               ))}
               <a
-                href="https://calendly.com/incurify/introductory-call"
-                onClick={(e) => handleHashLink(e, 'https://calendly.com/incurify/introductory-call')}
+                href="https://calendly.com/rougeincurify/consultation"
+                onClick={(e) => handleHashLink(e, 'https://calendly.com/rougeincurify/consultation')}
                 className="block mt-4 text-center px-6 py-3.5 bg-[#3B1A6E] text-white rounded-xl font-medium transition-all duration-300 active:scale-95 touch-manipulation flex items-center justify-center"
               >
                 <TextVerticalSwap as="span" duration={0.2}>
