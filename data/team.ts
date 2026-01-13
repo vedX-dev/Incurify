@@ -18,7 +18,7 @@ export const teamMembers: TeamMember[] = [
     id: '2',
     name: 'Xeno',
     role: 'Chief Marketing Officer',
-    image: '/images/team/pic2.jpg',
+    image: '/images/team/xeno.jpg',
     twitterUrl: 'https://x.com/xeno_nft199',
   },
   {
