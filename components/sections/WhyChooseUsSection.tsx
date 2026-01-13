@@ -5,6 +5,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { TextVerticalSwap } from '@/components/ui/text-vertical-swap';
 import { ParallaxElement } from '@/components/ui/parallax-section';
+import { ParticleBackground } from '@/components/ui/particle-background';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -93,9 +94,18 @@ export default function WhyChooseUsSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full bg-transparent py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 px-4 sm:px-6 lg:px-8"
+      className="relative w-full bg-transparent py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto">
+      {/* Subtle Three.js Particle Background */}
+      <div className="absolute inset-0 pointer-events-none opacity-10">
+        <ParticleBackground 
+          particleCount={300} 
+          color="#8B6CFF" 
+          speed={0.15} 
+          size={1}
+        />
+      </div>
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <ParallaxElement speed={0.2} direction="up">
           <div className="text-center mb-12 sm:mb-16 md:mb-20">

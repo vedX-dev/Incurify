@@ -1,6 +1,7 @@
 'use client';
 
 import ContactForm from '@/components/ContactForm';
+import CalendlyWidget from '@/components/CalendlyWidget';
 import {
   Accordion,
   AccordionContent,
@@ -58,9 +59,17 @@ export default function ContactSection() {
 
         <ParallaxElement speed={0.15} direction="down">
           <div className="mb-12 sm:mb-16 md:mb-20">
-            {/* Contact Form */}
-            <div className="animate-on-scroll max-w-2xl mx-auto">
-              <ContactForm />
+            {/* Contact Form and Calendly Widget */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
+              {/* Contact Form - Left Side */}
+              <div className="animate-on-scroll">
+                <ContactForm />
+              </div>
+              
+              {/* Calendly Widget - Right Side */}
+              <div className="animate-on-scroll flex">
+                <CalendlyWidget />
+              </div>
             </div>
           </div>
         </ParallaxElement>

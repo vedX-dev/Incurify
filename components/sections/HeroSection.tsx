@@ -5,6 +5,7 @@ import { gsap } from 'gsap';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import { BGPattern } from '@/components/ui/bg-pattern';
 import { ParallaxElement } from '@/components/ui/parallax-section';
+import { ParticleBackground } from '@/components/ui/particle-background';
 
 export default function HeroSection() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -77,6 +78,15 @@ export default function HeroSection() {
       <div className="absolute -top-14 sm:-top-16 md:-top-20 lg:-top-24 left-0 w-full h-[calc(100vh+3.5rem)] sm:h-[calc(100vh+4rem)] md:h-screen pointer-events-none z-[1]">
         <BGPattern variant="grid" mask="fade-edges" fill="rgba(139, 108, 255, 0.4)" size={49} opacity={0.6} />
       </div>
+      {/* Three.js Particle Background */}
+      <div className="absolute -top-14 sm:-top-16 md:-top-20 lg:-top-24 left-0 w-full h-[calc(100vh+3.5rem)] sm:h-[calc(100vh+4rem)] md:h-screen pointer-events-none z-[1]">
+        <ParticleBackground 
+          particleCount={800} 
+          color="#8B6CFF" 
+          speed={0.3} 
+          size={1.5}
+        />
+      </div>
 
 
 
@@ -143,26 +153,6 @@ export default function HeroSection() {
             </div>
           </ParallaxElement>
         </div>
-      </div>
-
-      {/* Social Media Button - X (Twitter) - Bottom Right */}
-      <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 md:bottom-8 md:right-8 z-50">
-        <a
-          href="#"
-          className="group relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-black/40 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:border-[#8B6CFF]/30 transition-all duration-300"
-          aria-label="Follow us on X (Twitter)"
-        >
-          <svg
-            className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 transition-transform duration-300 group-hover:scale-110"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-          </svg>
-          {/* Hover glow */}
-          <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#8B6CFF]/0 to-transparent group-hover:from-[#8B6CFF]/20 transition-opacity duration-300" />
-        </a>
       </div>
     </section>
   );

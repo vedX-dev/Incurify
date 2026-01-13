@@ -19,8 +19,8 @@ if (typeof window !== 'undefined') {
 interface ContactFormData {
   name: string;
   email: string;
+  telegramUsername: string;
   projectType: string;
-  budget: string;
   message: string;
 }
 
@@ -169,7 +169,7 @@ export default function ContactForm() {
         }}
       />
 
-      <Card className="contact-card relative mx-auto max-w-3xl p-6 sm:p-10 md:p-12 bg-gradient-to-br from-[#3B1A6E] to-[#0A0612] border border-[#8B6CFF]/20 overflow-hidden">
+      <Card className="contact-card relative mx-auto max-w-md p-6 sm:p-8 md:p-10 bg-gradient-to-br from-[#3B1A6E] to-[#0A0612] border border-[#8B6CFF]/20 overflow-hidden">
         {/* Inner Vignette - Soft edges */}
         <div 
           className="absolute inset-0 pointer-events-none"
@@ -177,16 +177,6 @@ export default function ContactForm() {
             background: 'radial-gradient(ellipse 80% 80% at 50% 50%, transparent 0%, rgba(0, 0, 0, 0.15) 100%)',
           }}
         />
-
-        {/* Success Message */}
-        {isSubmitted && (
-          <div className="mb-6 p-4 bg-green-500/10 border border-green-500/30 rounded-lg flex items-center gap-3">
-            <CheckCircle className="w-5 h-5 text-green-500" />
-            <p className="text-green-500 font-medium">
-              Thank you! Your message has been received.
-            </p>
-          </div>
-        )}
 
         <div className="mb-6 sm:mb-8 relative z-10">
           <h2 className="text-xl font-semibold text-white">Let's get you to the right place</h2>
@@ -196,9 +186,7 @@ export default function ContactForm() {
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="mt-8 sm:mt-10 space-y-5 sm:space-y-6 relative z-10">
-        {/* First Row: Full name and Work Email */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
-          {/* Name Field */}
+          {/* Full Name Field */}
           <div className="form-group space-y-2.5">
             <Label htmlFor="name" className="text-white">
               Full name *
@@ -221,7 +209,7 @@ export default function ContactForm() {
             )}
           </div>
 
-          {/* Email Field */}
+          {/* Work Email Field */}
           <div className="form-group space-y-2.5">
             <Label htmlFor="email" className="text-white">
               Work Email *
@@ -243,10 +231,29 @@ export default function ContactForm() {
               <p className="text-red-400 text-sm">{errors.email.message}</p>
             )}
           </div>
-        </div>
 
-        {/* Second Row: Project Type and Budget Range */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+          {/* Telegram Username Field */}
+          <div className="form-group space-y-2.5">
+            <Label htmlFor="telegramUsername" className="text-white">
+              Telegram Username
+            </Label>
+            <Input
+              id="telegramUsername"
+              type="text"
+              {...register('telegramUsername', {
+                pattern: {
+                  value: /^@?[a-zA-Z0-9_]{5,32}$/,
+                  message: 'Please provide a valid Telegram username (e.g., @username)',
+                },
+              })}
+              placeholder="@username"
+              className="premium-input bg-[#0A0612] border-[#8B6CFF]/20 text-white placeholder:text-white/50 transition-all duration-300 focus:border-[#8B6CFF]/50 focus:bg-[#0F0718] focus:shadow-[0_0_0_3px_rgba(139,108,255,0.1)] focus-visible:ring-0"
+            />
+            {errors.telegramUsername && (
+              <p className="text-red-400 text-sm">{errors.telegramUsername.message}</p>
+            )}
+          </div>
+
           {/* Project Type Field */}
           <div className="form-group space-y-2.5">
             <Label htmlFor="projectType" className="text-white">
@@ -262,11 +269,9 @@ export default function ContactForm() {
                     <SelectValue placeholder="Select a project type" />
                   </SelectTrigger>
                   <SelectContent className="bg-[#0A0612] border-[#8B6CFF]/20 text-white">
-                    <SelectItem value="defi" className="text-white focus:bg-[#3B1A6E]">DeFi Protocol</SelectItem>
-                    <SelectItem value="nft" className="text-white focus:bg-[#3B1A6E]">NFT Platform</SelectItem>
-                    <SelectItem value="dao" className="text-white focus:bg-[#3B1A6E]">DAO Infrastructure</SelectItem>
-                    <SelectItem value="dapp" className="text-white focus:bg-[#3B1A6E]">dApp Development</SelectItem>
-                    <SelectItem value="consulting" className="text-white focus:bg-[#3B1A6E]">Web3 Consulting</SelectItem>
+                    <SelectItem value="defi" className="text-white focus:bg-[#3B1A6E]">DeFi</SelectItem>  
+                    <SelectItem value="nft" className="text-white focus:bg-[#3B1A6E]">NFT Project</SelectItem>
+                    <SelectItem value="consulting" className="text-white focus:bg-[#3B1A6E]">Web3 Gaming</SelectItem>
                     <SelectItem value="other" className="text-white focus:bg-[#3B1A6E]">Other</SelectItem>
                   </SelectContent>
                 </Select>
@@ -279,81 +284,62 @@ export default function ContactForm() {
             )}
           </div>
 
-          {/* Budget Field */}
+          {/* Project Details Field */}
           <div className="form-group space-y-2.5">
-            <Label htmlFor="budget" className="text-white">
-              Budget Range *
+            <Label htmlFor="message" className="text-white">
+              Project Details *
             </Label>
-            <Controller
-              name="budget"
-              control={control}
-              rules={{ required: 'Budget range is required' }}
-              render={({ field }) => (
-                <Select onValueChange={field.onChange} value={field.value}>
-                  <SelectTrigger className="premium-input bg-[#0A0612] border-[#8B6CFF]/20 text-white transition-all duration-300 focus:border-[#8B6CFF]/50 focus:bg-[#0F0718] focus:shadow-[0_0_0_3px_rgba(139,108,255,0.1)] focus:ring-0">
-                    <SelectValue placeholder="Select a budget range" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-[#0A0612] border-[#8B6CFF]/20 text-white">
-                    <SelectItem value="10k-25k" className="text-white focus:bg-[#3B1A6E]">$10k - $25k</SelectItem>
-                    <SelectItem value="25k-50k" className="text-white focus:bg-[#3B1A6E]">$25k - $50k</SelectItem>
-                    <SelectItem value="50k-100k" className="text-white focus:bg-[#3B1A6E]">$50k - $100k</SelectItem>
-                    <SelectItem value="100k+" className="text-white focus:bg-[#3B1A6E]">$100k+</SelectItem>
-                  </SelectContent>
-                </Select>
-              )}
+            <Textarea
+              id="message"
+              rows={5}
+              {...register('message', {
+                required: 'Project details are required',
+                minLength: {
+                  value: 10,
+                  message: 'Message must be at least 10 characters',
+                },
+              })}
+              placeholder="Tell us about your project..."
+              className="premium-input bg-[#0A0612] border-[#8B6CFF]/20 text-white placeholder:text-white/50 transition-all duration-300 focus:border-[#8B6CFF]/50 focus:bg-[#0F0718] focus:shadow-[0_0_0_3px_rgba(139,108,255,0.1)] focus-visible:ring-0 resize-none"
             />
-            {errors.budget && (
-              <p className="text-red-400 text-sm">{errors.budget.message}</p>
+            {errors.message && (
+              <p className="text-red-400 text-sm">{errors.message.message}</p>
             )}
           </div>
-        </div>
 
-        {/* Third Row: Project Details (Full Width) */}
-        <div className="form-group space-y-2.5">
-          <Label htmlFor="message" className="text-white">
-            Project Details *
-          </Label>
-          <Textarea
-            id="message"
-            rows={5}
-            {...register('message', {
-              required: 'Project details are required',
-              minLength: {
-                value: 10,
-                message: 'Message must be at least 10 characters',
-              },
-            })}
-            placeholder="Tell us about your project..."
-            className="premium-input bg-[#0A0612] border-[#8B6CFF]/20 text-white placeholder:text-white/50 transition-all duration-300 focus:border-[#8B6CFF]/50 focus:bg-[#0F0718] focus:shadow-[0_0_0_3px_rgba(139,108,255,0.1)] focus-visible:ring-0 resize-none"
-          />
-          {errors.message && (
-            <p className="text-red-400 text-sm">{errors.message.message}</p>
-          )}
-        </div>
+          {/* Submit Button */}
+          <div className="space-y-3">
+            <Button
+              type="submit"
+              disabled={isSubmitting}
+              className="group w-full bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] text-white hover:from-[#9B7CFF] hover:to-[#4B2A7E] hover:shadow-lg hover:shadow-[#8B6CFF]/30 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none relative overflow-hidden"
+            >
+              <span className="flex items-center justify-center gap-2 relative z-10">
+                {isSubmitting ? 'Sending...' : 'Start the Conversation'}
+                {!isSubmitting && (
+                  <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                )}
+              </span>
+              {/* Subtle glow on hover */}
+              <div className="absolute inset-0 bg-gradient-to-r from-[#8B6CFF]/20 via-[#3B1A6E]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl" />
+            </Button>
 
-        {/* Submit Button */}
-        <div className="space-y-3">
-          <Button
-            type="submit"
-            disabled={isSubmitting}
-            className="group w-full bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] text-white hover:from-[#9B7CFF] hover:to-[#4B2A7E] hover:shadow-lg hover:shadow-[#8B6CFF]/30 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none relative overflow-hidden"
-          >
-            <span className="flex items-center justify-center gap-2 relative z-10">
-              {isSubmitting ? 'Sending...' : 'Start the Conversation'}
-              {!isSubmitting && (
-                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-              )}
-            </span>
-            {/* Subtle glow on hover */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#8B6CFF]/20 via-[#3B1A6E]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl" />
-          </Button>
+            {/* Success Message - Below Submit Button */}
+            {isSubmitted && (
+              <div className="p-4 bg-green-500/10 border border-green-500/30 rounded-lg flex items-center gap-3">
+                <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
+                <p className="text-green-500 font-medium text-sm">
+                  Thank you! Your message has been received.
+                </p>
+              </div>
+            )}
 
-          {/* Trust Microcopy */}
-          <p className="trust-microcopy text-xs text-white/40 text-center">
-            We usually respond within 24 hours.
-          </p>
-        </div>
-      </form>
+            {/* Trust Microcopy */}
+            <p className="trust-microcopy text-xs text-white/40 text-center">
+              We usually respond within 24 hours.
+            </p>
+          </div>
+        </form>
       </Card>
     </div>
   );

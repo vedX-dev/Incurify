@@ -29,14 +29,19 @@ export default function ServicesSection() {
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
           {services.map((service, index) => (
-            <ServiceCard
-              key={service.id}
-              title={service.title}
-              description={service.description}
-              image={service.image}
-              index={index}
-              number={service.number}
-            />
+            <ParallaxElement 
+              key={service.id} 
+              speed={0.15 + (index % 4) * 0.05} 
+              direction={index % 2 === 0 ? 'up' : 'down'}
+            >
+              <ServiceCard
+                title={service.title}
+                description={service.description}
+                image={service.image}
+                index={index}
+                number={service.number}
+              />
+            </ParallaxElement>
           ))}
         </div>
       </div>

@@ -74,6 +74,8 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Instrument+Serif:ital@0;1&family=Onest:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
           rel="stylesheet"
         />
+        {/* Calendly Widget Script */}
+        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
       </head>
       <body className="font-onest bg-black text-[#EEE9FF] antialiased" suppressHydrationWarning>
         {/* Blue Spotlight Background - Fixed at Center for entire website */}

@@ -6,7 +6,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import HeroSection from '@/components/sections/HeroSection';
 import WhyChooseUsSection from '@/components/sections/WhyChooseUsSection';
 import ServicesSection from '@/components/sections/ServicesSection';
-import GrowthEngineSection from '@/components/sections/GrowthEngineSection';
 import ProcessSection from '@/components/sections/ProcessSection';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
 import AboutSection from '@/components/sections/AboutSection';

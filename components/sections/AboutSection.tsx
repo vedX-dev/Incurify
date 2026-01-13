@@ -9,6 +9,7 @@ import { teamMembers } from '@/data/team';
 import { ParallaxElement } from '@/components/ui/parallax-section';
 import { TextVerticalSwap } from '@/components/ui/text-vertical-swap';
 import Noise from '@/components/Noise';
+import { ParticleBackground } from '@/components/ui/particle-background';
 import Image from 'next/image';
 
 if (typeof window !== 'undefined') {
@@ -432,6 +433,15 @@ export default function AboutSection() {
             patternAlpha={15}
           />
         </div>
+        {/* Three.js Particle Background for depth */}
+        <div className="absolute inset-0 w-full h-full z-[1] opacity-20">
+          <ParticleBackground 
+            particleCount={500} 
+            color="#8B6CFF" 
+            speed={0.2} 
+            size={1.2}
+          />
+        </div>
         
         {/* Subtle vignette for focus - reduced opacity to keep gradient vibrant */}
         <div
@@ -519,7 +529,7 @@ export default function AboutSection() {
                       aria-label="Follow us on LinkedIn"
                     >
                       <Linkedin 
-                        className="w-5 h-5 sm:w-6 sm:h-6 text-[#B7A6FF]/40 group-hover:text-[#B7A6FF]/70 transition-colors duration-300" 
+                        className="w-5 h-5 sm:w-6 sm:h-6 text-[#B7A6FF]/40 group-hover:text-white transition-colors duration-300" 
                       />
                     </a>
                     <a
@@ -530,7 +540,18 @@ export default function AboutSection() {
                       aria-label="Follow us on Telegram"
                     >
                       <TelegramIcon 
-                        className="w-5 h-5 sm:w-6 sm:h-6 text-[#B7A6FF]/40 group-hover:text-[#B7A6FF]/70 transition-colors duration-300" 
+                        className="w-5 h-5 sm:w-6 sm:h-6 text-[#B7A6FF]/40 group-hover:text-white transition-colors duration-300" 
+                      />
+                    </a>
+                    <a
+                      href="https://x.com/Incurify_Web3"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group relative flex items-center justify-center transition-all duration-300 hover:opacity-100"
+                      aria-label="Follow us on Telegram"
+                    >
+                      <XIcon
+                        className="w-5 h-5 sm:w-6 sm:h-6 text-[#B7A6FF]/40 group-hover:text-white transition-colors duration-300" 
                       />
                     </a>
                   </div>
@@ -593,8 +614,8 @@ export default function AboutSection() {
                   <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#8B6CFF]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   
                   <h2 
-                    className="instrument-serif-regular text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black mb-3 sm:mb-4 md:mb-5 lg:mb-6 tracking-tight text-white"
-                    style={{ fontWeight: 500, WebkitTextStroke: '0.2px currentColor' } as React.CSSProperties}
+                    className="font-akira-expanded text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black mb-3 sm:mb-4 md:mb-5 lg:mb-6 tracking-wide text-white"
+                    style={{ fontWeight: 100, WebkitTextStroke: '0.1px currentColor' } as React.CSSProperties}
                   >
                     <TextVerticalSwap as="span" duration={0.3}>
                       Our Mission
@@ -616,8 +637,8 @@ export default function AboutSection() {
                   <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#8B6CFF]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   
                   <h2 
-                    className="instrument-serif-regular text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black mb-3 sm:mb-4 md:mb-5 lg:mb-6 tracking-tight text-white"
-                    style={{ fontWeight: 500, WebkitTextStroke: '0.2px currentColor' } as React.CSSProperties}
+                    className="font-akira-expanded text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black mb-3 sm:mb-4 md:mb-5 lg:mb-6 tracking-wide text-white"
+                    style={{ fontWeight: 100, WebkitTextStroke: '0.1px currentColor' } as React.CSSProperties}
                   >
                     <TextVerticalSwap as="span" duration={0.3}>
                       Our Vision
