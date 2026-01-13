@@ -10,30 +10,9 @@ import {
 } from '@/components/ui/accordion';
 import { TextVerticalSwap } from '@/components/ui/text-vertical-swap';
 import { ParallaxElement } from '@/components/ui/parallax-section';
+import { faqs } from '@/data/faqs';
 
 export default function ContactSection() {
-  const faqs = [
-    {
-      question: 'What is your typical project timeline?',
-      answer:
-        'Project timelines vary based on scope and complexity. A simple smart contract might take 2-4 weeks, while a full DeFi protocol could take 3-6 months. We provide detailed timelines during our initial consultation.',
-    },
-    {
-      question: 'Do you provide ongoing support after launch?',
-      answer:
-        'Yes, we offer comprehensive post-launch support including maintenance, updates, security monitoring, and optimization services. We can create a custom support package tailored to your needs.',
-    },
-    {
-      question: 'What blockchain networks do you work with?',
-      answer:
-        'We have expertise across major blockchain networks including Ethereum, Polygon, Solana, Binance Smart Chain, Avalanche, and more. We help you choose the best network for your specific use case.',
-    },
-    {
-      question: 'How do you ensure smart contract security?',
-      answer:
-        'Security is our top priority. All smart contracts undergo rigorous internal testing, automated security scans, and can be audited by third-party security firms before deployment.',
-    },
-  ];
 
   return (
     <section id="contact" className="py-12 sm:py-16 md:py-20 lg:py-24 bg-transparent">
