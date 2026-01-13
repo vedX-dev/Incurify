@@ -11,7 +11,7 @@ export default function ServicesSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ParallaxElement speed={0.2} direction="up">
           <div className="animate-on-scroll text-center mb-12 sm:mb-16">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl xl:text-4xl font-medium instrument-serif-regular tracking-wide px-4" style={{ fontWeight: 500, WebkitTextStroke: '1px currentColor' } as React.CSSProperties}>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl xl:text-4xl font-akira-expanded px-4" style={{ fontWeight: 100, WebkitTextStroke: '0.1px currentColor' } as React.CSSProperties}>
               <TextVerticalSwap as="span" duration={0.3}>
                 <span className="bg-white bg-clip-text text-transparent">
                   How we{' '}

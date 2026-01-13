@@ -101,8 +101,8 @@ export default function HeroSection() {
           <ParallaxElement speed={0.3} direction="up">
             <h1
               ref={headlineRef}
-              className="instrument-serif-regular text-6xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black mb-4 sm:mb-6 md:mb-6 tracking-tight sm:tracking-wide text-center w-full px-3 sm:px-4 leading-[1.05] sm:leading-[1.1]"
-              style={{ fontWeight: 600, WebkitTextStroke: '0px currentColor' } as React.CSSProperties}
+              className="font-akira-expanded text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black mb-3 sm:mb-4 md:mb-5 lg:mb-6 tracking-wide text-center w-full px-3 sm:px-4 md:px-6 leading-[1.05] sm:leading-[1.05] md:leading-[1.05] lg:leading-[1.05]"
+              style={{ fontWeight: 100, WebkitTextStroke: '0px currentColor', letterSpacing: '-0.02em' } as React.CSSProperties}
             >
               <span className="bg-white bg-clip-text text-transparent">
                 Fueling{' '}
@@ -112,7 +112,7 @@ export default function HeroSection() {
               </span>
               <br />
               <span className="bg-white bg-clip-text text-transparent">
-                Into Adoption.
+                Into Adoption
               </span>
             </h1>
           </ParallaxElement>
@@ -121,7 +121,7 @@ export default function HeroSection() {
           <ParallaxElement speed={0.25} direction="up">
             <p
               ref={subheadlineRef}
-              className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/70 mb-6 sm:mb-8 md:mb-12 max-w-4xl mx-auto leading-relaxed sm:leading-relaxed text-center px-3 sm:px-4"
+              className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-white/70 mb-6 sm:mb-8 md:mb-10 lg:mb-12 max-w-3xl sm:max-w-4xl mx-auto leading-relaxed text-center px-3 sm:px-4 md:px-6 mt-2 sm:mt-3 md:mt-4"
             >
               We work with Web3 teams that are building real products and want them to last. From early execution to ongoing growth, we help projects move forward with structure, clarity, and consistency.
             </p>

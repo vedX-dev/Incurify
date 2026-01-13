@@ -484,8 +484,8 @@ export default function AboutSection() {
                       <div>
                         <h1 
                           ref={headingRef}
-                          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black instrument-serif-regular tracking-tight leading-[0.9] mb-4 sm:mb-6 md:mb-8 lg:mb-10"
-                          style={{ fontWeight: 500, WebkitTextStroke: '0.5px currentColor' } as React.CSSProperties}
+                          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black font-akira-expanded tracking-tight leading-[0.9] mb-4 sm:mb-6 md:mb-8 lg:mb-10"
+                          style={{ fontWeight: 100, WebkitTextStroke: '0.1px currentColor' } as React.CSSProperties}
                         >
                           <span className="text-white">About </span>
                           <span className="bg-gradient-to-r from-white via-[#B7A6FF] to-[#8B6CFF] bg-clip-text text-transparent">
@@ -639,9 +639,9 @@ export default function AboutSection() {
                 {/* Header */}
                 <ParallaxElement speed={0.2} direction="up">
                   <div className="text-center mb-12 sm:mb-16 md:mb-20">
-                    <h1 className="text-2xl sm:text-3xl md:text-4xl xl:text-4xl font-medium instrument-serif-regular tracking-wide px-4" style={{ fontWeight: 500, WebkitTextStroke: '1px currentColor' } as React.CSSProperties}>
+                    <h1 className="text-2xl sm:text-3xl md:text-4xl xl:text-4xl font-akira-expanded tracking-wide px-4" style={{ fontWeight: 100, WebkitTextStroke: '0.1px currentColor' } as React.CSSProperties}>
                       <TextVerticalSwap as="span" duration={0.3}>
-                        <span className="text-white">Meet the{' '}</span>
+                        <span className="bg-white bg-clip-text text-transparent">Meet the{' '}</span>
                         <span className="bg-gradient-to-r from-white via-[#B7A6FF] to-[#8B6CFF] bg-clip-text text-transparent">
                           Team
                         </span>

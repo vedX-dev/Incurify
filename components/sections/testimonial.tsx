@@ -32,20 +32,20 @@ function ClientFeedback() {
       <article className="max-w-screen-md mx-auto text-center space-y-2 mb-6 sm:mb-8 px-4">
         <TimelineContent
           as="h1"
-          className="text-2xl sm:text-3xl md:text-4xl xl:text-4xl instrument-serif-regular tracking-wide"
+          className="text-2xl sm:text-3xl md:text-4xl xl:text-4xl font-akira-expanded tracking-wide"
           animationNum={0}
           customVariants={revealVariants}
           timelineRef={testimonialRef}
-          style={{ fontWeight: 500, WebkitTextStroke: '1px currentColor' } as React.CSSProperties}
+          style={{ fontWeight: 100, WebkitTextStroke: '0.1px currentColor' } as React.CSSProperties}
         >
           <TextVerticalSwap as="span" duration={0.3}>
-            <span className="text-white bg-clip-text text-transparent">
+            <span className="bg-white bg-clip-text text-transparent">
               What {' '}
           </span>
           <span className="bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] bg-clip-text text-transparent ">
              teams  {' '}
           </span>
-            <span className="text-white bg-clip-text text-transparent ">
+            <span className="bg-white bg-clip-text text-transparent ">
             say after working with us.
           </span>
           </TextVerticalSwap>

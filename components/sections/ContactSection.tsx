@@ -39,9 +39,9 @@ export default function ContactSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ParallaxElement speed={0.2} direction="up">
           <div className="animate-on-scroll text-center mb-12 sm:mb-16 md:mb-20 relative">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl xl:text-4xl font-medium instrument-serif-regular tracking-wide px-4" style={{ fontWeight: 500, WebkitTextStroke: '1px currentColor' } as React.CSSProperties}>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl xl:text-4xl font-akira-expanded tracking-wide px-4" style={{ fontWeight: 100, WebkitTextStroke: '0.1px currentColor' } as React.CSSProperties}>
               <TextVerticalSwap as="span" duration={0.3}>
-                <span className="text-white bg-clip-text text-transparent">
+                <span className="bg-white bg-clip-text text-transparent">
                   Get in{' '}
                 </span>
                 <span className="bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] bg-clip-text text-transparent ">
@@ -69,9 +69,9 @@ export default function ContactSection() {
         <ParallaxElement speed={0.2} direction="up">
           <div className="animate-on-scroll mx-auto w-full max-w-3xl space-y-6 sm:space-y-7 pt-12 sm:pt-16 px-4">
             <div className="space-y-2 text-center">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl xl:text-4xl font-medium instrument-serif-regular tracking-wide" style={{ fontWeight: 500, WebkitTextStroke: '1px currentColor' } as React.CSSProperties}>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl xl:text-4xl font-akira-expanded tracking-wide" style={{ fontWeight: 100, WebkitTextStroke: '0.1px currentColor' } as React.CSSProperties}>
                 <TextVerticalSwap as="span" duration={0.3}>
-                  <span className="text-white bg-clip-text text-transparent">
+                  <span className="bg-white bg-clip-text text-transparent">
                     Frequently Asked{' '}
                   </span>
                   <span className="bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] bg-clip-text text-transparent">
