@@ -167,7 +167,7 @@ export default function Footer() {
                   </a>
                 );
               })}
-            </div>
+              </div>
           </div>
 
           {/* Navigation Links */}

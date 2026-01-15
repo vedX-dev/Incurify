@@ -41,23 +41,37 @@ const TelegramIcon = ({ className }: { className?: string }) => (
 );
 
 // Premium number formatter: converts large numbers to K/M format
-function formatStatValue(value: number, prefix: string, suffix: string, useKFormat: boolean = false): string {
-  let formatted = '';
-  
-  if (useKFormat && value >= 1000) {
-    if (value >= 1000000) {
-      const millions = value / 1000000;
-      formatted = millions % 1 === 0 ? `${millions}M` : `${millions.toFixed(1)}M`;
-    } else {
-      const thousands = value / 1000;
-      formatted = thousands % 1 === 0 ? `${thousands}K` : `${thousands.toFixed(1)}K`;
+function formatStatValue(
+  value: number,
+  prefix: string,
+  suffix: string,
+  format: 'RAW' | 'K' | 'M' | 'B'
+): string {
+  let formatted = ''
+
+  switch (format) {
+    case 'B': {
+      const v = value / 1_000_000_000
+      formatted = v % 1 === 0 ? `${v}B` : `${v.toFixed(1)}B`
+      break
     }
-  } else {
-    formatted = value.toLocaleString();
+    case 'M': {
+      const v = value / 1_000_000
+      formatted = v % 1 === 0 ? `${v}M` : `${v.toFixed(1)}M`
+      break
+    }
+    case 'K': {
+      const v = value / 1_000
+      formatted = v % 1 === 0 ? `${v}K` : `${v.toFixed(1)}K`
+      break
+    }
+    default:
+      formatted = value.toLocaleString()
   }
-  
-  return `${prefix}${formatted}${suffix}`;
+
+  return `${prefix}${formatted}${suffix}`
 }
+
 
 export default function AboutSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -206,12 +220,12 @@ export default function AboutSection() {
         const targetValue = parseInt(cardElement.dataset.value || '0', 10);
         const prefix = cardElement.dataset.prefix || '';
         const suffix = cardElement.dataset.suffix || '';
-        const useKFormat = cardElement.dataset.useKFormat === 'true';
+        const format = (cardElement.dataset.format as 'RAW' | 'K' | 'M' | 'B') || 'RAW';
 
         // Set initial value to 0 with proper formatting immediately
         // This ensures the counter starts from 0 before animation
         gsap.set(valueElement, {
-          textContent: formatStatValue(0, prefix, suffix, useKFormat),
+          textContent: formatStatValue(0, prefix, suffix, format),
         });
 
         // Border/glow highlight setup
@@ -264,7 +278,7 @@ export default function AboutSection() {
                   const currentValue = Math.floor(this.targets()[0].value);
                   
                   // Format with K/M notation for large numbers if enabled
-                  valueElement.textContent = formatStatValue(currentValue, prefix, suffix, useKFormat);
+                  valueElement.textContent = formatStatValue(currentValue, prefix, suffix, format);
                 },
               },
               0.2
@@ -293,7 +307,7 @@ export default function AboutSection() {
       });
     }
 
-    // 7. Subtle background parallax  
+    // 7. Subtle background parallax
     if (background) {
       ScrollTrigger.create({
         trigger: section,
@@ -389,23 +403,23 @@ export default function AboutSection() {
       <section ref={sectionRef} id="about" className="relative overflow-hidden w-full" style={{ zIndex: 10, isolation: 'isolate' }}>
         {/* Full-width gradient background with parallax */}
         {/* Full-width gradient background with parallax */}
-<div
-  ref={backgroundRef}
+        <div 
+          ref={backgroundRef}
   className="absolute inset-0 w-full h-full"
-  style={{
-    background: `
-      radial-gradient(
+          style={{
+            background: `
+   radial-gradient(
         ellipse 120% 80% at 50% 0%,
-        #4B2A8E 0%,
+     #4B2A8E 0%,
         #2A0A4E 40%,
         #14081F 70%,
-        #000000 100%
-      )
-    `,
+     #000000 100%
+   )
+ `,
     zIndex: 0,
     pointerEvents: 'none',
-  }}
-/>
+          }}
+        />
 
         
         {/* Additional curved gradient overlay for depth */}
@@ -426,11 +440,11 @@ export default function AboutSection() {
         {/* Noise texture overlay */}
         <div className="absolute inset-0 w-full h-full z-[1]">
           <Noise
-            patternSize={250}
+            patternSize={100}
             patternScaleX={1}
             patternScaleY={1}
-            patternRefreshInterval={2}
-            patternAlpha={15}
+            patternRefreshInterval={1}
+            patternAlpha={12}
           />
         </div>
         {/* Three.js Particle Background for depth */}
@@ -564,42 +578,72 @@ export default function AboutSection() {
               </div>
 
               {/* Stats Zone - reduced visual separation */}
-              <div ref={statsRef} className="zone-stats grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 relative">
-                {/* Subtle zone background */}
-                <div className="zone-bg absolute -inset-2 sm:-inset-4 md:-inset-6 bg-gradient-to-b from-transparent via-[#3B1A6E]/5 to-transparent rounded-2xl opacity-0" />
-                {stats.map((stat) => {
-                  // Extract numeric value, prefix, and suffix
-                  const match = stat.value.match(/(\$?)(\d+)(\+?)/);
-                  const prefix = match?.[1] || '';
-                  const numericValue = match ? parseInt(match[2], 10) : 0;
-                  const suffix = match?.[3] || '';
-                  // Use K format for values >= 1000
-                  const useKFormat = numericValue >= 1000;
-                  
-                  return (
-                    <div
-                      key={stat.id}
-                      className="stat-card relative p-3 sm:p-4 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl bg-black/30 backdrop-blur-xl border border-white/10 overflow-hidden group"
-                      data-value={numericValue}
-                      data-prefix={prefix}
-                      data-suffix={suffix}
-                      data-use-k-format={useKFormat.toString()}
-                    >
-                      {/* Animated border glow - soft emphasis */}
-                      <div className="stat-border absolute inset-0 rounded-lg sm:rounded-xl md:rounded-2xl bg-gradient-to-br from-[#8B6CFF]/15 via-[#3B1A6E]/8 to-transparent opacity-0 pointer-events-none" />
-                      
-                      {/* Inner glow */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent pointer-events-none" />
-                      
-                      {/* Stat value - will be animated */}
-                      <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-1 sm:mb-2 md:mb-3 stat-value tabular-nums relative z-10 min-h-[2rem] sm:min-h-[2.5rem] md:min-h-[3rem] lg:min-h-[3.5rem] flex items-center">
-                        {/* Value will be set by GSAP animation */}
-                      </p>
-                      <p className="text-[10px] sm:text-xs md:text-sm text-[#B7A6FF] font-medium relative z-10">{stat.label}</p>
-                    </div>
-                  );
-                })}
-              </div>
+              <div
+  ref={statsRef}
+  className="zone-stats relative grid grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4 md:gap-5"
+>
+  {/* Subtle zone background */}
+  <div className="zone-bg pointer-events-none absolute -inset-3 sm:-inset-5 md:-inset-6 bg-gradient-to-b from-transparent via-[#3B1A6E]/5 to-transparent rounded-3xl opacity-0" />
+
+  {stats.map((stat) => {
+    // Extract numeric value, prefix, and suffix
+    const match = stat.value.match(/(\$?)(\d+)(\+?)/)
+    const prefix = match?.[1] || ''
+    const numericValue = match ? parseInt(match[2], 10) : 0
+    const suffix = match?.[3] || ''
+
+    // Format logic
+    let format: 'RAW' | 'K' | 'M' | 'B' = 'RAW'
+    if (numericValue >= 1_000_000_000) format = 'B'
+    else if (numericValue >= 1_000_000) format = 'M'
+    else if (numericValue >= 1_000) format = 'K'
+
+    return (
+      <div
+        key={stat.id}
+        className="
+          stat-card relative group overflow-hidden
+          rounded-xl md:rounded-2xl
+          bg-black/30 backdrop-blur-xl
+          border border-white/10
+          p-4 sm:p-5 md:p-6
+          transition-all duration-300
+          hover:bg-black/40 hover:border-white/20
+        "
+        data-value={numericValue}
+        data-prefix={prefix}
+        data-suffix={suffix}
+        data-format={format}
+      >
+        {/* Animated border glow */}
+        <div className="stat-border pointer-events-none absolute inset-0 rounded-xl md:rounded-2xl bg-gradient-to-br from-[#8B6CFF]/15 via-[#3B1A6E]/8 to-transparent opacity-0 transition-opacity duration-300" />
+
+        {/* Inner glow */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent" />
+
+        {/* Content wrapper for proper alignment */}
+        <div className="relative z-10 flex flex-col justify-center min-h-[80px] sm:min-h-[90px] md:min-h-[100px]">
+          {/* Stat value */}
+          <p
+            className="
+              stat-value tabular-nums
+              text-2xl sm:text-3xl md:text-4xl
+              font-bold text-white
+              mb-1.5 sm:mb-2
+              leading-none
+            "
+          />
+
+          {/* Label */}
+          <p className="text-xs sm:text-sm font-medium text-[#B7A6FF]/80 leading-tight">
+            {stat.label}
+          </p>
+        </div>
+      </div>
+    )
+  })}
+</div>
+
 
               {/* Mission & Vision Zone - simplified, declarative */}
               <div ref={missionVisionRef} className="zone-mission grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8 relative">

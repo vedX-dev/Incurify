@@ -34,13 +34,13 @@ export default function ServicesSection() {
               speed={0.15 + (index % 4) * 0.05} 
               direction={index % 2 === 0 ? 'up' : 'down'}
             >
-              <ServiceCard
-                title={service.title}
-                description={service.description}
-                image={service.image}
-                index={index}
-                number={service.number}
-              />
+            <ServiceCard
+              title={service.title}
+              description={service.description}
+              image={service.image}
+              index={index}
+              number={service.number}
+            />
             </ParallaxElement>
           ))}
         </div>

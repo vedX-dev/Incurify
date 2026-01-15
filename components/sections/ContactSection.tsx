@@ -42,7 +42,7 @@ export default function ContactSection() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
               {/* Contact Form - Left Side */}
               <div className="animate-on-scroll">
-                <ContactForm />
+              <ContactForm />
               </div>
               
               {/* Calendly Widget - Right Side */}

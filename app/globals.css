@@ -95,7 +95,7 @@
   font-weight: normal;
   font-style: normal;
   font-display: swap;
-}
+  }
 
 /* Font Classes with fallbacks to prevent FOUC */
 .font-onest {
