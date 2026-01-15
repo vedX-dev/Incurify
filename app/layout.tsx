@@ -10,7 +10,7 @@ export const metadata = {
   description:
     'Incurify is a Web3 growth partner helping projects build and sustain traction from launch to scale.',
   icons:{
-    icon:'/icons/icon.png',
+    icon:'/icons/icon.png', 
   },
   openGraph: {
     title: 'Web3 Marketing Agency | Incurify',
@@ -20,7 +20,7 @@ export const metadata = {
     siteName: 'Incurify',
     images: [
       {
-        url: '/images/l',
+        url: '/images/metadata/opengraph.jpg',
         width: 1200,
         height: 630,
         alt: 'Incurify – Web3 Marketing Agency',
@@ -34,7 +34,7 @@ export const metadata = {
     title: 'Web3 & Blockchain Marketing Agency | Incurify',
     description:
       'Scale your Web3 project with Incurify — influencer marketing, community building, PR, and blockchain growth strategy.',
-    images: ['/images/logo/incurify.png'],
+    images: ['/images/metadata/opengraph.jpg'],
       },
   other: {
     'font-display': 'swap',
@@ -45,7 +45,7 @@ export const metadata = {
     title: 'Web3 Marketing Agency | Incurify',
     description:
       'Incurify is a Web3 growth partner helping projects build and sustain traction from launch to scale.',
-    images: ['/images/logo/incurify.png'],
+    images: ['/images/metadata/opengraph.jpg'],
   },
   facebook: {
     card: 'summary_large_image',

@@ -64,6 +64,7 @@ export default function HeroSection() {
 
     return () => ctx.revert();
   }, []);
+  
 
   return (
     <section className="min-h-screen w-full bg-transparent relative overflow-visible flex items-center justify-center pt-16 sm:pt-20 md:pt-0 md:-mt-24">
@@ -109,22 +110,28 @@ export default function HeroSection() {
 
           {/* Headline */}
           <ParallaxElement speed={0.3} direction="up">
-            <h1
-              ref={headlineRef}
-              className="font-akira-expanded text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black mb-3 sm:mb-4 md:mb-5 lg:mb-6 tracking-wide text-center w-full px-3 sm:px-4 md:px-6 leading-[1.05] sm:leading-[1.05] md:leading-[1.05] lg:leading-[1.05]"
-              style={{ fontWeight: 100, WebkitTextStroke: '0px currentColor', letterSpacing: '-0.02em' } as React.CSSProperties}
-            >
-              <span className="bg-white bg-clip-text text-transparent">
-                Fueling{' '}
-              </span>
-              <span className="bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] bg-clip-text text-transparent">
-              Ideas
-              </span>
-              <br />
-              <span className="bg-white bg-clip-text text-transparent">
-                Into Adoption
-              </span>
-            </h1>
+          <h1
+  ref={headlineRef}
+  className="font-akira-expanded text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black mb-3 sm:mb-4 md:mb-5 lg:mb-6 tracking-wide text-center w-full px-3 sm:px-4 md:px-6 leading-[1.05]"
+  style={{
+    fontWeight: 100,
+    WebkitTextStroke: '0px currentColor',
+    letterSpacing: '-0.02em',
+  } as React.CSSProperties}
+>
+  <span className="bg-white bg-clip-text text-transparent">
+    Web3&apos;s{' '}
+  </span>
+
+  <span className="bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] bg-clip-text text-transparent">
+    Leading{' '}
+  </span>
+
+  <span className="bg-white bg-clip-text text-transparent whitespace-nowrap">
+    Growth Partner
+  </span>
+</h1>
+
           </ParallaxElement>
 
           {/* Subheadline */}

@@ -22,7 +22,7 @@ export default function ServicesSection() {
               </TextVerticalSwap>
             </h1>
             <p className="text-sm sm:text-base text-white/70 max-w-2xl mx-auto px-4 mt-3 sm:mt-4">
-            Every service supports one of three stages: shipping, growing, or sustaining.
+            Every service is designed to help projects ship clearly, grow intentionally and sustain over time.
             </p>
           </div>
         </ParallaxElement>
