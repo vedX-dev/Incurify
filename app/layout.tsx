@@ -9,51 +9,62 @@ export const metadata = {
   title: 'Incurify - Web3 Marketing Agency',
   description:
     'Incurify is a Web3 growth partner helping projects build and sustain traction from launch to scale.',
-  icons:{
-    icon:'/icons/icon.png', 
+  icons: {
+    icon: '/icons/icon.png',
+    apple: '/icons/apple-touch-icon.png', // Add 180x180 PNG
   },
+  
+  // Open Graph (Facebook, LinkedIn, WhatsApp, Discord, etc.)
   openGraph: {
-    title: 'Web3 Marketing Agency | Incurify',
+    title: 'Incurify - Web3 Marketing Agency',
     description:
       'Incurify is a Web3 growth partner helping projects build and sustain traction from launch to scale.',
-    url: '', // change to your domain
+    url: 'https://yourdomain.com', // Replace with your actual domain
     siteName: 'Incurify',
     images: [
       {
-        url: '/images/metadata/opengraph.jpg',
+        url: '/images/metadata/opengraph.jpg', // Should be 1200x630px
         width: 1200,
         height: 630,
         alt: 'Incurify – Web3 Marketing Agency',
       },
     ],
+    locale: 'en_US',
     type: 'website',
   },
 
+  // Twitter/X
   twitter: {
     card: 'summary_large_image',
-    title: 'Web3 & Blockchain Marketing Agency | Incurify',
+    title: 'Incurify - Web3 Marketing Agency',
     description:
       'Scale your Web3 project with Incurify — influencer marketing, community building, PR, and blockchain growth strategy.',
-    images: ['/images/metadata/opengraph.jpg'],
-      },
-  other: {
-    'font-display': 'swap',
+    images: ['/images/metadata/twitter.jpg'], // Can be same as OG or 1200x675px
+    creator: '@Incurify_Web3', // Add your Twitter handle
+    site: '@Incurify_Web3', // Add your Twitter handle
   },
 
-  whatsapp: {
-    card: 'summary_large_image',
-    title: 'Web3 Marketing Agency | Incurify',
-    description:
-      'Incurify is a Web3 growth partner helping projects build and sustain traction from launch to scale.',
-    images: ['/images/metadata/opengraph.jpg'],
+  // Additional meta tags
+  metadataBase: new URL('https://yourdomain.com'), // Replace with your domain
+  alternates: {
+    canonical: '/',
   },
-  facebook: {
-    card: 'summary_large_image',
-    title: 'Web3 Marketing Agency | Incurify',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
-  instagram: {
-    card: 'summary_large_image',
-    title: 'Web3 Marketing Agency | Incurify',
+  verification: {
+    google: 'your-google-verification-code', // Add if you have Google Search Console
+  },
+  other: {
+    'font-display': 'swap',
   },
 };
 
