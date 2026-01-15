@@ -12,8 +12,8 @@ export const stats: Stat[] = [
   },
   {
     id: '2',
-    value: '$1500000+',
-    label: 'Total Value Locked',
+    value: '$15000000+',
+    label: 'Fund raised',
   },
   {
     id: '3',
