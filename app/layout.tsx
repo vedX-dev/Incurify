@@ -19,7 +19,7 @@ export const metadata = {
     title: 'Incurify - Web3 Marketing Agency',
     description:
       'Incurify is a Web3 growth partner helping projects build and sustain traction from launch to scale.',
-    url: 'https://yourdomain.com', // Replace with your actual domain
+    url: 'https://incurify.vercel.app', // Replace with your actual domain
     siteName: 'Incurify',
     images: [
       {
@@ -45,7 +45,7 @@ export const metadata = {
   },
 
   // Additional meta tags
-  metadataBase: new URL('https://yourdomain.com'), // Replace with your domain
+  metadataBase: new URL('https://incurify.vercel.app'), // Replace with your domain
   alternates: {
     canonical: '/',
   },
