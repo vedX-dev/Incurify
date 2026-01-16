@@ -181,7 +181,7 @@ export default function HeroSection() {
                 as="p"
                 className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-white/70"
                 delay={0.6}
-                duration={0.5}
+                duration={1}
                 once={true}
               >
                 We work with Web3 teams that are building real products and want them to last. From early execution to ongoing growth, we help projects move forward with structure, clarity, and consistency.
