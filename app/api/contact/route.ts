@@ -62,16 +62,16 @@ export async function POST(request: NextRequest) {
         await resend.emails.send({
           from: resendFromEmail,
           to: clientEmail,
-          subject: `New Form Submission: from ${name}`,
+          subject: ` Form Submission: from ${name}`,
           html: `
-            <div style="font-family: Arial, sans-serif; max-width: 640px; margin: 0 auto; padding: 20px; background:#fafafa;">
+            <div style="font-family: Verdana, sans-serif; max-width: 640px; margin: 0 auto; padding: 20px; background:#fafafa;">
   <h2 style="
-    color:#4F46E5; 
-    border-bottom: 2px solid #06B6D4; 
+    color:#3B1A6E; 
+    border-bottom: 2px solid #3B1A6E; 
     padding-bottom: 10px;
     margin-top: 0;
   ">
-    New Contact Form Submission
+    Contact Form Submission
   </h2>
 
   <div style="
@@ -107,7 +107,9 @@ export async function POST(request: NextRequest) {
   <p style="color:#9ca3af; font-size:12px; margin-top:20px; text-align:center;">
     This email was sent from Incurify.
   </p>
+
 </div>
+
 
           `,
         });

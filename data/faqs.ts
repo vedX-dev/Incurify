@@ -10,11 +10,6 @@ export const faqs: FAQ[] = [
       'The kind of projects that we get to work with involve Web3 projects that are either preparing for a launch or already launched but look to scale. This could be DeFi, gaming, consumer Web3 projects, infrastructure, or ecosystems that have a creator at their helm.',
   },
   {
-    question: 'What, then, does "Ship · Grow · Sustain" mean?',
-    answer:
-      'It represents the way we think of growth: *Ship*: Positioning, Implementation, & Readiness. *Grow:* By adoption, creation, and community engagement. *Sustain*: Upon sustaining, retention, consistency, relevance. In fact, not all projects require all of these at the same time, but all of our work can be classified in one of these categories.',
-  },
-  {
     question: 'How does Incurify measure success?',
     answer:
       'Instead, we concentrate on those outcomes which endure: adoption, retention, and engagement. We worry less about the peaks and cares more about the usefulness of what we create being maintained.',
