@@ -2,11 +2,13 @@
 
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import { Sparkles } from 'lucide-react';
+import { Sparkles, ChevronRight } from 'lucide-react';
 import { BGPattern } from '@/components/ui/bg-pattern';
 import { ParallaxElement } from '@/components/ui/parallax-section';
 import { ParticleBackground } from '@/components/ui/particle-background';
 import { AnimatedShinyButton } from '@/components/ui/animated-shiny-button';
+import { TextAnimate } from '@/components/ui/text-animate';
+import { cn } from '@/lib/utils';
 
 export default function HeroSection() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -104,12 +106,41 @@ export default function HeroSection() {
           <ParallaxElement speed={0.5} direction="down">
             <div
               ref={badgeRef}
-              className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-[#8B6CFF]/10 border border-[#8B6CFF]/30 rounded-full mb-4 sm:mb-5 md:mb-6 lg:mb-8"
+              className="group relative mx-auto flex items-center justify-center rounded-full px-3 py-1.5 sm:px-4 sm:py-2 shadow-[inset_0_-8px_10px_#8B6CFF1f] transition-shadow duration-500 ease-out hover:shadow-[inset_0_-5px_10px_#8B6CFF3f] mb-4 sm:mb-5 md:mb-6 lg:mb-8 bg-black/20 backdrop-blur-sm"
             >
-              <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#8B6CFF]" />
-              <span className="text-xs sm:text-sm font-medium text-[#8B6CFF]">
-                Growth for Web3 Brands
-              </span>
+              <span
+                className={cn(
+                  "animate-gradient absolute inset-0 block h-full w-full rounded-[inherit] p-[1px] z-0"
+                )}
+                style={{
+                  background: "linear-gradient(90deg, #8B6CFF 0%, #3B1A6E 25%, #EEE9FF 50%, #B7A6FF 75%, #8B6CFF 100%)",
+                  backgroundSize: "300% 100%",
+                  WebkitMask:
+                    "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                  WebkitMaskComposite: "destination-out",
+                  mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                  maskComposite: "subtract",
+                  WebkitClipPath: "padding-box",
+                }}
+              />
+              <div className="relative z-20 flex items-center">
+                <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#8B6CFF]" />
+                <hr className="mx-2 h-4 w-px shrink-0 bg-[#8B6CFF]/50" />
+                <span
+                  className="text-xs sm:text-sm font-medium animate-gradient inline-block"
+                  style={{
+                    background: "linear-gradient(90deg, #8B6CFF 0%, #3B1A6E 25%, #EEE9FF 50%, #B7A6FF 75%, #8B6CFF 100%)",
+                    backgroundSize: "300% 100%",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                    color: "transparent",
+                  }}
+                >
+                  Growth for Web3 Brands
+                </span>
+                <ChevronRight className="ml-1 size-3 sm:size-4 stroke-[#8B6CFF] transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
+              </div>
             </div>
           </ParallaxElement>
 
@@ -140,12 +171,22 @@ export default function HeroSection() {
 
           {/* Subheadline */}
           <ParallaxElement speed={0.15} direction="down">
-            <p
+            <div 
               ref={subheadlineRef}
               className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-white/70 mt-4 sm:mt-5 md:mt-6 lg:mt-8 mb-6 sm:mb-8 md:mb-10 lg:mb-12 max-w-2xl sm:max-w-3xl md:max-w-4xl mx-auto leading-relaxed text-center w-full"
             >
-              We work with Web3 teams that are building real products and want them to last. From early execution to ongoing growth, we help projects move forward with structure, clarity, and consistency.
-            </p>
+              <TextAnimate
+                animation="blurInUp"
+                by="word"
+                as="p"
+                className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-white/70"
+                delay={0.6}
+                duration={0.5}
+                once={true}
+              >
+                We work with Web3 teams that are building real products and want them to last. From early execution to ongoing growth, we help projects move forward with structure, clarity, and consistency.
+              </TextAnimate>
+            </div>
           </ParallaxElement>
 
 {/* CTA Buttons */}
@@ -156,7 +197,7 @@ export default function HeroSection() {
 >
     <AnimatedShinyButton
       url="#contact"
-      className="w-full sm:w-auto text-base sm:text-base font-semibold touch-manipulation !px-8 !py-3.5 sm:!px-8 sm:!py-3.5 md:!px-10 md:!py-4"
+      className="w-full sm:w-auto text-base sm:text-base font-semibold touch-manipulation !px-8 !py-3.5 sm:!px-8 sm:!py-3.5 md:!px-10 md:!py-4 !text-white"
     >
       Start Your Project
     </AnimatedShinyButton>

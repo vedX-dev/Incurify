@@ -70,6 +70,9 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
+  .theme {
+    --animate-gradient: gradient 8s linear infinite;
+  }
 }
 
 @layer base {
@@ -301,5 +304,28 @@ button[data-state="open"] .plus-minus-horizontal {
     filter: drop-shadow(0 0 20px rgba(139, 108, 255, 1)) 
             drop-shadow(0 0 35px rgba(139, 108, 255, 1))
             drop-shadow(0 0 50px rgba(139, 108, 255, 0.9));
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@theme inline {
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
   }
 }

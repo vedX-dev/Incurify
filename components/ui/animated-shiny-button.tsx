@@ -69,7 +69,7 @@ export function AnimatedShinyButton({
           border-radius: 0.5rem;
           color: var(--shiny-cta-fg);
           background:
-            linear-gradient(to right, #8B6CFF, #3B1A6E)
+            linear-gradient(var(--shiny-cta-bg), var(--shiny-cta-bg))
               padding-box,
             conic-gradient(
                 from calc(var(--gradient-angle) - var(--gradient-angle-offset)),
@@ -231,9 +231,9 @@ export function AnimatedShinyButton({
         @media (prefers-color-scheme: light) {
           .shiny-cta,
           .shiny-cta-link {
-            --shiny-cta-bg: #8B6CFF;
-            --shiny-cta-bg-subtle: #B7A6FF;
-            --shiny-cta-fg: #0A0612;
+            --shiny-cta-bg: #ffffff;
+            --shiny-cta-bg-subtle: #f0f0f0;
+            --shiny-cta-fg: #000000;
             --shiny-cta-highlight: #B7A6FF;
             --shiny-cta-highlight-subtle: #8B6CFF;
           }
@@ -242,16 +242,16 @@ export function AnimatedShinyButton({
 
       {url ? (
         <a href={url} className={`shiny-cta-link group ${className}`}>
-          <span className="flex items-center">
+          <span className="flex items-center text-white">
             {children}
-            <ChevronRight className="ml-1 size-4 shrink-0 transition-all duration-300 ease-out group-hover:translate-x-1" />
+            <ChevronRight className="ml-1 size-4 shrink-0 transition-all duration-300 ease-out group-hover:translate-x-1 text-white" />
           </span>
         </a>
       ) : (
         <button className={`shiny-cta group ${className}`}>
-          <span className="flex items-center">
+          <span className="flex items-center text-white">
             {children}
-            <ChevronRight className="ml-1 size-4 shrink-0 transition-all duration-300 ease-out group-hover:translate-x-1" />
+            <ChevronRight className="ml-1 size-4 shrink-0 transition-all duration-300 ease-out group-hover:translate-x-1 text-white" />
           </span>
         </button>
       )}
