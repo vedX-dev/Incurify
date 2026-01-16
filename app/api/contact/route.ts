@@ -64,24 +64,51 @@ export async function POST(request: NextRequest) {
           to: clientEmail,
           subject: `New Form Submission: from ${name}`,
           html: `
-            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-              <h2 style="color:rgb(105, 63, 204); border-bottom: 2px solid #06B6D4; padding-bottom: 10px;">
-                New Contact Form Submission
-              </h2>
-              <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-                <p><strong style="color: #333;">Name:</strong> <span style="color: #666;">${name}</span></p>
-                <p><strong style="color: #333;">Email:</strong> <span style="color: #666;">${email}</span></p>
-                ${telegramUsername ? `<p><strong style="color: #333;">Telegram Username:</strong> <span style="color: #666;">${telegramUsername}</span></p>` : ''}
-                <p><strong style="color: #333;">Project Type:</strong> <span style="color: #666;">${projectType}</span></p>
-              </div>
-              <div style="background-color: #fff; padding: 20px; border-radius: 8px; border-left: 4px solid #8B5CF6;">
-                <p><strong style="color: #333;">Message:</strong></p>
-                <p style="color: #666; line-height: 1.6; white-space: pre-wrap;">${message}</p>
-              </div>
-              <p style="color: #999; font-size: 12px; margin-top: 20px;">
-                This email was sent from Incurify.
-              </p>
-            </div>
+            <div style="font-family: Arial, sans-serif; max-width: 640px; margin: 0 auto; padding: 20px; background:#fafafa;">
+  <h2 style="
+    color:#4F46E5; 
+    border-bottom: 2px solid #06B6D4; 
+    padding-bottom: 10px;
+    margin-top: 0;
+  ">
+    New Contact Form Submission
+  </h2>
+
+  <div style="
+    background-color: #ffffff; 
+    padding: 20px; 
+    border-radius: 8px; 
+    margin: 20px 0; 
+    border: 1px solid #e5e7eb;
+  ">
+    <p><strong style="color:#111827;">Name:</strong> <span style="color:#4b5563;">${name}</span></p>
+    <p><strong style="color:#111827;">Email:</strong> <span style="color:#4b5563;">${email}</span></p>
+
+    ${telegramUsername ? `
+      <p><strong style="color:#111827;">Telegram Username:</strong> 
+      <span style="color:#4b5563;">${telegramUsername}</span></p>` 
+    : ''}
+
+    <p><strong style="color:#111827;">Project Type:</strong> 
+    <span style="color:#4b5563;">${projectType}</span></p>
+  </div>
+
+  <div style="
+    background-color: #ffffff; 
+    padding: 20px; 
+    border-radius: 8px; 
+    border-left: 4px solid #8B5CF6; 
+    border: 1px solid #e5e7eb;
+  ">
+    <p style="margin-top: 0;"><strong style="color:#111827;">Message:</strong></p>
+    <p style="color:#4b5563; line-height:1.6; white-space:pre-wrap;">${message}</p>
+  </div>
+
+  <p style="color:#9ca3af; font-size:12px; margin-top:20px; text-align:center;">
+    This email was sent from Incurify.
+  </p>
+</div>
+
           `,
         });
       } catch (emailError) {
