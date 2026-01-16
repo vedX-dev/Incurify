@@ -2,10 +2,11 @@
 
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 import { BGPattern } from '@/components/ui/bg-pattern';
 import { ParallaxElement } from '@/components/ui/parallax-section';
 import { ParticleBackground } from '@/components/ui/particle-background';
+import { AnimatedShinyButton } from '@/components/ui/animated-shiny-button';
 
 export default function HeroSection() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -153,13 +154,12 @@ export default function HeroSection() {
   ref={ctaRef}
   className="flex flex-col sm:flex-row gap-4 justify-center items-center w-full"
 >
-    <a
-    href="#contact"
-    className="group w-full sm:w-auto px-8 py-3.5 sm:px-8 sm:py-3.5 md:px-10 md:py-4 bg-gradient-to-r from-[#8B6CFF] to-[#B7A6FF] text-[#0A0612] rounded-lg font-semibold hover:shadow-lg hover:shadow-[#8B6CFF]/50 transition-all duration-300 flex items-center justify-center gap-2.5 text-base sm:text-base touch-manipulation"
-  >
-    <span>Start Your Project</span>
-    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform flex-shrink-0" />
-  </a>
+    <AnimatedShinyButton
+      url="#contact"
+      className="w-full sm:w-auto text-base sm:text-base font-semibold touch-manipulation !px-8 !py-3.5 sm:!px-8 sm:!py-3.5 md:!px-10 md:!py-4"
+    >
+      Start Your Project
+    </AnimatedShinyButton>
 </div>
 </ParallaxElement>
 </div>

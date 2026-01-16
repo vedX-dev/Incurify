@@ -37,7 +37,7 @@
     "next": "13.5.1",
     "postcss": "8.4.30",
     "process": "^0.11.10",
-    "react": "18.2.0",
+    "react": "^18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.53.0",
     "resend": "^4.0.0",
