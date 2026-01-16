@@ -116,7 +116,7 @@ export default function HeroSection() {
           <ParallaxElement speed={0.3} direction="down">
             <h1
               ref={headlineRef}
-              className="font-akira-expanded text-[2rem] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black mb-0 tracking-tight text-center w-full px-2 sm:px-4 md:px-6 leading-[1.1] sm:leading-[1.08] md:leading-[1.05]"
+              className="font-akira-expanded text-[2rem] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black mb-0 tracking-tight text-center w-full leading-[1.1] sm:leading-[1.08] md:leading-[1.05] break-words overflow-hidden"
               style={{
                 fontWeight: 100,
                 WebkitTextStroke: '0px currentColor',
@@ -131,7 +131,7 @@ export default function HeroSection() {
                 Leading{' '}
               </span>
 
-              <span className="bg-white bg-clip-text text-transparent whitespace-nowrap">
+              <span className="bg-white bg-clip-text text-transparent sm:whitespace-nowrap">
                 Growth Partner
               </span>
             </h1>
@@ -141,7 +141,7 @@ export default function HeroSection() {
           <ParallaxElement speed={0.15} direction="down">
             <p
               ref={subheadlineRef}
-              className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-white/70 mt-4 sm:mt-5 md:mt-6 lg:mt-8 mb-6 sm:mb-8 md:mb-10 lg:mb-12 max-w-2xl sm:max-w-3xl md:max-w-4xl mx-auto leading-relaxed text-center px-2 sm:px-4 md:px-6"
+              className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-white/70 mt-4 sm:mt-5 md:mt-6 lg:mt-8 mb-6 sm:mb-8 md:mb-10 lg:mb-12 max-w-2xl sm:max-w-3xl md:max-w-4xl mx-auto leading-relaxed text-center w-full"
             >
               We work with Web3 teams that are building real products and want them to last. From early execution to ongoing growth, we help projects move forward with structure, clarity, and consistency.
             </p>
@@ -151,7 +151,7 @@ export default function HeroSection() {
 <ParallaxElement speed={0.1} direction="down">
 <div
   ref={ctaRef}
-  className="flex flex-col sm:flex-row gap-4 justify-center items-center w-full px-4 sm:px-4"
+  className="flex flex-col sm:flex-row gap-4 justify-center items-center w-full"
 >
     <a
     href="#contact"

@@ -122,7 +122,7 @@ export default function Navigation() {
   }, []);
 
   return (
-    <nav ref={navRef} className="fixed top-2 sm:top-4 left-0 right-0 z-50 w-full max-w-[1000px] mx-auto px-2 sm:px-4">
+    <nav ref={navRef} className="fixed top-2 sm:top-4 left-0 right-0 z-50 w-full max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-8">
       {/* Floating Glass Container */}
       <div
         className="bg-black/10 backdrop-blur-md shadow-xl shadow-black/40 border border-white/20 transition-all duration-800 ease-out w-full"
@@ -131,10 +131,10 @@ export default function Navigation() {
           borderRadius: `${12 + (24 - 12) * (1 - scrollProgress)}px`,
         }}
       >
-        <div className="px-3 sm:px-4 md:px-6 lg:px-8">
+        <div className="px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 sm:h-20 min-w-0">
           {/* Logo */}
-            <Link href="/" className="flex items-center space-x-2 group" onClick={() => setIsOpen(false)}>
+            <Link href="/" className="flex items-center space-x-2 group flex-shrink-0" onClick={() => setIsOpen(false)}>
               <div className="relative w-[40px] h-[40px] sm:w-[50px] sm:h-[50px] flex-shrink-0">
                 <Image
                   src="/images/logo/incurify.png"
@@ -179,7 +179,7 @@ export default function Navigation() {
             {/* Mobile Toggle */}
           <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden text-gray-300 hover:text-white p-2 -mr-1 touch-manipulation flex-shrink-0"
+              className="md:hidden text-gray-300 hover:text-white p-2 touch-manipulation flex-shrink-0"
             aria-label="Toggle menu"
               aria-expanded={isOpen}
           >
@@ -195,7 +195,7 @@ export default function Navigation() {
             className="md:hidden border-t border-white/10 bg-black/80 backdrop-blur-xl overflow-hidden"
             style={{ borderRadius: '0 0 12px 12px' }}
           >
-            <div className="px-4 py-5 space-y-1">
+            <div className="px-4 sm:px-6 lg:px-8 py-5 space-y-1">
               {navLinks.map((link, index) => (
                 <a
                   key={link.href}
