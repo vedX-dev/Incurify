@@ -667,11 +667,11 @@ export default function AboutSection() {
                   </h2>
                   <p className="leading-relaxed text-xs sm:text-sm md:text-base lg:text-lg space-y-2 sm:space-y-3 md:space-y-4" style={{ color: 'rgba(255,255,255,0.9)' }}>
                     <span className="block">
-                      To empower businesses and individuals to embrace the{' '}
-                      <span className="text-[#B7A6FF]">decentralized future</span>.
+                    To help {' '}
+                      <span className="text-[#B7A6FF]">Web3 teams </span>ship with clarity and grow in a way that holds up after launch.
                     </span>
                     <span className="block">
-                      We provide world-class Web3 solutions that make blockchain technology accessible, secure, and user-friendly.
+                    We focus on execution, creator-led distribution, and consistency so projects don’t lose momentum once the noise fades.
                     </span>
                   </p>
                 </div>
@@ -690,10 +690,7 @@ export default function AboutSection() {
                   </h2>
                   <p className="leading-relaxed text-xs sm:text-sm md:text-base lg:text-lg space-y-2 sm:space-y-3 md:space-y-4" style={{ color: 'rgba(255,255,255,0.9)' }}>
                     <span className="block">
-                      To become the leading <span className="text-[#B7A6FF]">Web3 agency</span> that shapes the future of decentralized technology.
-                    </span>
-                    <span className="block">
-                      We envision a world where <span className="text-[#B7A6FF]">blockchain</span> powers transparent, efficient, and equitable systems that benefit humanity.
+                    To be a long-term growth partner for <span className="text-[#B7A6FF]">Web3 teams </span>across different stages, working closely with founders as their projects evolve from early execution to sustained growth in live ecosystems.
                     </span>
                   </p>
                 </div>

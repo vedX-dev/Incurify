@@ -12,13 +12,13 @@ export default function TestimonialsSection() {
           title={
             <>
               <span className="bg-white bg-clip-text text-transparent">
-                What {' '}
+              Let's hear what {' '}
               </span>
               <span className="bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] bg-clip-text text-transparent">
-                teams {' '}
+               client's {' '}
               </span>
               <span className="bg-white bg-clip-text text-transparent">
-                say after working with us.
+              feel about our service
               </span>
             </>
           }
