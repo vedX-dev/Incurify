@@ -74,7 +74,7 @@ export default function HeroSection() {
   
 
   return (
-    <section className="min-h-screen w-full bg-transparent relative overflow-visible flex items-center justify-center pt-16 sm:pt-20 md:pt-0 md:-mt-24">
+    <section className="min-h-screen w-full bg-transparent relative overflow-visible flex items-center justify-center -mt-14 sm:-mt-16 md:mt-0 md:-mt-24">
       {/* Azure Depths - Only at Hero Top - Extends upward to cover page padding */}
       <div
         className="absolute -top-14 sm:-top-16 md:-top-20 lg:-top-24 left-0 right-0 h-[calc(100vh+3.5rem)] sm:h-[calc(100vh+4rem)] md:h-screen z-0 pointer-events-none"
@@ -97,7 +97,7 @@ export default function HeroSection() {
       </div>
 
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12 lg:py-16 xl:py-20 relative z-10 w-full flex items-center justify-center min-h-[calc(100vh-3.5rem)] sm:min-h-[calc(100vh-4rem)] md:min-h-screen">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-0 md:py-12 lg:py-16 xl:py-20 relative z-10 w-full flex items-center justify-center min-h-screen md:min-h-screen">
         <div ref={heroRef} className="flex flex-col items-center justify-center text-center w-full space-y-0">
           {/* Badge */}
           <ParallaxElement speed={0.5} direction="down">
