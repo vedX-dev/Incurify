@@ -12,17 +12,14 @@ export default function TestimonialsSection() {
           title={
             <>
               <span className="bg-white bg-clip-text text-transparent">
-              Let's hear what {' '}
+              What it's like to work with {' '}
               </span>
               <span className="bg-gradient-to-r from-[#8B6CFF] to-[#3B1A6E] bg-clip-text text-transparent">
-               client's {' '}
-              </span>
-              <span className="bg-white bg-clip-text text-transparent">
-              feel about our service
+               Incurify{' '}
               </span>
             </>
           }
-          description="Let's hear how Incurify client's feels about our service"
+          description="Feedback from projects we’ve worked with closely."
           testimonials={testimonials}
         />
       </ParallaxElement>

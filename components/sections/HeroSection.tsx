@@ -77,7 +77,7 @@ export default function HeroSection() {
   
 
   return (
-    <section className="min-h-screen w-full bg-transparent relative overflow-visible flex items-center justify-center -mt-14 sm:-mt-16 md:mt-0 md:-mt-24">
+    <section id ="hero"className="min-h-screen w-full bg-transparent relative overflow-visible flex items-center justify-center -mt-14 sm:-mt-16 md:mt-0 md:-mt-24">
       {/* Azure Depths - Only at Hero Top - Extends upward to cover page padding */}
       <div
         className="absolute -top-14 sm:-top-16 md:-top-20 lg:-top-24 left-0 right-0 h-[calc(100vh+3.5rem)] sm:h-[calc(100vh+4rem)] md:h-screen z-0 pointer-events-none"

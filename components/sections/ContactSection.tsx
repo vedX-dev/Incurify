@@ -57,7 +57,7 @@ export default function ContactSection() {
         <ParallaxElement speed={0.2} direction="up">
           <div className="animate-on-scroll mx-auto w-full max-w-3xl space-y-6 sm:space-y-7 pt-12 sm:pt-16 px-4">
             <div className="space-y-2 text-center">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl xl:text-4xl font-akira-expanded tracking-wide" style={{ fontWeight: 100, WebkitTextStroke: '0.1px currentColor' } as React.CSSProperties}>
+              <h2 id="faq" className="text-2xl sm:text-3xl md:text-4xl xl:text-4xl font-akira-expanded tracking-wide" style={{ fontWeight: 100, WebkitTextStroke: '0.1px currentColor' } as React.CSSProperties}>
                 <TextVerticalSwap as="span" duration={0.3}>
                   <span className="bg-white bg-clip-text text-transparent">
                     Frequently Asked{' '}

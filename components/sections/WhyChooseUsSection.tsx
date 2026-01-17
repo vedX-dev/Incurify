@@ -92,7 +92,7 @@ export default function WhyChooseUsSection() {
   }, []);
 
   return (
-    <section
+    <section id="why-choose-us"
       ref={sectionRef}
       className="relative w-full bg-transparent py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 px-4 sm:px-6 lg:px-8 overflow-hidden"
     >

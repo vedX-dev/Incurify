@@ -9,12 +9,13 @@ import { TextVerticalSwap } from '@/components/ui/text-vertical-swap';
 const footerLinks = {
   navigation: [
     { label: 'Home', href: '/#hero' },
-    { label: 'Why Choose Us', href: '/#why-choose-us' },
-    { label: 'Services', href: '/#services' },
+    { label: 'Why Incurify?', href: '/#why-choose-us' },
+    { label: 'How we Help', href: '/#services' },
     { label: 'Process', href: '/#process' },
     { label: 'Testimonials', href: '/#testimonials' },
     { label: 'About', href: '/#about' },
     { label: 'Contact', href: '/#contact' },
+    { label: 'FAQ', href: '/#faq' },
   ],
 };
 
