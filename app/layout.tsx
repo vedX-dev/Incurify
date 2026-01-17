@@ -39,7 +39,7 @@ export const metadata = {
     title: 'Incurify – Web3 Marketing & Growth Agency for Startups',
     description:
       'Incurify is a Web3 marketing and growth agency helping blockchain projects build, launch, and scale with proven strategies for long-term traction.',
-    images: ['/images/metadata/twitter.jpg'], // Can be same as OG or 1200x675px
+    images: ['/images/metadata/opengraph.jpg'], // Can be same as OG or 1200x675px
     creator: '@Incurify_Web3', // Add your Twitter handle
     site: '@Incurify_Web3', // Add your Twitter handle
   },
