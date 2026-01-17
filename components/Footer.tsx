@@ -243,10 +243,6 @@ export default function Footer() {
           <p className="text-xs sm:text-sm text-white/50 text-center sm:text-left">
             © {new Date().getFullYear()} Incurify. All rights reserved.
           </p>
-          <p className="text-xs sm:text-sm text-white/50 text-center sm:text-right">
-            <span>site by</span>{' '}
-            <a className="underline" href="https://vedxdev-portfolio.vercel.app/">vedXdev</a>
-          </p>
         </div>
       </div>
     </footer>
