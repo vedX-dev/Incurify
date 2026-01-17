@@ -199,7 +199,7 @@ export default function HeroSection() {
       url="#contact"
       className="w-full sm:w-auto text-base sm:text-base font-semibold touch-manipulation !px-8 !py-3.5 sm:!px-8 sm:!py-3.5 md:!px-10 md:!py-4 !text-white"
     >
-      Start Your Project
+      Work with Us
     </AnimatedShinyButton>
 </div>
 </ParallaxElement>
