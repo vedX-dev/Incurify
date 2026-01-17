@@ -35,5 +35,12 @@ export const teamMembers: TeamMember[] = [
     image: '/images/team/moonlight.jpg',
     twitterUrl: 'https://x.com/moonlight_ops',
   },
+  {
+    id: '5',
+    name: 'vedXdev',
+    role: 'Chief Technology Officer',
+    image: '/images/team/vedxdev.jpg',
+    twitterUrl: 'https://x.com/vedXdev',
+  },
 ];
 

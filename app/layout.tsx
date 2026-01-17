@@ -6,9 +6,9 @@ import FontLoader from '@/components/FontLoader';
 import PageTransition from '@/components/PageTransition';
 
 export const metadata = {
-  title: 'Incurify - Web3 Marketing Agency',
+  title: 'Incurify – Web3 Marketing & Growth Agency for Startups',
   description:
-    'Incurify is a Web3 growth partner helping projects build and sustain traction from launch to scale.',
+    'Incurify is a Web3 marketing and growth agency helping blockchain projects build, launch, and scale with proven strategies for long-term traction.',
   icons: {
     icon: '/icons/icon.png',
     apple: '/icons/apple-touch-icon.png', // Add 180x180 PNG
@@ -16,10 +16,10 @@ export const metadata = {
   
   // Open Graph (Facebook, LinkedIn, WhatsApp, Discord, etc.)
   openGraph: {
-    title: 'Incurify - Web3 Marketing Agency',
+    title: 'Incurify – Web3 Marketing & Growth Agency for Startups',
     description:
-      'Incurify is a Web3 growth partner helping projects build and sustain traction from launch to scale.',
-    url: 'https://incurify.vercel.app', // Replace with your actual domain
+      'Incurify is a Web3 marketing and growth agency helping blockchain projects build, launch, and scale with proven strategies for long-term traction.',
+    url: 'https://incurify.com', // Replace with your actual domain
     siteName: 'Incurify',
     images: [
       {
@@ -36,16 +36,16 @@ export const metadata = {
   // Twitter/X
   twitter: {
     card: 'summary_large_image',
-    title: 'Incurify - Web3 Marketing Agency',
+    title: 'Incurify – Web3 Marketing & Growth Agency for Startups',
     description:
-      'Scale your Web3 project with Incurify — influencer marketing, community building, PR, and blockchain growth strategy.',
+      'Incurify is a Web3 marketing and growth agency helping blockchain projects build, launch, and scale with proven strategies for long-term traction.',
     images: ['/images/metadata/twitter.jpg'], // Can be same as OG or 1200x675px
     creator: '@Incurify_Web3', // Add your Twitter handle
     site: '@Incurify_Web3', // Add your Twitter handle
   },
 
   // Additional meta tags
-  metadataBase: new URL('https://incurify.vercel.app'), // Replace with your domain
+  metadataBase: new URL('https://incurify.com'), // Replace with your domain
   alternates: {
     canonical: '/',
   },
