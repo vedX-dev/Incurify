@@ -10,7 +10,7 @@ export const metadata = {
   description:
     'Incurify is a Web3 marketing and growth agency helping blockchain projects build, launch, and scale with proven strategies for long-term traction.',
   icons: {
-    icon: '/icons/icon.png',
+    icon: '/images/logo/favicon.ico',
     apple: '/icons/apple-touch-icon.png', // Add 180x180 PNG
   },
   
