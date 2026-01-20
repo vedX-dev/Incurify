@@ -77,7 +77,7 @@ export default function HeroSection() {
   
 
   return (
-    <section id ="hero"className="min-h-screen w-full bg-transparent relative overflow-visible flex items-center justify-center -mt-14 sm:-mt-16 md:mt-0 md:-mt-24">
+    <section className="min-h-screen w-full bg-transparent relative overflow-visible flex items-center justify-center -mt-14 sm:-mt-16 md:mt-0 md:-mt-24">
       {/* Azure Depths - Only at Hero Top - Extends upward to cover page padding */}
       <div
         className="absolute -top-14 sm:-top-16 md:-top-20 lg:-top-24 left-0 right-0 h-[calc(100vh+3.5rem)] sm:h-[calc(100vh+4rem)] md:h-screen z-0 pointer-events-none"
@@ -181,7 +181,7 @@ export default function HeroSection() {
                 as="p"
                 className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-white/70"
                 delay={0.6}
-                duration={1}
+                duration={0.5}
                 once={true}
               >
                 We work with Web3 teams that are building real products and want them to last. From early execution to ongoing growth, we help projects move forward with structure, clarity, and consistency.
@@ -199,7 +199,7 @@ export default function HeroSection() {
       url="#contact"
       className="w-full sm:w-auto text-base sm:text-base font-semibold touch-manipulation !px-8 !py-3.5 sm:!px-8 sm:!py-3.5 md:!px-10 md:!py-4 !text-white"
     >
-      Work with Us
+      Start Your Project
     </AnimatedShinyButton>
 </div>
 </ParallaxElement>

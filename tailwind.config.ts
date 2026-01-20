@@ -7,6 +7,12 @@ const config: Config = {
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+
+  safelist: [
+    'animate-gradient',
+    'shadow-[inset_0_-8px_10px_#8B6CFF1f]',
+    'hover:shadow-[inset_0_-5px_10px_#8B6CFF3f]',
+  ],
   theme: {
     extend: {
       backgroundImage: {

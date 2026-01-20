@@ -31,8 +31,8 @@ export const services: Service[] = [
   {
     id: '4',
     number: '04',
-    title: 'Community Building',
-    description: 'Community systems built for participation and continuity not short-term engagement spikes or giveaway culture.',
+    title: 'Strategic Advisory & Consulting',
+    description: 'Hands-on guidance for founders navigating positioning, growth decisions and execution trade-offs over time.',
     image: '/images/services/strategic_advisory_and_consulting.png',
   },
   {
@@ -45,8 +45,8 @@ export const services: Service[] = [
   {
     id: '6',
     number: '06',
-    title: 'Strategic Advisory & Consulting',
-    description: 'Hands-on guidance for founders navigating positioning, growth decisions and execution trade-offs over time.',
+    title: 'Community Building',
+    description: 'Community systems built for participation and continuity not short-term engagement spikes or giveaway culture.',
     image: '/images/services/community_building.png',
   },
   {

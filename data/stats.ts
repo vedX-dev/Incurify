@@ -12,22 +12,22 @@ export const stats: Stat[] = [
   },
   {
     id: '2',
-    value: '$15000000+',
+    value: '$5000000+',
     label: 'Fund raised',
   },
   {
     id: '3',
-    value: '1000000+',
+    value: '700000+',
     label: 'Followers',
   },
   {
     id: '4',
-    value: '1000000000+',
+    value: '40000000+',
     label: 'Impressions',
   },
   {
     id: '4',
-    value: '35+',
+    value: '13+',
     label: 'Projects',
   },
 ];
