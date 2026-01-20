@@ -103,7 +103,7 @@ export default function HeroSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-0 md:py-12 lg:py-16 xl:py-20 relative z-10 w-full flex items-center justify-center min-h-screen md:min-h-screen">
         <div ref={heroRef} className="flex flex-col items-center justify-center text-center w-full space-y-0">
           {/* Badge */}
-          <ParallaxElement speed={0.5} direction="down">
+          <div>
             <div
               ref={badgeRef}
               className="group relative mx-auto flex items-center justify-center rounded-full px-3 py-1.5 sm:px-4 sm:py-2 shadow-[inset_0_-8px_10px_#8B6CFF1f] transition-shadow duration-500 ease-out hover:shadow-[inset_0_-5px_10px_#8B6CFF3f] mb-4 sm:mb-5 md:mb-6 lg:mb-8 bg-black/20 backdrop-blur-sm"
@@ -142,7 +142,7 @@ export default function HeroSection() {
                 <ChevronRight className="ml-1 size-3 sm:size-4 stroke-[#8B6CFF] transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
               </div>
             </div>
-          </ParallaxElement>
+            </div>
 
           {/* Headline */}
           <ParallaxElement speed={0.3} direction="down">
